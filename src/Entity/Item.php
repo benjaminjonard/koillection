@@ -76,6 +76,10 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[Groups(['item:read', 'item:write'])]
     private int $quantity = 1;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['item:read', 'item:write'])]
+    private ?string $description = null;
+
     #[ORM\ManyToOne(targetEntity: Collection::class, inversedBy: 'items')]
     #[Assert\NotBlank]
     #[Groups(['item:read', 'item:write'])]
@@ -239,6 +243,18 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setName(string $name): Item
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): Item
+    {
+        $this->description = $description;
 
         return $this;
     }

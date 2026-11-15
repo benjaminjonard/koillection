@@ -22,6 +22,7 @@
         "doctrine/doctrine-migrations-bundle": "4.0.1",
         "doctrine/orm": "3.7.6",
         "doctrine/persistence": "4.2.1",
+        "league/commonmark": "2.10.7",
         "lexik/jwt-authentication-bundle": "3.2.0",
         "maennchen/zipstream-php": "3.2.2",
         "mtdowling/jmespath.php": "2.9.2",
@@ -67,6 +68,7 @@
         "symfony/yaml": "8.1.11",
         "twig/extra-bundle": "3.29.0",
         "twig/intl-extra": "3.30.0",
+        "twig/markdown-extra": "3.29.0",
         "twig/string-extra": "3.24.0",
         "twig/twig": "3.30.0"
     },

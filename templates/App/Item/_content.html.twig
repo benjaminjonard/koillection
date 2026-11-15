@@ -144,6 +144,12 @@
 
 </div>
 
+{% if item.description is not empty %}
+    <div class="markdown-block">
+        <div class="markdown">{{ item.description|markdown_to_html }}</div>
+    </div>
+{% endif %}
+
 {% if isFeatureEnabled('tags') and item.tags is not empty %}
     <div class="tags-block">
         <ul class="nav nav-tags">

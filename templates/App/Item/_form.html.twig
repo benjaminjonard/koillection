@@ -57,6 +57,12 @@
                     </div>
                 </div>
             {% endif %}
+
+            <div class="row">
+                <div class="s12 l10 offset-l1 xl8 offset-xl2">
+                    {{ form_row(form.description, {'label': 'label.description_markdown', 'attr' : {'class': 'materialize-textarea', 'data-controller': 'textarea'}}) }}
+                </div>
+            </div>
         </div>
 
         <div class="content-block" data-controller="additional-data" data-entity="item" data-action="scraping:newScrapedData@window->additional-data#injectNewScrapedData">
