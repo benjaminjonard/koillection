@@ -1327,6 +1327,12 @@
         <target>Description</target>
       </segment>
     </unit>
+    <unit id="fMWEoBC" name="label.description_markdown">
+      <segment state="translated">
+        <source>Description (supports Markdown)</source>
+        <target>Description (supports Markdown)</target>
+      </segment>
+    </unit>
     <unit id="ak1St8x" name="label.number_of_items">
       <segment state="translated">
         <source># of items</source>

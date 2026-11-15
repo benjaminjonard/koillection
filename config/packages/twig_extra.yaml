@@ -1,0 +1,7 @@
+twig_extra:
+    commonmark:
+        html_input: 'escape'
+        allow_unsafe_links: false
+        max_nesting_level: 20
+        renderer:
+            soft_break: "<br />\n"

@@ -21,6 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollecti
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -48,6 +49,10 @@ class ItemType extends AbstractType
             ])
             ->add('quantity', IntegerType::class, [
                 'required' => true,
+            ])
+            ->add('description', TextareaType::class, [
+                'required' => false,
+                'label' => false,
             ])
             ->add('file', FileType::class, [
                 'required' => false,

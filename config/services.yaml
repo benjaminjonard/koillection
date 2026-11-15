@@ -27,6 +27,9 @@ services:
         resource: '../api/Controller'
         tags: [ 'controller.service_arguments' ]
 
+    League\CommonMark\Extension\GithubFlavoredMarkdownExtension:
+        tags: [ 'twig.markdown.league_extension' ]
+
 when@test:
     services:
         App\Tests\Factory\:
