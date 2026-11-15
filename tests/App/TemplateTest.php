@@ -141,4 +141,44 @@ class TemplateTest extends AppTestCase
         $this->assertSame('Country', $content[1][1]);
         $this->assertSame('Pages', $content[2][1]);
     }
+
+    public function test_template_price_fields_are_not_loaded_for_collections(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $template = TemplateFactory::createOne(['owner' => $user]);
+        FieldFactory::createOne(['name' => 'Author', 'type' => DatumTypeEnum::TYPE_TEXT, 'position' => 1, 'template' => $template, 'owner' => $user]);
+        FieldFactory::createOne(['name' => 'Price', 'type' => DatumTypeEnum::TYPE_PRICE, 'position' => 2, 'template' => $template, 'owner' => $user]);
+        FieldFactory::createOne(['name' => 'Pages', 'type' => DatumTypeEnum::TYPE_NUMBER, 'position' => 3, 'template' => $template, 'owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/templates/' . $template->getId() . '/fields?entity=collection');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertSame([0, 1], array_keys($content));
+        $this->assertSame('Author', $content[0][1]);
+        $this->assertSame('Pages', $content[1][1]);
+    }
+
+    public function test_template_price_fields_are_loaded_for_items(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $template = TemplateFactory::createOne(['owner' => $user]);
+        FieldFactory::createOne(['name' => 'Author', 'type' => DatumTypeEnum::TYPE_TEXT, 'position' => 1, 'template' => $template, 'owner' => $user]);
+        FieldFactory::createOne(['name' => 'Price', 'type' => DatumTypeEnum::TYPE_PRICE, 'position' => 2, 'template' => $template, 'owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/templates/' . $template->getId() . '/fields?entity=item');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertCount(2, $content);
+        $this->assertSame('Price', $content[1][1]);
+    }
 }
