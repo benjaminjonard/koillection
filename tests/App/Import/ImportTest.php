@@ -257,11 +257,12 @@ class ImportTest extends AppTestCase
     public function test_cannot_access_import_of_another_user(): void
     {
         $owner = UserFactory::createOne();
+        $otherUser = UserFactory::createOne();
         $this->client->loginUser($owner);
         $collection = CollectionFactory::createOne(['owner' => $owner]);
         $import = $this->uploadAndMap($collection, "name\nA\n", 0, null, []);
 
-        $this->client->loginUser(UserFactory::createOne());
+        $this->client->loginUser($otherUser);
         $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $import->getId() . '/preview');
 
         $this->assertResponseStatusCodeSame(404);

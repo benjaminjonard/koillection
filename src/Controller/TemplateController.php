@@ -103,12 +103,16 @@ class TemplateController extends AbstractController
     }
 
     #[Route(path: '/templates/{id}/fields', name: 'app_template_fields', methods: ['GET'])]
-    public function getFields(Template $template): JsonResponse
+    public function getFields(Request $request, Template $template): JsonResponse
     {
         $this->denyAccessUnlessFeaturesEnabled(['templates']);
 
         $fields = [];
         foreach ($template->getFields() as $i => $field) {
+            if ($request->query->get('entity') === 'collection' && $field->getType() === DatumTypeEnum::TYPE_PRICE) {
+                continue;
+            }
+
             $fields[$i][] = \in_array($field->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text';
             $fields[$i][] = $field->getName();
             $fields[$i][] = $this->render('App/Datum/_datum.html.twig', [
@@ -122,6 +126,6 @@ class TemplateController extends AbstractController
             ])->getContent();
         }
 
-        return new JsonResponse($fields);
+        return new JsonResponse(array_values($fields));
     }
 }

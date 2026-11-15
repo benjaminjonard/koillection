@@ -113,7 +113,7 @@ export default class extends Controller {
             }
         }
 
-        this.injectFields('/templates/' + event.target.value + '/fields');
+        this.injectFields('/templates/' + event.target.value + '/fields?entity=' + this.element.dataset.entity);
     }
 
     injectFields(url) {
