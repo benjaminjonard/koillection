@@ -89,6 +89,9 @@
                     <table class="centered striped items-table">
                         <thead>
                             <tr>
+                                {% if context == 'default' %}
+                                    <th></th>
+                                {% endif %}
                                 <th>{{ 'label.image'|trans }}</th>
                                 <th>{{ 'label.name'|trans }}</th>
                                 <th>{{ 'label.price'|trans }}</th>
@@ -99,9 +102,14 @@
                             </tr>
                         </thead>
 
-                        <tbody>
-                            {% for wish in wishes|naturalSorting %}
-                                <tr class="list-element resize-element" data-title="{{ wish.name }}" data-filter-target="element">
+                        <tbody {% if context == 'default' %}data-controller="wishes-sortable" data-wishes-sortable-url-value="{{ path('app_wishlist_sort_wishes', {id: wishlist.id}) }}"{% endif %}>
+                            {% for wish in wishes %}
+                                <tr class="list-element resize-element wish" data-id="{{ wish.id }}" data-title="{{ wish.name }}" data-filter-target="element">
+                                    {% if context == 'default' %}
+                                        <td class="handle">
+                                            <i class="fa fa-arrows-v fa-fw"></i>
+                                        </td>
+                                    {% endif %}
                                     <td data-controller="lightbox">
                                         {% if wish.image %}
                                             <a href="{{ asset(wish.image) }}" data-lightbox="image-{{ wish.id }}">

@@ -73,7 +73,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     private ?User $owner = null;
 
     #[ORM\OneToMany(targetEntity: Wish::class, mappedBy: 'wishlist', cascade: ['all'])]
-    #[ORM\OrderBy(['name' => Order::Ascending->value])]
+    #[ORM\OrderBy(['position' => Order::Ascending->value, 'name' => Order::Ascending->value])]
     private DoctrineCollection $wishes;
 
     #[ORM\Column(type: Types::STRING, length: 6)]
