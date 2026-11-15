@@ -108,19 +108,25 @@ class WishSortingTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne();
         $otherUser = UserFactory::createOne();
-        $this->client->loginUser($user);
         $wishlist = WishlistFactory::createOne(['owner' => $otherUser]);
         $wishA = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $otherUser]);
         $wishB = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $otherUser]);
+        $wishlistId = $wishlist->getId();
+        $wishAId = $wishA->getId();
+        $wishBId = $wishB->getId();
+        self::ensureKernelShutdown();
+        $this->client = static::createClient();
+        $this->client->loginUser($user);
 
         // Act
-        $this->client->request(Request::METHOD_POST, '/wishlists/' . $wishlist->getId() . '/sort-wishes', [
-            'wishes' => [$wishB->getId(), $wishA->getId()],
+        $this->client->request(Request::METHOD_POST, '/wishlists/' . $wishlistId . '/sort-wishes', [
+            'wishes' => [$wishBId, $wishAId],
         ]);
 
         // Assert
         $this->assertResponseStatusCodeSame(404);
-        WishFactory::assert()->exists(['id' => $wishA->getId(), 'position' => 1]);
-        WishFactory::assert()->exists(['id' => $wishB->getId(), 'position' => 2]);
+        $this->client->loginUser($otherUser);
+        $crawler = $this->client->request(Request::METHOD_GET, '/wishlists/' . $wishlistId);
+        $this->assertSame([$wishAId, $wishBId], $crawler->filter('tr.wish')->each(fn ($node) => $node->attr('data-id')));
     }
 }
