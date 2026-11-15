@@ -1356,8 +1356,8 @@
     </unit>
     <unit id="11HETEc" name="global.welcome">
       <segment state="translated">
-        <source>Welcome to Koillection</source>
-        <target>Welkom bij Koillection</target>
+        <source>Welcome to {appName}</source>
+        <target>Welkom bij {appName}</target>
       </segment>
     </unit>
     <unit id="S92egy5" name="title.sign_in">

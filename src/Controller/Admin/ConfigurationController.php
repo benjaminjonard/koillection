@@ -6,6 +6,7 @@ namespace App\Controller\Admin;
 
 use App\Controller\AbstractController;
 use App\Form\Type\Model\ConfigurationAdminType;
+use App\Service\AppLogoHandler;
 use App\Service\ConfigurationHelper;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,12 +23,20 @@ class ConfigurationController extends AbstractController
         Request $request,
         TranslatorInterface $translator,
         ConfigurationHelper $configurationHelper,
+        AppLogoHandler $appLogoHandler,
         ManagerRegistry $managerRegistry
     ): Response {
-        $form = $this->createForm(ConfigurationAdminType::class, $configurationHelper->getAdminConfiguration());
+        $configuration = $configurationHelper->getAdminConfiguration();
+        $form = $this->createForm(ConfigurationAdminType::class, $configuration);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($configuration->getAppLogoFile() !== null) {
+                $appLogoHandler->upload($configuration->getAppLogo(), $configuration->getAppLogoFile());
+            } elseif ($configuration->getDeleteAppLogo()) {
+                $appLogoHandler->remove($configuration->getAppLogo());
+            }
+
             $managerRegistry->getManager()->flush();
             $configurationHelper->clearCache();
 
@@ -37,7 +46,7 @@ class ConfigurationController extends AbstractController
         }
 
         return $this->render('App/Admin/Configuration/index.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 }

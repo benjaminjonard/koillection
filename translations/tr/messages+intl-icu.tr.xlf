@@ -1027,5 +1027,11 @@
         <target>Ara</target>
       </segment>
     </unit>
+    <unit id="11HETEc" name="global.welcome">
+      <segment state="translated">
+        <source>Welcome to {appName}</source>
+        <target>{appName} uygulamasına hoş geldiniz</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

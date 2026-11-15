@@ -127,5 +127,11 @@
         <target>Нічого не знайдено</target>
       </segment>
     </unit>
+    <unit id="11HETEc" name="global.welcome">
+      <segment state="translated">
+        <source>Welcome to {appName}</source>
+        <target>Ласкаво просимо до {appName}</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

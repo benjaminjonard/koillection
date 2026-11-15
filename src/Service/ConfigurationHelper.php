@@ -27,8 +27,10 @@ class ConfigurationHelper
         $customCssLightTheme = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::CUSTOM_LIGHT_THEME_CSS]);
         $customCssDarkTheme = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::CUSTOM_DARK_THEME_CSS]);
         $enableMetrics = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::ENABLE_METRICS]);
+        $appName = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::APP_NAME]);
+        $appLogo = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::APP_LOGO]);
 
-        return new ConfigurationAdmin($thumbnailsFormat, $customCssLightTheme, $customCssDarkTheme, $enableMetrics);
+        return new ConfigurationAdmin($thumbnailsFormat, $customCssLightTheme, $customCssDarkTheme, $enableMetrics, $appName, $appLogo);
     }
 
     public function getValue(string $label): ?string

@@ -14,6 +14,14 @@ class ConfigurationEnum
 
     public const string ENABLE_METRICS = 'enable-metrics';
 
+    public const string APP_NAME = 'app-name';
+
+    public const string APP_LOGO = 'app-logo';
+
+    public const string DEFAULT_APP_NAME = 'Koillection';
+
+    public const array APP_LOGO_SIZES = [16, 32, 48, 72, 96, 128, 144, 168, 192, 256, 512];
+
     public const null THUMBNAILS_FORMAT_KEEP_ORIGINAL = null;
 
     public const string THUMBNAILS_FORMAT_JPEG = 'jpeg';
