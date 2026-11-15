@@ -3949,5 +3949,173 @@
         <target>Custom headers</target>
       </segment>
     </unit>
+    <unit id="FPiOTgK" name="breadcrumb.import">
+      <segment>
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="oGhQPmW" name="title.import">
+      <segment>
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="YoGl2Lk" name="label.upload_csv">
+      <segment>
+        <source>Upload CSV</source>
+        <target>Upload CSV</target>
+      </segment>
+    </unit>
+    <unit id="Bw1fC95" name="breadcrumb.import_mapping">
+      <segment>
+        <source>Mapping</source>
+        <target>Mapping</target>
+      </segment>
+    </unit>
+    <unit id="UfayUHA" name="title.import_mapping">
+      <segment>
+        <source>Mapping</source>
+        <target>Mapping</target>
+      </segment>
+    </unit>
+    <unit id="DXHcj6L" name="label.csv_column">
+      <segment>
+        <source>CSV column</source>
+        <target>CSV column</target>
+      </segment>
+    </unit>
+    <unit id="uCqmRsl" name="label.create_corresponding_tags">
+      <segment>
+        <source>Create corresponding tags</source>
+        <target>Create corresponding tags</target>
+      </segment>
+    </unit>
+    <unit id="I7bXTNs" name="btn.add_mapping">
+      <segment>
+        <source>Add an extra field mapping</source>
+        <target>Add an extra field mapping</target>
+      </segment>
+    </unit>
+    <unit id="CMx8YJG" name="btn.preview">
+      <segment>
+        <source>Preview</source>
+        <target>Preview</target>
+      </segment>
+    </unit>
+    <unit id="SEL8F3E" name="breadcrumb.import_preview">
+      <segment state="translated">
+        <source>Preview</source>
+        <target>Preview</target>
+      </segment>
+    </unit>
+    <unit id="YBB235N" name="title.import_preview">
+      <segment state="translated">
+        <source>Preview</source>
+        <target>Preview</target>
+      </segment>
+    </unit>
+    <unit id="jD3L17U" name="btn.back_to_mapping">
+      <segment state="translated">
+        <source>Back to mapping</source>
+        <target>Back to mapping</target>
+      </segment>
+    </unit>
+    <unit id="WhL0AEX" name="message.import_has_errors">
+      <segment state="translated">
+        <source>Some values are invalid. Fix the CSV file or the mapping, then try again.</source>
+        <target>Some values are invalid. Fix the CSV file or the mapping, then try again.</target>
+      </segment>
+    </unit>
+    <unit id="DJiXZDG" name="message.items_imported">
+      <segment state="translated">
+        <source>{count, plural, one {# item imported} other {# items imported}}</source>
+        <target>{count, plural, one {# item imported} other {# items imported}}</target>
+      </segment>
+    </unit>
+    <unit id="Y98nSFl" name="label.line">
+      <segment state="translated">
+        <source>Line</source>
+        <target>Line</target>
+      </segment>
+    </unit>
+    <unit id="X15rkl3" name="label.error">
+      <segment state="translated">
+        <source>Error</source>
+        <target>Error</target>
+      </segment>
+    </unit>
+    <unit id="tCuek2j" name="error.import.already_done">
+      <segment state="translated">
+        <source>This import has already been done</source>
+        <target>This import has already been done</target>
+      </segment>
+    </unit>
+    <unit id="hyG10TG" name="error.import.empty_name">
+      <segment state="translated">
+        <source>The name is empty</source>
+        <target>The name is empty</target>
+      </segment>
+    </unit>
+    <unit id="baJ2xlr" name="error.import.invalid_number">
+      <segment state="translated">
+        <source>Expected a number</source>
+        <target>Expected a number</target>
+      </segment>
+    </unit>
+    <unit id="16fmqJX" name="error.import.invalid_rating">
+      <segment state="translated">
+        <source>Expected a whole number between 1 and 10</source>
+        <target>Expected a whole number between 1 and 10</target>
+      </segment>
+    </unit>
+    <unit id="F80QRXK" name="error.import.invalid_checkbox">
+      <segment state="translated">
+        <source>Expected 0 or 1</source>
+        <target>Expected 0 or 1</target>
+      </segment>
+    </unit>
+    <unit id="Z2DgPrW" name="error.import.invalid_country">
+      <segment state="translated">
+        <source>Expected a 2-letter country code (US, FR...)</source>
+        <target>Expected a 2-letter country code (US, FR...)</target>
+      </segment>
+    </unit>
+    <unit id="0Imwg0W" name="error.import.invalid_date">
+      <segment state="translated">
+        <source>Expected a date in the YYYY-MM-DD format</source>
+        <target>Expected a date in the YYYY-MM-DD format</target>
+      </segment>
+    </unit>
+    <unit id="QnxwN2p" name="error.import.invalid_price">
+      <segment state="translated">
+        <source>Expected an amount followed by a currency code (4.5 EUR)</source>
+        <target>Expected an amount followed by a currency code (4.5 EUR)</target>
+      </segment>
+    </unit>
+    <unit id="WXPQ93K" name="label.already_in_collection">
+      <segment state="translated">
+        <source>already in the collection</source>
+        <target>already in the collection</target>
+      </segment>
+    </unit>
+    <unit id="MVVGGI0" name="error.import.invalid_quantity">
+      <segment state="translated">
+        <source>Expected a whole number greater than 0</source>
+        <target>Expected a whole number greater than 0</target>
+      </segment>
+    </unit>
+    <unit id="0Rj72uO" name="error.import.invalid_visibility">
+      <segment state="translated">
+        <source>Expected public, internal or private</source>
+        <target>Expected public, internal or private</target>
+      </segment>
+    </unit>
+    <unit id="tGtVVcL" name="error.import.no_rows_selected">
+      <segment state="translated">
+        <source>Select at least one item to import</source>
+        <target>Select at least one item to import</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
