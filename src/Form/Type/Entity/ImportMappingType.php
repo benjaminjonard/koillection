@@ -33,6 +33,18 @@ class ImportMappingType extends AbstractType
                 'required' => false,
                 'choices' => $choices
             ])
+            ->add('quantityIndex', ChoiceType::class, [
+                'required' => false,
+                'choices' => $choices
+            ])
+            ->add('tagsIndex', ChoiceType::class, [
+                'required' => false,
+                'choices' => $choices
+            ])
+            ->add('visibilityIndex', ChoiceType::class, [
+                'required' => false,
+                'choices' => $choices
+            ])
             ->add('mapping', CollectionType::class, [
                 'entry_type' => ImportMapperElementType::class,
                 'entry_options' => [

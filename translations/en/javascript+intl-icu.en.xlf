@@ -201,8 +201,8 @@
     </unit>
     <unit id="9yqPMxO" name="label.country.format">
       <segment>
-        <source>EN, FR...</source>
-        <target>EN, FR...</target>
+        <source>US, FR...</source>
+        <target>US, FR...</target>
       </segment>
     </unit>
     <unit id="YPzlCnY" name="label.price.format">

@@ -213,6 +213,7 @@ class ScrapingBrowserTest extends TestCase
     private static function startServer(string $address, string $router): Process
     {
         $process = new Process([\PHP_BINARY, '-S', $address, $router], self::$directory);
+        $process->disableOutput();
         $process->start();
 
         [$host, $port] = explode(':', $address);

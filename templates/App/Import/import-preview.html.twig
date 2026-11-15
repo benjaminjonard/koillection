@@ -16,11 +16,41 @@
     </div>
 
     <div class="content-block">
+        {% if errors is not empty %}
+        <p class="import-errors-help">{{ 'message.import_has_errors'|trans }}</p>
+        <table class="highlight import-errors-table">
+            <thead>
+            <tr>
+                <th>{{ 'label.line'|trans }}</th>
+                <th>{{ 'label.csv_column'|trans }}</th>
+                <th>{{ 'label.value'|trans }}</th>
+                <th>{{ 'label.error'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for error in errors %}
+                <tr>
+                    <td>{{ error.line }}</td>
+                    <td>{{ error.column }}</td>
+                    <td>{{ error.value }}</td>
+                    <td>{{ error.message|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
         <table class="highlight items-table" data-controller="table">
             <thead>
             <tr>
+                <th></th>
                 <th>
                     {{ 'label.name'|trans }}
+                </th>
+                <th>
+                    {{ 'label.quantity'|trans }}
+                </th>
+                <th>
+                    {{ 'label.visibility'|trans }}
                 </th>
                 <th>
                     {{ 'label.image'|trans }}
@@ -35,10 +65,26 @@
             </thead>
 
             <tbody>
-            {% for item in items %}
-                <tr class="list-element resize-element">
+            {% for index, item in items %}
+                {% set isDuplicate = index in duplicates %}
+                <tr class="list-element resize-element {{ isDuplicate ? 'import-duplicate' }}">
+                    <td>
+                        <label>
+                            <input type="checkbox" name="rows[]" value="{{ index }}" form="import-form" {{ isDuplicate ? '' : 'checked' }}>
+                            <span></span>
+                        </label>
+                    </td>
                     <td>
                         {{ item.name }}
+                        {% if isDuplicate %}
+                            <span class="import-duplicate-label">({{ 'label.already_in_collection'|trans }})</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ item.quantity }}
+                    </td>
+                    <td>
+                        {{ ('global.visibilities.' ~ item.visibility)|trans }}
                     </td>
                     <td>
                         {% if item.image %}
@@ -67,12 +113,14 @@
             {% endfor %}
             </tbody>
         </table>
-
+        {% endif %}
 
         <div class="center-align form-btn-holder">
-            <form action="{{ path('app_collection_import_import', {'id': collection.id, 'importId': import.id}) }}" method="post">
+            {% if errors is empty and import.status != constant('App\\Enum\\ImportStatusEnum::DONE') %}
+            <form id="import-form" action="{{ path('app_collection_import_import', {'id': collection.id, 'importId': import.id}) }}" method="post">
                 <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
             </form>
+            {% endif %}
             <a href="{{ path('app_collection_show', {'id' : collection.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.cancel'|trans }}</a>
             <a href="{{ path('app_collection_import_mapping', {'id' : collection.id, 'importId' : import.id}) }}" class="waves-effect waves-light btn btn-cancel">{{ 'btn.back_to_mapping'|trans }}</a>
         </div>

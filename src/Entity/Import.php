@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
-use ApiPlatform\Metadata\Delete;
-use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
 use App\Attribute\Upload;
 use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -51,6 +46,15 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     private ?int $imageIndex;
 
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $quantityIndex = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $tagsIndex = null;
+
+    #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    private ?int $visibilityIndex = null;
+
     #[ORM\Column(type: Types::JSON, nullable: true)]
     private ?array $mapping = [];
 
@@ -82,12 +86,10 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
 
     public function getHeaders(): false|array
     {
-        $file = new File($this->file);
-
         $headers = [];
 
-        if (($handle = fopen($file->getRealPath(), 'r')) !== false) {
-            $headers = fgetcsv($handle, 0, ',');
+        if (($handle = fopen($this->fileFile->getPathname(), 'r')) !== false) {
+            $headers = fgetcsv($handle, 0, ',', '"', '');
 
             fclose($handle);
         }
@@ -97,13 +99,11 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
 
     public function getRows(): false|array
     {
-        $file = new File($this->file);
-
         $data = [];
-        if (($handle = fopen($file->getRealPath(), 'r')) !== false) {
-            $headers = fgetcsv($handle, 0, ',');
+        if (($handle = fopen($this->fileFile->getPathname(), 'r')) !== false) {
+            $headers = fgetcsv($handle, 0, ',', '"', '');
 
-            while (($row = fgetcsv($handle, 0, ',')) !== false) {
+            while (($row = fgetcsv($handle, 0, ',', '"', '')) !== false) {
                 $data[] = $row;
             }
 
@@ -287,6 +287,42 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
     public function setImageIndex(?int $imageIndex): Import
     {
         $this->imageIndex = $imageIndex;
+
+        return $this;
+    }
+
+    public function getQuantityIndex(): ?int
+    {
+        return $this->quantityIndex;
+    }
+
+    public function setQuantityIndex(?int $quantityIndex): Import
+    {
+        $this->quantityIndex = $quantityIndex;
+
+        return $this;
+    }
+
+    public function getTagsIndex(): ?int
+    {
+        return $this->tagsIndex;
+    }
+
+    public function setTagsIndex(?int $tagsIndex): Import
+    {
+        $this->tagsIndex = $tagsIndex;
+
+        return $this;
+    }
+
+    public function getVisibilityIndex(): ?int
+    {
+        return $this->visibilityIndex;
+    }
+
+    public function setVisibilityIndex(?int $visibilityIndex): Import
+    {
+        $this->visibilityIndex = $visibilityIndex;
 
         return $this;
     }

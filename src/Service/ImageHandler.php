@@ -95,7 +95,7 @@ class ImageHandler
         $path = $this->accessor->getValue($entity, $attribute->getPathProperty());
 
         if (null !== $path) {
-            $file = new File($this->publicPath . '/' . $path, false);
+            $file = new File(str_starts_with($path, '/tmp') ? $path : $this->publicPath . '/' . $path, false);
             $this->accessor->setValue($entity, $property, $file);
         }
     }

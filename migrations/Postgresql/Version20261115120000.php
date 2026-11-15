@@ -19,7 +19,7 @@ final class Version20261115120000 extends AbstractMigration
     {
         $this->skipIf(!$this->connection->getDatabasePlatform() instanceof PostgreSQLPlatform, 'Postgresql migration only. Skipped.');
 
-        $this->addSql('CREATE TABLE koi_import (id CHAR(36) NOT NULL, file VARCHAR(255) DEFAULT NULL, filename VARCHAR(255) DEFAULT NULL, status VARCHAR(255) NOT NULL, name_index INT DEFAULT NULL, image_index INT DEFAULT NULL, mapping JSON DEFAULT NULL, total_number_of_items INT DEFAULT NULL, number_of_imported_items INT DEFAULT NULL, number_of_duplicated_items INT DEFAULT NULL, number_of_skipped_items INT DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, collection_id CHAR(36) DEFAULT NULL, owner_id CHAR(36) DEFAULT NULL, PRIMARY KEY (id))');
+        $this->addSql('CREATE TABLE koi_import (id CHAR(36) NOT NULL, file VARCHAR(255) DEFAULT NULL, filename VARCHAR(255) DEFAULT NULL, status VARCHAR(255) NOT NULL, name_index INT DEFAULT NULL, image_index INT DEFAULT NULL, quantity_index INT DEFAULT NULL, tags_index INT DEFAULT NULL, visibility_index INT DEFAULT NULL, mapping JSON DEFAULT NULL, total_number_of_items INT DEFAULT NULL, number_of_imported_items INT DEFAULT NULL, number_of_duplicated_items INT DEFAULT NULL, number_of_skipped_items INT DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, collection_id CHAR(36) DEFAULT NULL, owner_id CHAR(36) DEFAULT NULL, PRIMARY KEY (id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_7FE294F48C9F3610 ON koi_import (file)');
         $this->addSql('CREATE INDEX IDX_7FE294F4514956FD ON koi_import (collection_id)');
         $this->addSql('CREATE INDEX IDX_7FE294F47E3C61F9 ON koi_import (owner_id)');
