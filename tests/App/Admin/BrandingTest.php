@@ -179,7 +179,7 @@ class BrandingTest extends AppTestCase
         $this->assertResponseIsSuccessful();
         ConfigurationFactory::assert()->exists(['label' => ConfigurationEnum::APP_LOGO, 'value' => null]);
         $this->assertFileDoesNotExist($paths['original']);
-        $this->assertStringContainsString('logo.svg', (string) $crawler->filter('.header-logo img')->attr('src'));
+        $this->assertStringStartsWith('/build/images/logo', (string) $crawler->filter('.header-logo img')->attr('src'));
     }
 
     private function setConfigurationValue(string $label, ?string $value): void
