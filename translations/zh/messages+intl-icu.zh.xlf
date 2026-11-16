@@ -3949,5 +3949,23 @@
         <target>自定义请求头</target>
       </segment>
     </unit>
+    <unit id="FPiOTgK" name="breadcrumb.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>导入</target>
+      </segment>
+    </unit>
+    <unit id="oGhQPmW" name="title.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>导入</target>
+      </segment>
+    </unit>
+    <unit id="X15rkl3" name="label.error">
+      <segment state="translated">
+        <source>Error</source>
+        <target>错误</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
