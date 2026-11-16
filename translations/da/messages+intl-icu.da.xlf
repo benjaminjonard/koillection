@@ -3169,5 +3169,17 @@
         <target>Tag</target>
       </segment>
     </unit>
+    <unit id="FPiOTgK" name="breadcrumb.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
+    <unit id="oGhQPmW" name="title.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

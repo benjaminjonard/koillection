@@ -847,6 +847,12 @@
         <target>Sonuç bulunamadı</target>
       </segment>
     </unit>
+    <unit id="11HETEc" name="global.welcome">
+      <segment state="translated">
+        <source>Welcome to {appName}</source>
+        <target>{appName} uygulamasına hoş geldiniz</target>
+      </segment>
+    </unit>
     <unit id="W6Rvzmb" name="menu.tools">
       <segment state="translated">
         <source>Tools</source>
@@ -1025,12 +1031,6 @@
       <segment state="translated">
         <source>Search</source>
         <target>Ara</target>
-      </segment>
-    </unit>
-    <unit id="11HETEc" name="global.welcome">
-      <segment state="translated">
-        <source>Welcome to {appName}</source>
-        <target>{appName} uygulamasına hoş geldiniz</target>
       </segment>
     </unit>
   </file>

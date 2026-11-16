@@ -3992,55 +3992,55 @@
       </segment>
     </unit>
     <unit id="FPiOTgK" name="breadcrumb.import">
-      <segment>
+      <segment state="translated">
         <source>Import</source>
         <target>Import</target>
       </segment>
     </unit>
     <unit id="oGhQPmW" name="title.import">
-      <segment>
+      <segment state="translated">
         <source>Import</source>
         <target>Import</target>
       </segment>
     </unit>
     <unit id="YoGl2Lk" name="label.upload_csv">
-      <segment>
+      <segment state="translated">
         <source>Upload CSV</source>
         <target>Upload CSV</target>
       </segment>
     </unit>
     <unit id="Bw1fC95" name="breadcrumb.import_mapping">
-      <segment>
+      <segment state="translated">
         <source>Mapping</source>
         <target>Mapping</target>
       </segment>
     </unit>
     <unit id="UfayUHA" name="title.import_mapping">
-      <segment>
+      <segment state="translated">
         <source>Mapping</source>
         <target>Mapping</target>
       </segment>
     </unit>
     <unit id="DXHcj6L" name="label.csv_column">
-      <segment>
+      <segment state="translated">
         <source>CSV column</source>
         <target>CSV column</target>
       </segment>
     </unit>
     <unit id="uCqmRsl" name="label.create_corresponding_tags">
-      <segment>
+      <segment state="translated">
         <source>Create corresponding tags</source>
         <target>Create corresponding tags</target>
       </segment>
     </unit>
     <unit id="I7bXTNs" name="btn.add_mapping">
-      <segment>
+      <segment state="translated">
         <source>Add an extra field mapping</source>
         <target>Add an extra field mapping</target>
       </segment>
     </unit>
     <unit id="CMx8YJG" name="btn.preview">
-      <segment>
+      <segment state="translated">
         <source>Preview</source>
         <target>Preview</target>
       </segment>

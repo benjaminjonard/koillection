@@ -3907,5 +3907,23 @@
         <target>Utwórz wyszukiwanie nowego elementu</target>
       </segment>
     </unit>
+    <unit id="FPiOTgK" name="breadcrumb.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Importuj</target>
+      </segment>
+    </unit>
+    <unit id="oGhQPmW" name="title.import">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Importuj</target>
+      </segment>
+    </unit>
+    <unit id="X15rkl3" name="label.error">
+      <segment state="translated">
+        <source>Error</source>
+        <target>Błąd</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
