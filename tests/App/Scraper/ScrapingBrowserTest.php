@@ -71,6 +71,7 @@ class ScrapingBrowserTest extends TestCase
                 case '/landing': echo '<title>landing</title>'; exit;
                 case '/headers': echo '<title>' . htmlspecialchars(\$_SERVER['HTTP_X_KOILLECTION_TEST'] ?? 'none') . '</title>'; exit;
                 case '/to-other-host': header("Location: \$otherHost/headers", true, 302); exit;
+                case '/forbidden': http_response_code(403); echo '<title>forbidden</title>'; exit;
                 case '/rendered': echo "<title>rendered</title><div id=app></div><script>document.getElementById('app').textContent = 'rendered by javascript'</script>"; exit;
             }
             PHP);
@@ -192,6 +193,21 @@ class ScrapingBrowserTest extends TestCase
 
         // Assert
         $this->assertStringContainsString('<title>none</title>', $html);
+    }
+
+    public function test_error_status_fails_scraping(): void
+    {
+        // Act
+        $exception = null;
+        try {
+            $this->browser->fetch(self::$publicOrigin . '/forbidden');
+        } catch (\RuntimeException $e) {
+            $exception = $e;
+        }
+
+        // Assert
+        $this->assertNotNull($exception);
+        $this->assertSame('Scraping error: 403', $exception->getMessage());
     }
 
     public function test_javascript_is_rendered(): void

@@ -24,7 +24,7 @@ export default class extends Controller {
             method: 'POST',
             body: new FormData(event.target)
         })
-            .then(response => response.json())
+            .then(response => response.json().catch(() => 'Scraping error: ' + response.status))
             .then(function(result) {
                 if (typeof result === 'string') {
                     self.modalErrorTarget.innerHTML = result;

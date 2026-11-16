@@ -49,11 +49,15 @@ class ScrapingBrowser
             $connection = $page->getSession()->getConnection();
             $mainFrameId = $page->getSession()->getTargetId();
             $denied = false;
+            $status = null;
 
-            $connection->on('method:Fetch.requestPaused', function (array $params) use ($connection, $host, $headers, $mainFrameId, &$denied): void {
+            $connection->on('method:Fetch.requestPaused', function (array $params) use ($connection, $host, $headers, $mainFrameId, &$denied, &$status): void {
                 $sameHost = strtolower((string) parse_url($params['request']['url'], \PHP_URL_HOST)) === $host;
-                if (!$this->forward($connection, $params, $sameHost ? $headers : []) && ($params['frameId'] ?? null) === $mainFrameId) {
-                    $denied = true;
+                $responseStatus = $this->forward($connection, $params, $sameHost ? $headers : []);
+
+                if (($params['frameId'] ?? null) === $mainFrameId) {
+                    $denied = $denied || $responseStatus === null;
+                    $status = $responseStatus ?? $status;
                 }
             });
             $connection->sendMessageSync(new Message('Fetch.enable', [
@@ -67,13 +71,17 @@ class ScrapingBrowser
                 throw new \RuntimeException(ScrapingUrlGuard::UNREACHABLE_MESSAGE);
             }
 
+            if ($status >= 400) {
+                throw new \RuntimeException('Scraping error: ' . $status);
+            }
+
             return $html;
         } finally {
             $browser->close();
         }
     }
 
-    private function forward(Connection $connection, array $params, array $extraHeaders): bool
+    private function forward(Connection $connection, array $params, array $extraHeaders): ?int
     {
         $request = $params['request'];
 
@@ -112,14 +120,14 @@ class ScrapingBrowser
                 'body' => base64_encode($response->getContent(false)),
             ]));
 
-            return true;
+            return $response->getStatusCode();
         } catch (\Throwable) {
             $connection->sendMessage(new Message('Fetch.failRequest', [
                 'requestId' => $params['requestId'],
                 'errorReason' => 'AccessDenied',
             ]));
 
-            return false;
+            return null;
         }
     }
 
