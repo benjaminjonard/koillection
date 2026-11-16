@@ -31,7 +31,7 @@ final readonly class RefreshCachedValuesQueueListener
     public function onKernelResponse(): void
     {
         $em = $this->managerRegistry->getManager();
-        if ($em->isOpen()) {
+        if ($em->isOpen() && [] !== $this->refreshCachedValuesQueue->getEntities()) {
             $uow = $em->getUnitOfWork();
 
             // Populate the insert/update schedules. Without this, entities that were

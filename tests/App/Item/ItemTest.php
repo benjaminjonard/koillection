@@ -430,4 +430,58 @@ class ItemTest extends AppTestCase
         $messages = array_map(static fn ($error): string => $error->getMessage(), iterator_to_array($errors));
         $this->assertContains('"Author" label is used multiple times, all labels must be unique', $messages);
     }
+
+    public function test_cant_edit_item_with_multiple_data_with_same_label(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author', 'value' => 'Abe Tsukasa']);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Artist', 'value' => 'Yamada Kanehito']);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/items/' . $item->getId() . '/edit');
+        $this->client->submitForm('Submit', [
+            'item[name]' => 'Berserk #1',
+            'item[data][0][label]' => 'Author',
+            'item[data][1][label]' => 'Author',
+        ]);
+
+        // Assert
+        $this->assertResponseStatusCodeSame(422);
+        $this->assertSelectorTextContains('body', '"Author" label is used multiple times, all labels must be unique');
+        ItemFactory::assert()->exists(['id' => $item->getId(), 'name' => 'Frieren #1']);
+        DatumFactory::assert()->count(1, ['item' => $item->getId(), 'label' => 'Author']);
+        DatumFactory::assert()->count(1, ['item' => $item->getId(), 'label' => 'Artist']);
+    }
+
+    public function test_cant_edit_item_with_multiple_images_with_same_label(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        $frontDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Front', 'fileImage' => $this->createFile('png')]);
+        $oldFrontPath = $frontDatum->getImage();
+        $backDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => 'Back', 'fileImage' => $this->createFile('png')]);
+        $oldBackPath = $backDatum->getImage();
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/items/' . $item->getId() . '/edit');
+        $this->client->submitForm('Submit', [
+            'item[data][0][label]' => 'Front', 'item[data][0][fileImage]' => $this->createFile('jpeg'),
+            'item[data][1][label]' => 'Front', 'item[data][1][fileImage]' => $this->createFile('jpeg'),
+        ]);
+
+        // Assert
+        $this->assertResponseStatusCodeSame(422);
+        $this->assertSelectorTextContains('body', '"Front" label is used multiple times, all labels must be unique');
+        DatumFactory::assert()->exists(['id' => $frontDatum->getId(), 'label' => 'Front', 'image' => $oldFrontPath]);
+        DatumFactory::assert()->exists(['id' => $backDatum->getId(), 'label' => 'Back', 'image' => $oldBackPath]);
+        $this->assertFileExists($oldFrontPath);
+        $this->assertFileExists($oldBackPath);
+    }
 }
