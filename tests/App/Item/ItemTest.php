@@ -143,6 +143,23 @@ class ItemTest extends AppTestCase
         $this->assertSame('Frieren #6', $crawler->filter('[data-swipe-target="next"]')->eq(0)->text());
     }
 
+    public function test_can_get_item_with_missing_video_file(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        $videoDatum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_VIDEO, 'label' => 'Video', 'fileVideo' => $this->createFile('mp4')]);
+        unlink($videoDatum->getVideo());
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/items/' . $item->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+    }
+
     public function test_can_get_item_with_null_data(): void
     {
         // Arrange

@@ -219,7 +219,7 @@ readonly class AppExtension
     #[AsTwigFilter('mimetype')]
     public function mimetype(string $path): string
     {
-        return mime_content_type($path);
+        return is_file($path) ? mime_content_type($path) : '';
     }
 
     #[AsTwigFilter('unique')]
