@@ -3,6 +3,14 @@ const LOADED = 1;
 const FAILED = 2;
 
 this.addEventListener('fetch', function (event) {
+    if (event.request.method !== 'GET') {
+        if (event.request.mode === 'navigate') {
+            event.waitUntil(emit(LOADING));
+        }
+
+        return;
+    }
+
     if (event.request.mode === 'navigate') {
         // do a fetch, bug also emit the loading state
         event.respondWith(fetchAndEmit(event.request));
@@ -46,6 +54,14 @@ function fetchAndEmit(request) {
             // 204: No Content (to prevent page load)
             return new Response(null, { status: 204 });
         });
+    });
+}
+
+function emit(message) {
+    return clients.matchAll({
+        type: 'window'
+    }).then(function (clients) {
+        clients.forEach(postMessage(message));
     });
 }
 
