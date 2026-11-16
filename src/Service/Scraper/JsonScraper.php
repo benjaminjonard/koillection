@@ -41,7 +41,6 @@ abstract class JsonScraper extends ContentScraper
 
             $headers = [
                 'Accept' => 'application/json',
-                'Accept-Encoding' => 'gzip, deflate, br, zstd',
             ];
             foreach ($scraping->getScraper()->getHeaders() as $header) {
                 $headers[$header['header']] = $header['value'];
