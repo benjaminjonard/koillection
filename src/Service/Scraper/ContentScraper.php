@@ -62,7 +62,7 @@ abstract class ContentScraper implements Scraper
         }
 
         if ($type === DatumTypeEnum::TYPE_COUNTRY) {
-            $value = array_shift($values);
+            $value = trim((string) array_shift($values));
 
             // Try to match alpha2 code
             if (\strlen($value) === 2 && Countries::exists(strtoupper($value))) {
@@ -71,11 +71,19 @@ abstract class ContentScraper implements Scraper
 
             // Try to match alpha3 code
             if (\strlen($value) === 3 && Countries::alpha3CodeExists(strtoupper($value))) {
-                return strtoupper($value);
+                return Countries::getAlpha2Code(strtoupper($value));
             }
 
             // Else try to match the country name
-            return array_flip(Countries::getNames())[$value] ?? null;
+            foreach ([null, 'en'] as $locale) {
+                foreach (Countries::getNames($locale) as $code => $name) {
+                    if (mb_strtolower($name) === mb_strtolower($value)) {
+                        return $code;
+                    }
+                }
+            }
+
+            return null;
         }
 
         if ($type === DatumTypeEnum::TYPE_IMAGE) {
