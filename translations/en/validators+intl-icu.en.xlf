@@ -115,5 +115,11 @@
         <target>Value must be a Y-m-d formated string like '2024-06-10'</target>
       </segment>
     </unit>
+    <unit id="S3x2djr" name="error.csrf.session_expired">
+      <segment state="translated">
+        <source>Your session has expired. Please submit the form again.</source>
+        <target>Your session has expired. Please submit the form again.</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
