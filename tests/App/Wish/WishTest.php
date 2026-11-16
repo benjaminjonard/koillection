@@ -63,6 +63,27 @@ class WishTest extends AppTestCase
         ]);
     }
 
+    public function test_uploaded_image_overrides_scraped_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $wishlist = WishlistFactory::createOne(['owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/wishes/add?wishlist=' . $wishlist->getId());
+        $this->client->submitForm('Submit', [
+            'wish[name]' => 'Frieren #1',
+            'wish[file]' => $this->createFile('png'),
+            'wish[fileUrl]' => 'https://koillection.invalid/scraped.png',
+            'wish[wishlist]' => $wishlist->getId(),
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertFileExists(WishFactory::first()->getImage());
+    }
+
     public function test_cant_create_wish_without_wishlist(): void
     {
         // Arrange

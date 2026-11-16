@@ -217,6 +217,27 @@ class ItemTest extends AppTestCase
         TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user->getId()]);
     }
 
+    public function test_uploaded_image_overrides_scraped_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/items/add?collection=' . $collection->getId());
+        $this->client->submitForm('Submit', [
+            'item[name]' => 'Frieren #1',
+            'item[file]' => $this->createFile('png'),
+            'item[fileUrl]' => 'https://koillection.invalid/scraped.png',
+            'item[collection]' => $collection->getId(),
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertFileExists(ItemFactory::first()->getImage());
+    }
+
     public function test_can_create_item_then_create_another(): void
     {
         // Arrange
