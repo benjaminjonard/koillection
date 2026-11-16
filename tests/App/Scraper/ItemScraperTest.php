@@ -11,6 +11,7 @@ use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\PathFactory;
 use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\UserFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -198,5 +199,47 @@ class ItemScraperTest extends AppTestCase
         $data = json_decode($this->client->getResponse()->getContent(), true)['data'];
         $this->assertSame(['text', 'Platforms'], \array_slice($data[0], 0, 2));
         $this->assertSame(['image', 'Cover'], \array_slice($data[1], 0, 2));
+    }
+
+    public static function scrapedCountries(): iterable
+    {
+        yield ['Germany'];
+        yield [' germany '];
+        yield ['Allemagne'];
+        yield ['DE'];
+        yield ['DEU'];
+    }
+
+    #[DataProvider('scrapedCountries')]
+    public function test_scraped_country_is_converted_to_country_code(string $scrapedCountry): void
+    {
+        // Arrange
+        $user = UserFactory::createOne(['locale' => 'fr']);
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
+        $countryPath = PathFactory::createOne(['scraper' => $scraper, 'owner' => $user, 'name' => 'Country', 'type' => DatumTypeEnum::TYPE_COUNTRY, 'path' => '#//em/text()#', 'position' => 1]);
+
+        $htmlPath = '/tmp/' . uniqid() . '.html';
+        file_put_contents($htmlPath, "<html><body><em>{$scrapedCountry}</em></body></html>");
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/items/add?collection=' . $collection->getId());
+        $token = $crawler->filter('input[name="scraping_item[_token]"]')->attr('value');
+
+        // Act
+        $this->client->request(Request::METHOD_POST, '/scrapers/item-scrapers/scrap', [
+            'scraping_item' => [
+                'scraper' => $scraper->getId(),
+                'dataToScrap' => [$countryPath->getId()],
+                '_token' => $token,
+            ],
+        ], [
+            'scraping_item' => ['file' => new UploadedFile($htmlPath, 'page.html', 'text/html', test: true)],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $data = json_decode($this->client->getResponse()->getContent(), true)['data'];
+        $this->assertMatchesRegularExpression('/value="DE"[^>]*selected/', $data[0][2]);
     }
 }
