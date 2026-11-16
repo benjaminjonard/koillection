@@ -112,7 +112,7 @@ abstract class ContentScraper implements Scraper
             ;
 
             $data[] = [
-                $dataToScrap->getType(),
+                \in_array($dataToScrap->getType(), [DatumTypeEnum::TYPE_IMAGE, DatumTypeEnum::TYPE_SIGN]) ? 'image' : 'text',
                 $dataToScrap->getName(),
                 $this->twig->render('App/Datum/_datum.html.twig', [
                     'entity' => $entityType,
