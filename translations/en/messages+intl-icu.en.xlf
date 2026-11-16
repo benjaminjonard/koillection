@@ -1141,6 +1141,12 @@
         <target>Long text</target>
       </segment>
     </unit>
+    <unit id="kp3Slwy" name="btn.add_markdown">
+      <segment state="translated">
+        <source>Markdown</source>
+        <target>Markdown</target>
+      </segment>
+    </unit>
     <unit id="9qwO627" name="btn.add_rating">
       <segment state="translated">
         <source>Rating</source>
@@ -2783,6 +2789,12 @@
       <segment state="translated">
         <source>Long text</source>
         <target>Long text</target>
+      </segment>
+    </unit>
+    <unit id="fandJOu" name="label.markdown">
+      <segment state="translated">
+        <source>Markdown</source>
+        <target>Markdown</target>
       </segment>
     </unit>
     <unit id="0ZXz2Ap" name="label.items_list_columns">
