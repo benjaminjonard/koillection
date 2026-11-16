@@ -7,10 +7,12 @@ namespace App\Tests\App\Scraper;
 use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperTypeEnum;
 use App\Tests\AppTestCase;
+use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\PathFactory;
 use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -162,5 +164,39 @@ class ItemScraperTest extends AppTestCase
         $this->assertSame('#//h1/img/@src]#', $crawler->filter('.list-element')->eq(1)->filter('td')->eq(1)->text());
         $this->assertSame('Length', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(0)->text());
         $this->assertSame('#//span/text()]#', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(1)->text());
+    }
+
+    public function test_scraped_data_are_grouped_by_holder(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
+        $listPath = PathFactory::createOne(['scraper' => $scraper, 'owner' => $user, 'name' => 'Platforms', 'type' => DatumTypeEnum::TYPE_LIST, 'path' => '#//li/text()#', 'position' => 1]);
+        $imagePath = PathFactory::createOne(['scraper' => $scraper, 'owner' => $user, 'name' => 'Cover', 'type' => DatumTypeEnum::TYPE_IMAGE, 'path' => '#//img/@src#', 'position' => 2]);
+
+        $htmlPath = '/tmp/' . uniqid() . '.html';
+        file_put_contents($htmlPath, '<html><body><ul><li>Amiga</li><li>Atari ST</li></ul><img src="https://example.com/cover.png"></body></html>');
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/items/add?collection=' . $collection->getId());
+        $token = $crawler->filter('input[name="scraping_item[_token]"]')->attr('value');
+
+        // Act
+        $this->client->request(Request::METHOD_POST, '/scrapers/item-scrapers/scrap', [
+            'scraping_item' => [
+                'scraper' => $scraper->getId(),
+                'dataToScrap' => [$listPath->getId(), $imagePath->getId()],
+                '_token' => $token,
+            ],
+        ], [
+            'scraping_item' => ['file' => new UploadedFile($htmlPath, 'page.html', 'text/html', test: true)],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $data = json_decode($this->client->getResponse()->getContent(), true)['data'];
+        $this->assertSame(['text', 'Platforms'], \array_slice($data[0], 0, 2));
+        $this->assertSame(['image', 'Cover'], \array_slice($data[1], 0, 2));
     }
 }
