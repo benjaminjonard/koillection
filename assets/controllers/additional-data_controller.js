@@ -1,5 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 import Sortable from "sortablejs";
+import { htmlStringToDomElement } from "../js/utils";
 
 export default class extends Controller {
     static targets = ['datum', 'label', 'textsHolder', 'imagesHolder']
@@ -133,6 +134,9 @@ export default class extends Controller {
     }
 
     injectData(data) {
+        let previousDatums = new Map();
+        let pendingDatums = new Map();
+
         data.forEach((datum) => {
             let existingDatum = null;
             let existingValue = null;
@@ -150,17 +154,37 @@ export default class extends Controller {
                 let holder = type == 'image' ? this.imagesHolderTarget : this.textsHolderTarget;
                 html = html.replace(/__placeholder__/g, this.index);
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
-                holder.insertAdjacentHTML('beforeend', html);
+                let element = htmlStringToDomElement(html);
                 this.index++;
-            } else if (existingValue.value === '' && type === 'text') {
+
+                let previousDatum = previousDatums.get(holder);
+                if (previousDatum) {
+                    previousDatum.after(element);
+                    previousDatums.set(holder, element);
+                } else {
+                    pendingDatums.set(holder, [...(pendingDatums.get(holder) ?? []), element]);
+                }
+
+                return;
+            }
+
+            if (existingValue.value === '' && type === 'text') {
                 html = html.replace(/__placeholder__/g, existingDatum.dataset.iteration);
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
-
-                let div = document.createElement('div');
-                div.innerHTML = html.trim();
-                existingDatum.replaceWith(div);
+                let element = htmlStringToDomElement(html);
+                existingDatum.replaceWith(element);
+                existingDatum = element;
             }
+
+            let holder = existingDatum.parentElement;
+            existingDatum.before(...(pendingDatums.get(holder) ?? []));
+            pendingDatums.delete(holder);
+            previousDatums.set(holder, existingDatum);
         })
+
+        pendingDatums.forEach((elements, holder) => {
+            holder.append(...elements);
+        });
 
         this.computePositions();
     }
