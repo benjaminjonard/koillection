@@ -133,6 +133,9 @@ export default class extends Controller {
     }
 
     injectData(data) {
+        let previousDatums = new Map();
+        let pendingHtmls = new Map();
+
         data.forEach((datum) => {
             let existingDatum = null;
             let existingValue = null;
@@ -150,17 +153,42 @@ export default class extends Controller {
                 let holder = type == 'image' ? this.imagesHolderTarget : this.textsHolderTarget;
                 html = html.replace(/__placeholder__/g, this.index);
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
-                holder.insertAdjacentHTML('beforeend', html);
                 this.index++;
-            } else if (existingValue.value === '' && type === 'text') {
+
+                let previousDatum = previousDatums.get(holder);
+                if (previousDatum) {
+                    previousDatum.insertAdjacentHTML('afterend', html);
+                    previousDatums.set(holder, previousDatum.nextElementSibling);
+                } else {
+                    pendingHtmls.set(holder, [...(pendingHtmls.get(holder) ?? []), html]);
+                }
+
+                return;
+            }
+
+            if (existingValue.value === '' && type === 'text') {
                 html = html.replace(/__placeholder__/g, existingDatum.dataset.iteration);
                 html = html.replace(/__entity_placeholder__/g, this.element.dataset.entity);
 
-                let div = document.createElement('div');
-                div.innerHTML = html.trim();
-                existingDatum.replaceWith(div);
+                existingDatum.insertAdjacentHTML('beforebegin', html);
+                let newDatum = existingDatum.previousElementSibling;
+                existingDatum.remove();
+                existingDatum = newDatum;
             }
+
+            let holder = existingDatum.parentElement;
+            (pendingHtmls.get(holder) ?? []).forEach((pendingHtml) => {
+                existingDatum.insertAdjacentHTML('beforebegin', pendingHtml);
+            });
+            pendingHtmls.delete(holder);
+            previousDatums.set(holder, existingDatum);
         })
+
+        pendingHtmls.forEach((htmls, holder) => {
+            htmls.forEach((html) => {
+                holder.insertAdjacentHTML('beforeend', html);
+            });
+        });
 
         this.computePositions();
     }
