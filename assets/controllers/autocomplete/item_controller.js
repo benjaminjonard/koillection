@@ -99,7 +99,7 @@ export default class extends Controller {
         const thumbnail = item.image ? item.image : '/build/images/default.png';
         return '<tr class="related-item" data-id="' + item.id + '" data-text="' + item.text + '">' +
             '<td><img src="' + thumbnail + '"></td>' +
-            '<td>' + item.text + '</td>' +
+            '<td>' + item.text + (item.description ? '<small class="related-item-collection">' + item.description + '</small>' : '') + '</td>' +
             '<td><i data-action="click->autocomplete--item#remove" class="fa fa-times close"></i></td>' +
         '</tr>';
     }

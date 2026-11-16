@@ -434,7 +434,8 @@ class ItemTest extends AppTestCase
         // Arrange
         $user = UserFactory::createOne();
         $this->client->loginUser($user);
-        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $parentCollection = CollectionFactory::createOne(['title' => 'Manga', 'owner' => $user]);
+        $collection = CollectionFactory::createOne(['title' => 'Frieren', 'parent' => $parentCollection, 'owner' => $user]);
         ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
         ItemFactory::createOne(['name' => 'Berserk #1', 'collection' => $collection, 'owner' => $user]);
 
@@ -447,6 +448,7 @@ class ItemTest extends AppTestCase
         $content = json_decode($this->client->getResponse()->getContent(), true);
         $this->assertCount(1, $content);
         $this->assertSame('Frieren #1', $content[0]['text']);
+        $this->assertSame('Manga / Frieren', $content[0]['description']);
     }
 
     public function test_cant_have_multiple_data_with_same_label(): void

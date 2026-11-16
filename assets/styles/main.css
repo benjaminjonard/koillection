@@ -2098,6 +2098,30 @@ i.btn input {
     margin-top: 15px;
 }
 
+.ac-tags table {
+    margin-bottom: 15px;
+}
+
+.related-item td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.related-item .related-item-collection {
+    display: block;
+    margin-top: 5px;
+    color: var(--font-color-light);
+}
+
+.related-items-autocomplete .autocomplete-content li {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.related-items-autocomplete .autocomplete-content li small {
+    margin-top: 5px;
+}
+
 .js-item-autocomplete .js-autocomplete-result {
     margin-bottom: 45px;
 }

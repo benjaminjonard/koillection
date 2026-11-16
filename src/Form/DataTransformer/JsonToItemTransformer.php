@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Form\DataTransformer;
 
+use App\Entity\Collection;
+use App\Entity\Item;
 use App\Repository\ItemRepository;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -25,6 +27,7 @@ class JsonToItemTransformer implements DataTransformerInterface
                 'id' => $item->getId(),
                 'text' => $item->getName(),
                 'image' => $item->getImageSmallThumbnail() ? $this->assetManager->getUrl($item->getImageSmallThumbnail()) : null,
+                'description' => $this->getCollectionPath($item),
             ];
         }
 
@@ -44,5 +47,15 @@ class JsonToItemTransformer implements DataTransformerInterface
         }
 
         return $items;
+    }
+
+    private function getCollectionPath(Item $item): string
+    {
+        $titles = [];
+        for ($collection = $item->getCollection(); $collection instanceof Collection; $collection = $collection->getParent()) {
+            array_unshift($titles, $collection->getTitle());
+        }
+
+        return implode(' / ', $titles);
     }
 }
