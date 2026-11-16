@@ -86,6 +86,15 @@ abstract class ContentScraper implements Scraper
             return null;
         }
 
+        if ($type === DatumTypeEnum::TYPE_PRICE) {
+            $value = preg_replace('/[^0-9.,]/', '', (string) array_shift($values));
+            $value = preg_match('/^(.*)[.,](\d{1,2})$/', $value, $matches) === 1
+                ? preg_replace('/[.,]/', '', $matches[1]) . '.' . $matches[2]
+                : preg_replace('/[.,]/', '', $value);
+
+            return is_numeric($value) ? $value : null;
+        }
+
         if ($type === DatumTypeEnum::TYPE_IMAGE) {
             return $this->guessHost($values[0], $scraping);
         }

@@ -242,4 +242,48 @@ class ItemScraperTest extends AppTestCase
         $data = json_decode($this->client->getResponse()->getContent(), true)['data'];
         $this->assertMatchesRegularExpression('/value="DE"[^>]*selected/', $data[0][2]);
     }
+
+    public static function scrapedPrices(): iterable
+    {
+        yield ['19,99 €', '19.99'];
+        yield ['$1,299.00', '1299.00'];
+        yield ['1.234,56 EUR', '1234.56'];
+        yield ['1 299,5 €', '1299.5'];
+        yield ['15 €', '15'];
+    }
+
+    #[DataProvider('scrapedPrices')]
+    public function test_scraped_price_is_converted_to_number(string $scrapedPrice, string $expectedValue): void
+    {
+        // Arrange
+        $user = UserFactory::createOne(['currency' => 'EUR']);
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_ITEM, 'owner' => $user]);
+        $pricePath = PathFactory::createOne(['scraper' => $scraper, 'owner' => $user, 'name' => 'Price', 'type' => DatumTypeEnum::TYPE_PRICE, 'path' => '#//em/text()#', 'position' => 1]);
+
+        $htmlPath = '/tmp/' . uniqid() . '.html';
+        file_put_contents($htmlPath, "<html><body><em>{$scrapedPrice}</em></body></html>");
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/items/add?collection=' . $collection->getId());
+        $token = $crawler->filter('input[name="scraping_item[_token]"]')->attr('value');
+
+        // Act
+        $this->client->request(Request::METHOD_POST, '/scrapers/item-scrapers/scrap', [
+            'scraping_item' => [
+                'scraper' => $scraper->getId(),
+                'dataToScrap' => [$pricePath->getId()],
+                '_token' => $token,
+            ],
+        ], [
+            'scraping_item' => ['file' => new UploadedFile($htmlPath, 'page.html', 'text/html', test: true)],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $data = json_decode($this->client->getResponse()->getContent(), true)['data'];
+        $this->assertSame(['text', 'Price'], \array_slice($data[0], 0, 2));
+        $this->assertMatchesRegularExpression('/type="number"[^>]*value="' . preg_quote($expectedValue, '/') . '"/', $data[0][2]);
+        $this->assertMatchesRegularExpression('/value="EUR"\s*selected/', $data[0][2]);
+    }
 }
