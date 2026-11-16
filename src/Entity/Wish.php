@@ -85,7 +85,7 @@ class Wish implements CacheableInterface, LoggableInterface, VisibleInterface, \
     #[Groups(['wish:read', 'wish:write'])]
     private ?string $comment = null;
 
-    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
+    #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['wish:image'])]
     #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['wish:write', 'wish:image'])]
@@ -94,6 +94,9 @@ class Wish implements CacheableInterface, LoggableInterface, VisibleInterface, \
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['wish:read'])]
     private ?string $image = null;
+
+    #[Groups(['wish:write'])]
+    private ?bool $deleteImage = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['wish:read'])]
@@ -295,6 +298,19 @@ class Wish implements CacheableInterface, LoggableInterface, VisibleInterface, \
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
+
+        return $this;
+    }
+
+    public function getDeleteImage(): ?bool
+    {
+        return $this->deleteImage;
+    }
+
+    public function setDeleteImage(?bool $deleteImage): self
+    {
+        $this->deleteImage = $deleteImage;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

@@ -2402,6 +2402,31 @@ tr {
     padding-top: 17px;
 }
 
+form .row-file .file-preview-label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form .row-file .file-preview-image {
+    position: relative;
+    display: inline-block;
+}
+
+form .row-file .file-preview-image .preview-image {
+    display: block;
+}
+
+form .row-file .file-preview-image .btn-cancel {
+    position: absolute;
+    left: calc(100% + 10px);
+    bottom: 0;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: center;
+    justify-content: center;
+}
+
 .grid-container-items .chip {
     position: relative;
     display: unset;

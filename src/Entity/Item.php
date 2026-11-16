@@ -119,7 +119,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\OneToMany(targetEntity: Loan::class, mappedBy: 'item', cascade: ['remove'])]
     private DoctrineCollection $loans;
 
-    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail', largeThumbnailPathProperty: 'imageLargeThumbnail')]
+    #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', smallThumbnailPathProperty: 'imageSmallThumbnail', largeThumbnailPathProperty: 'imageLargeThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['item:image'])]
     #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['item:write', 'item:image'])]
@@ -128,6 +128,9 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['item:read'])]
     private ?string $image = null;
+
+    #[Groups(['item:write'])]
+    private ?bool $deleteImage = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['item:read'])]
@@ -489,6 +492,19 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setImageLargeThumbnail(?string $imageLargeThumbnail): Item
     {
         $this->imageLargeThumbnail = $imageLargeThumbnail;
+
+        return $this;
+    }
+
+    public function getDeleteImage(): ?bool
+    {
+        return $this->deleteImage;
+    }
+
+    public function setDeleteImage(?bool $deleteImage): Item
+    {
+        $this->deleteImage = $deleteImage;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

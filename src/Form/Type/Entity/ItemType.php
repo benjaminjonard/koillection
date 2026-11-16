@@ -16,6 +16,7 @@ use App\Repository\TemplateRepository;
 use App\Service\FeatureChecker;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType as SymfonyCollectionType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -60,6 +61,10 @@ class ItemType extends AbstractType
             ->add('file', FileType::class, [
                 'required' => false,
                 'label' => false,
+            ])
+            ->add('deleteImage', CheckboxType::class, [
+                'label' => false,
+                'required' => false,
             ])
             ->add( // Used for scraping
                 $builder->create('fileUrl', HiddenType::class, [
@@ -111,6 +116,11 @@ class ItemType extends AbstractType
             static function (FormEvent $event): void {
                 $data = $event->getData();
                 if (($data['file'] ?? null) instanceof UploadedFile) {
+                    $data['fileUrl'] = null;
+                }
+
+                if (!empty($data['deleteImage'])) {
+                    $data['file'] = null;
                     $data['fileUrl'] = null;
                 }
 

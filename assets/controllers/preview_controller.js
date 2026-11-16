@@ -1,7 +1,11 @@
 import {Controller} from '@hotwired/stimulus';
 
 export default class extends Controller {
-    static targets = ['image'];
+    static targets = ['image', 'input', 'deleteCheckbox'];
+
+    static values = {
+        defaultImage: String,
+    }
 
     load(event) {
         let reader = new FileReader();
@@ -12,5 +16,15 @@ export default class extends Controller {
         };
 
         reader.readAsDataURL(event.target.files[0]);
+
+        if (this.hasDeleteCheckboxTarget) {
+            this.deleteCheckboxTarget.checked = false;
+        }
+    }
+
+    remove() {
+        this.inputTarget.value = '';
+        this.imageTarget.src = this.defaultImageValue;
+        this.deleteCheckboxTarget.checked = true;
     }
 }
