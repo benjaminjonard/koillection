@@ -255,6 +255,31 @@ class ItemTest extends AppTestCase
         $this->assertFileExists(ItemFactory::first()->getImage());
     }
 
+    public function test_can_remove_item_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user, 'file' => $this->createFile('png')]);
+        $oldImagePath = $item->getImage();
+        $oldSmallThumbnailPath = $item->getImageSmallThumbnail();
+        $oldLargeThumbnailPath = $item->getImageLargeThumbnail();
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/items/' . $item->getId() . '/edit');
+        $this->client->submitForm('Submit', [
+            'item[deleteImage]' => 1,
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        ItemFactory::assert()->exists(['id' => $item->getId(), 'image' => null, 'imageSmallThumbnail' => null, 'imageLargeThumbnail' => null]);
+        $this->assertFileDoesNotExist($oldImagePath);
+        $this->assertFileDoesNotExist($oldSmallThumbnailPath);
+        $this->assertFileDoesNotExist($oldLargeThumbnailPath);
+    }
+
     public function test_can_create_item_then_create_another(): void
     {
         // Arrange

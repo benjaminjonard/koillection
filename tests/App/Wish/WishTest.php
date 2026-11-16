@@ -97,6 +97,29 @@ class WishTest extends AppTestCase
         $this->assertTrue($this->client->getResponse()->isNotFound());
     }
 
+    public function test_can_remove_wish_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $wishlist = WishlistFactory::createOne(['owner' => $user]);
+        $wish = WishFactory::createOne(['wishlist' => $wishlist, 'owner' => $user, 'file' => $this->createFile('png')]);
+        $oldImagePath = $wish->getImage();
+        $oldSmallThumbnailPath = $wish->getImageSmallThumbnail();
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/wishes/' . $wish->getId() . '/edit');
+        $this->client->submitForm('Submit', [
+            'wish[deleteImage]' => 1,
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        WishFactory::assert()->exists(['id' => $wish->getId(), 'image' => null, 'imageSmallThumbnail' => null]);
+        $this->assertFileDoesNotExist($oldImagePath);
+        $this->assertFileDoesNotExist($oldSmallThumbnailPath);
+    }
+
     public function test_can_edit_wish(): void
     {
         // Arrange

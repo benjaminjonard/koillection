@@ -3253,6 +3253,12 @@
         <target>Cancel modifications</target>
       </segment>
     </unit>
+    <unit id="2S05T7l" name="tooltip.remove_image">
+      <segment state="translated">
+        <source>Remove image</source>
+        <target>Remove image</target>
+      </segment>
+    </unit>
     <unit id="oAD2Kex" name="tooltip.remove_thumbnail">
       <segment state="translated">
         <source>Remove thumbnail</source>

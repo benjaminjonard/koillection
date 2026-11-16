@@ -64,7 +64,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     #[Groups(['tag:read', 'tag:write'])]
     private ?string $description = null;
 
-    #[Upload(pathProperty: 'image', smallThumbnailPathProperty: 'imageSmallThumbnail')]
+    #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', smallThumbnailPathProperty: 'imageSmallThumbnail')]
     #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['tag:image'])]
     #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['tag:write', 'tag:image'])]
@@ -73,6 +73,9 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['tag:read'])]
     private ?string $image = null;
+
+    #[Groups(['tag:write'])]
+    private ?bool $deleteImage = null;
 
     #[ORM\Column(type: Types::STRING, nullable: true, unique: true)]
     #[Groups(['tag:read'])]
@@ -242,6 +245,19 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     public function setImageSmallThumbnail(?string $imageSmallThumbnail): self
     {
         $this->imageSmallThumbnail = $imageSmallThumbnail;
+
+        return $this;
+    }
+
+    public function getDeleteImage(): ?bool
+    {
+        return $this->deleteImage;
+    }
+
+    public function setDeleteImage(?bool $deleteImage): self
+    {
+        $this->deleteImage = $deleteImage;
+        $this->updatedAt = new \DateTimeImmutable();
 
         return $this;
     }

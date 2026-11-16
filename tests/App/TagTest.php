@@ -113,6 +113,28 @@ class TagTest extends AppTestCase
         $this->assertSame('/tags/' . $linkedTag->getId(), $crawler->filter('.tag-description a')->attr('href'));
     }
 
+    public function test_can_remove_tag_image(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $tag = TagFactory::createOne(['owner' => $user, 'file' => $this->createFile('png')]);
+        $oldImagePath = $tag->getImage();
+        $oldSmallThumbnailPath = $tag->getImageSmallThumbnail();
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/tags/' . $tag->getId() . '/edit');
+        $this->client->submitForm('Submit', [
+            'tag[deleteImage]' => 1,
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        TagFactory::assert()->exists(['id' => $tag->getId(), 'image' => null, 'imageSmallThumbnail' => null]);
+        $this->assertFileDoesNotExist($oldImagePath);
+        $this->assertFileDoesNotExist($oldSmallThumbnailPath);
+    }
+
     public function test_can_edit_tag(): void
     {
         // Arrange

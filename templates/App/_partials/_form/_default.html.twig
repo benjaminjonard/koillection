@@ -60,26 +60,44 @@
     {% apply spaceless %}
         <div class="row row-file">
             <div class="s12 l10 offset-l1 xl8 offset-xl2">
-                <div data-controller="preview">
-                    <label class="file-label">
-                        {% if form.parent.vars.value.image is not null %}
-                            <img data-preview-target="image" class="preview-image"
-                                 src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"
-                                 data-scraping-target="imagePreview"
+                {% if preview_label is defined %}
+                    <label class="file-preview-label" for="{{ id }}">{{ preview_label|trans }}</label>
+                {% endif %}
+                <div class="file-preview" data-controller="preview" data-preview-default-image-value="{{ asset('build/images/default.png') }}">
+                    <div class="file-preview-image">
+                        <label class="file-label">
+                            {% if form.parent.vars.value.image is not null %}
+                                <img data-preview-target="image" class="preview-image"
+                                     src="{{ preload(asset(form.parent.vars.value.image), {as: 'image'}) }}"
+                                     data-scraping-target="imagePreview"
+                                />
+                            {% else %}
+                                <img data-preview-target="image" class="preview-image"
+                                     src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
+                                     data-scraping-target="imagePreview"
+                                />
+                            {% endif %}
+                            <input {{ block('widget_attributes') }}
+                                    data-action="change->preview#load"
+                                    data-preview-target="input"
+                                    type="file"
+                                    class="hidden"
+                                    accept="image/png, image/jpeg, image/jpg, image/webp, image/avif"
                             />
-                        {% else %}
-                            <img data-preview-target="image" class="preview-image"
-                                 src="{{ preload(asset('build/images/default.png'), {as: 'image'}) }}"
-                                 data-scraping-target="imagePreview"
-                            />
+                        </label>
+                        {% if form.parent.deleteImage is defined %}
+                            <button type="button"
+                                    class="btn waves-effect waves-light btn-cancel"
+                                    data-action="click->preview#remove"
+                                    title="{{ 'tooltip.remove_image'|trans }}"
+                            >
+                                <i class="fa fa-trash fa-fw"></i>
+                            </button>
                         {% endif %}
-                        <input {{ block('widget_attributes') }}
-                                data-action="change->preview#load"
-                                type="file"
-                                class="hidden"
-                                accept="image/png, image/jpeg, image/jpg, image/webp, image/avif"
-                        />
-                    </label>
+                    </div>
+                    {% if form.parent.deleteImage is defined %}
+                        <span class="hidden">{{ form_row(form.parent.deleteImage, {'attr': {'data-preview-target': 'deleteCheckbox'}}) }}</span>
+                    {% endif %}
                 </div>
             </div>
         </div>

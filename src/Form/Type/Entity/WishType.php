@@ -12,6 +12,7 @@ use App\Form\DataTransformer\UrlToImageTransformer;
 use App\Repository\WishlistRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -61,6 +62,10 @@ class WishType extends AbstractType
                 'required' => false,
                 'label' => false,
             ])
+            ->add('deleteImage', CheckboxType::class, [
+                'label' => false,
+                'required' => false,
+            ])
             ->add( // Used for scraping
                 $builder->create('fileUrl', HiddenType::class, [
                     'required' => false,
@@ -98,6 +103,11 @@ class WishType extends AbstractType
             static function (FormEvent $event): void {
                 $data = $event->getData();
                 if (($data['file'] ?? null) instanceof UploadedFile) {
+                    $data['fileUrl'] = null;
+                }
+
+                if (!empty($data['deleteImage'])) {
+                    $data['file'] = null;
                     $data['fileUrl'] = null;
                 }
 
