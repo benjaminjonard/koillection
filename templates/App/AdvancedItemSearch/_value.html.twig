@@ -1,4 +1,4 @@
-{% if datumType == 'text' or datumType == 'textarea' or datumType == 'link' or type == 'name' %}
+{% if datumType == 'text' or datumType == 'textarea' or datumType == 'markdown' or datumType == 'link' or type == 'name' %}
     {{ include('/App/AdvancedItemSearch/_input_text.html.twig') }}
 {% elseif type == 'collection' %}
     {{ include('/App/AdvancedItemSearch/_input_collection.html.twig') }}

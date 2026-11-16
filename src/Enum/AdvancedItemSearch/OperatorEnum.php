@@ -58,7 +58,7 @@ class OperatorEnum
     public static function getOperatorsByType(string $type): array
     {
         $operators = match ($type) {
-            DatumTypeEnum::TYPE_TEXT, DatumTypeEnum::TYPE_TEXTAREA, DatumTypeEnum::TYPE_LINK, 'item_name' => [
+            DatumTypeEnum::TYPE_TEXT, DatumTypeEnum::TYPE_TEXTAREA, DatumTypeEnum::TYPE_MARKDOWN, DatumTypeEnum::TYPE_LINK, 'item_name' => [
                 OperatorEnum::OPERATOR_EQUAL => OperatorEnum::getLabelFromName(OperatorEnum::OPERATOR_EQUAL),
                 OperatorEnum::OPERATOR_NOT_EQUAL => OperatorEnum::getLabelFromName(OperatorEnum::OPERATOR_NOT_EQUAL),
                 OperatorEnum::OPERATOR_CONTAINS => OperatorEnum::getLabelFromName(OperatorEnum::OPERATOR_CONTAINS),

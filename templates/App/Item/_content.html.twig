@@ -136,7 +136,7 @@
                         <span class="label">{{ datum.label }} :</span>
                     {% endif %}
 
-                    {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum}) }}
+                    {{ include('App/Datum/_display_value/_' ~ datum.type ~ '.html.twig', {'datum': datum, 'renderMarkdown': true}) }}
                 </div>
             {% endfor %}
         </div>

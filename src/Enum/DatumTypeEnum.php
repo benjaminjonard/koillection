@@ -10,6 +10,8 @@ class DatumTypeEnum
 
     public const string TYPE_TEXTAREA = 'textarea';
 
+    public const string TYPE_MARKDOWN = 'markdown';
+
     public const string TYPE_COUNTRY = 'country';
 
     public const string TYPE_DATE = 'date';
@@ -43,6 +45,7 @@ class DatumTypeEnum
     public const array TYPES = [
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
+        self::TYPE_MARKDOWN,
         self::TYPE_COUNTRY,
         self::TYPE_DATE,
         self::TYPE_RATING,
@@ -63,6 +66,7 @@ class DatumTypeEnum
     public const array TEXT_TYPES = [
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
+        self::TYPE_MARKDOWN,
         self::TYPE_COUNTRY,
         self::TYPE_DATE,
         self::TYPE_RATING,
@@ -108,11 +112,13 @@ class DatumTypeEnum
         self::TYPE_LIST,
         self::TYPE_CHOICE_LIST,
         self::TYPE_TEXTAREA,
+        self::TYPE_MARKDOWN,
     ];
 
     public const array AVAILABLE_FOR_IMPORT = [
         self::TYPE_TEXT,
         self::TYPE_TEXTAREA,
+        self::TYPE_MARKDOWN,
         self::TYPE_LINK,
         self::TYPE_COUNTRY,
         self::TYPE_DATE,
@@ -125,6 +131,7 @@ class DatumTypeEnum
     public const array TYPES_TRANS_KEYS = [
         self::TYPE_TEXT => 'label.text',
         self::TYPE_TEXTAREA => 'label.textarea',
+        self::TYPE_MARKDOWN => 'label.markdown',
         self::TYPE_SIGN => 'label.sign',
         self::TYPE_IMAGE => 'label.image',
         self::TYPE_COUNTRY => 'label.country',

@@ -43,6 +43,7 @@ class ArraySorter
             case DatumTypeEnum::TYPE_LIST:
             case DatumTypeEnum::TYPE_TEXT:
             case DatumTypeEnum::TYPE_TEXTAREA:
+            case DatumTypeEnum::TYPE_MARKDOWN:
             case DatumTypeEnum::TYPE_DATE:
             case DatumTypeEnum::TYPE_CHECKBOX:
             case DatumTypeEnum::TYPE_LINK:
