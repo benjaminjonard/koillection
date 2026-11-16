@@ -68,7 +68,7 @@
         ">
 
     {% block body %}{% endblock %}
-    <div id="settings" data-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}"
+    <div id="settings" data-date-format="{{ app.user.dateFormatForJs|default('yyyy-mm-dd') }}" data-first-day-of-week="{{ app.user.firstDayOfWeek|default(1) }}"
     ></div>
     <div id="offline-message"
          data-controller="offline-message"

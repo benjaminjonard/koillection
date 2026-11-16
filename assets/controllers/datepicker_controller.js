@@ -25,6 +25,7 @@ export default class extends Controller {
             close: Translator.trans('btn.close'),
             today: Translator.trans('global.today').substring(0, 3) + '.',
             format: document.getElementById('settings').dataset.dateFormat,
+            firstDay: parseInt(document.getElementById('settings').dataset.firstDayOfWeek),
             container: '.main',
             yearRange: [1900, new Date().getFullYear() + 10],
             onClose: function () {
