@@ -35,6 +35,18 @@ class SettingsType extends AbstractType
                 'choices' => DateFormatEnum::getChoicesList(),
                 'required' => true,
             ])
+            ->add('firstDayOfWeek', ChoiceType::class, [
+                'choices' => [
+                    'global.days.sunday' => 0,
+                    'global.days.monday' => 1,
+                    'global.days.tuesday' => 2,
+                    'global.days.wednesday' => 3,
+                    'global.days.thursday' => 4,
+                    'global.days.friday' => 5,
+                    'global.days.saturday' => 6,
+                ],
+                'required' => true,
+            ])
             ->add('currency', ChoiceType::class, [
                 'choices' => array_flip(CurrencyEnum::getCurrencyLabels()),
                 'required' => true,

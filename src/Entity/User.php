@@ -106,6 +106,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     #[Assert\Choice(choices: DateFormatEnum::FORMATS)]
     private string $dateFormat = DateFormatEnum::FORMAT_HYPHEN_YMD;
 
+    #[ORM\Column(type: Types::SMALLINT, options: ['default' => 1])]
+    #[Groups(['user:read', 'user:write'])]
+    #[Assert\Range(min: 0, max: 6)]
+    private int $firstDayOfWeek = 1;
+
     #[ORM\Column(type: Types::BIGINT, options: ['default' => 536870912])]
     #[Groups(['user:read'])]
     #[ApiProperty(
@@ -465,6 +470,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Breadcr
     public function setDateFormat(string $dateFormat): self
     {
         $this->dateFormat = $dateFormat;
+
+        return $this;
+    }
+
+    public function getFirstDayOfWeek(): int
+    {
+        return $this->firstDayOfWeek;
+    }
+
+    public function setFirstDayOfWeek(int $firstDayOfWeek): self
+    {
+        $this->firstDayOfWeek = $firstDayOfWeek;
 
         return $this;
     }
