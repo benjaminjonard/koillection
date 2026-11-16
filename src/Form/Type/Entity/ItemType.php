@@ -24,7 +24,10 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ItemType extends AbstractType
@@ -103,6 +106,17 @@ class ItemType extends AbstractType
                 'required' => false,
             ])
         ;
+
+        $builder->addEventListener(FormEvents::PRE_SUBMIT,
+            static function (FormEvent $event): void {
+                $data = $event->getData();
+                if (($data['file'] ?? null) instanceof UploadedFile) {
+                    $data['fileUrl'] = null;
+                }
+
+                $event->setData($data);
+            }
+        );
 
         if ($this->featureChecker->isFeatureEnabled('tags')) {
             $builder->add(
