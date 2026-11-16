@@ -6,7 +6,14 @@ namespace App\Attribute;
 
 class UploadAnnotationReader
 {
+    private array $uploadFields = [];
+
     public function getUploadFields(object $entity): array
+    {
+        return $this->uploadFields[$entity::class] ??= $this->readUploadFields($entity);
+    }
+
+    private function readUploadFields(object $entity): array
     {
         $reflection = new \ReflectionClass($entity::class);
 

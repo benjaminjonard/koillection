@@ -7,16 +7,17 @@ namespace App\EventListener;
 use App\Attribute\UploadAnnotationReader;
 use App\Service\ImageHandler;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
-use Doctrine\ORM\Event\OnFlushEventArgs;
 use Doctrine\ORM\Event\PostLoadEventArgs;
 use Doctrine\ORM\Event\PostRemoveEventArgs;
+use Doctrine\ORM\Event\PreFlushEventArgs;
 use Doctrine\ORM\Event\PrePersistEventArgs;
 use Doctrine\ORM\Events;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 #[AsDoctrineListener(event: Events::prePersist)]
-#[AsDoctrineListener(event: Events::onFlush)]
+#[AsDoctrineListener(event: Events::preFlush)]
 #[AsDoctrineListener(event: Events::postRemove)]
 #[AsDoctrineListener(event: Events::postLoad)]
 final readonly class UploadListener
@@ -39,22 +40,32 @@ final readonly class UploadListener
         }
     }
 
-    public function onFlush(OnFlushEventArgs $args): void
+    public function preFlush(PreFlushEventArgs $args): void
     {
-        $em = $args->getObjectManager();
-        $uow = $em->getUnitOfWork();
+        $uow = $args->getObjectManager()->getUnitOfWork();
 
-        foreach ($uow->getScheduledEntityUpdates() as $entity) {
-            foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
-                // New uploaded file
-                $this->handler->upload($entity, $property, $attribute);
-
-                // File deleted from a Form
-                if (null !== $attribute->getDeleteProperty() && true === $this->accessor->getValue($entity, $attribute->getDeleteProperty())) {
-                    $this->handler->removeOldFile($entity, $attribute);
+        foreach ($uow->getIdentityMap() as $entities) {
+            foreach ($entities as $entity) {
+                if ($uow->isScheduledForInsert($entity) || $uow->isScheduledForDelete($entity)) {
+                    continue;
                 }
 
-                $uow->recomputeSingleEntityChangeSet($em->getClassMetadata($entity::class), $entity);
+                foreach ($this->reader->getUploadFields($entity) as $property => $attribute) {
+                    $hasNewFile = $this->accessor->getValue($entity, $property) instanceof UploadedFile;
+                    $hasDeleteRequest = null !== $attribute->getDeleteProperty() && true === $this->accessor->getValue($entity, $attribute->getDeleteProperty());
+
+                    if (!$hasNewFile && !$hasDeleteRequest) {
+                        continue;
+                    }
+
+                    // New uploaded file
+                    $this->handler->upload($entity, $property, $attribute);
+
+                    // File deleted from a Form
+                    if ($hasDeleteRequest) {
+                        $this->handler->removeOldFile($entity, $attribute);
+                    }
+                }
             }
         }
     }
