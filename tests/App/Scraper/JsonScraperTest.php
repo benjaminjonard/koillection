@@ -9,7 +9,9 @@ use App\Entity\Scraper;
 use App\Enum\DatumTypeEnum;
 use App\Enum\ScraperContentTypeEnum;
 use App\Enum\ScraperTypeEnum;
+use App\Model\ScrapingCollection;
 use App\Model\ScrapingItem;
+use App\Service\Scraper\JsonCollectionScraper;
 use App\Service\Scraper\JsonItemScraper;
 use App\Service\Scraper\ScrapingUrlGuard;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
@@ -51,5 +53,63 @@ class JsonScraperTest extends KernelTestCase
         $this->assertStringContainsString('value="1987"', $result['data'][0][2]);
         $this->assertContains('Accept: application/json', $requestHeaders);
         $this->assertSame([], preg_grep('/^Accept-Encoding:/i', $requestHeaders));
+    }
+
+    public function test_collection_data_are_named_for_collection_form(): void
+    {
+        // Arrange
+        $client = new MockHttpClient(new MockResponse('{"title":"Frieren","year":2020}', ['response_headers' => ['Content-Type' => 'application/json']]));
+        $scraper = new JsonCollectionScraper(self::getContainer()->get(Environment::class), $client, new ScrapingUrlGuard());
+
+        $scraperEntity = new Scraper()
+            ->setName('API')
+            ->setType(ScraperTypeEnum::TYPE_COLLECTION)
+            ->setContentType(ScraperContentTypeEnum::CONTENT_TYPE_JSON);
+        $yearPath = new Path()->setName('Year')->setPath('#year#')->setType(DatumTypeEnum::TYPE_TEXT)->setPosition(1)->setScraper($scraperEntity);
+
+        $scraping = new ScrapingCollection()
+            ->setUrl('https://1.1.1.1/collections/1')
+            ->setScraper($scraperEntity)
+            ->setScrapName(false)
+            ->setScrapImage(false)
+            ->setDataToScrap([$yearPath]);
+
+        // Act
+        $result = $scraper->scrap($scraping);
+
+        // Assert
+        $this->assertStringContainsString('name="collection[data][__placeholder__][label]"', $result['data'][0][2]);
+    }
+
+    public function test_image_is_not_fetched_without_image_path(): void
+    {
+        // Arrange
+        $requestedUrls = [];
+        $client = new MockHttpClient(static function (string $method, string $url) use (&$requestedUrls): MockResponse {
+            $requestedUrls[] = $url;
+
+            return new MockResponse('{"title":"Frieren"}', ['response_headers' => ['Content-Type' => 'application/json']]);
+        });
+        $scraper = new JsonCollectionScraper(self::getContainer()->get(Environment::class), $client, new ScrapingUrlGuard());
+
+        $scraperEntity = new Scraper()
+            ->setName('API')
+            ->setType(ScraperTypeEnum::TYPE_COLLECTION)
+            ->setContentType(ScraperContentTypeEnum::CONTENT_TYPE_JSON)
+            ->setNamePath('#title#');
+
+        $scraping = new ScrapingCollection()
+            ->setUrl('https://1.1.1.1/collections/1')
+            ->setScraper($scraperEntity)
+            ->setScrapName(true)
+            ->setScrapImage(true);
+
+        // Act
+        $result = $scraper->scrap($scraping);
+
+        // Assert
+        $this->assertSame('Frieren', $result['name']);
+        $this->assertNull($result['base64Image']);
+        $this->assertSame(['https://1.1.1.1/collections/1'], $requestedUrls);
     }
 }

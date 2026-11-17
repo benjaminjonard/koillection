@@ -7,12 +7,11 @@ namespace App\Tests\App\Scraper;
 use App\Service\Scraper\ScrapingBrowser;
 use App\Service\Scraper\ScrapingUrlGuard;
 use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpClient\CurlHttpClient;
-use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
 use Symfony\Component\Process\Process;
 
-class ScrapingBrowserTest extends TestCase
+class ScrapingBrowserTest extends KernelTestCase
 {
     private const array PRIVATE_SUBNETS_EXCEPT_LOOPBACK = [
         '10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16', '169.254.0.0/16', 'fc00::/7', 'fe80::/10',
@@ -100,8 +99,9 @@ class ScrapingBrowserTest extends TestCase
     {
         $this->browser = new ScrapingBrowser(
             new ScrapingUrlGuard(),
-            new NoPrivateNetworkHttpClient(new CurlHttpClient(), self::PRIVATE_SUBNETS_EXCEPT_LOOPBACK),
-            ['--ip-address-space-overrides=' . substr(self::$publicOrigin ?? '', 7) . '=public']
+            new CurlHttpClient(),
+            ['--ip-address-space-overrides=' . substr(self::$publicOrigin ?? '', 7) . '=public'],
+            self::PRIVATE_SUBNETS_EXCEPT_LOOPBACK
         );
 
         if (!isset(self::$directory) || !$this->browser->isAvailable()) {
@@ -126,6 +126,25 @@ class ScrapingBrowserTest extends TestCase
         $exception = null;
         try {
             $this->browser->fetch(self::$publicOrigin . $path);
+        } catch (\RuntimeException $e) {
+            $exception = $e;
+        }
+
+        // Assert
+        $this->assertNotNull($exception);
+        $this->assertSame(ScrapingUrlGuard::UNREACHABLE_MESSAGE, $exception->getMessage());
+        $this->assertSame([], $this->getInternalHits());
+    }
+
+    public function test_container_service_blocks_redirect_to_private_network(): void
+    {
+        // Arrange
+        $browser = self::getContainer()->get(ScrapingBrowser::class);
+
+        // Act
+        $exception = null;
+        try {
+            $browser->fetch(self::$publicOrigin . '/redirect');
         } catch (\RuntimeException $e) {
             $exception = $e;
         }

@@ -32,7 +32,7 @@ class JsonCollectionScraper extends JsonScraper
         return [
             'name' => $scraping->getScrapName() ? $this->extract($scraper->getNamePath(), DatumTypeEnum::TYPE_TEXT, $crawler, $scraping) : null,
             'base64Image' => $base64Image,
-            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_ITEM),
+            'data' => $this->scrapData($scraping, $crawler, ScraperTypeEnum::TYPE_COLLECTION),
             'scrapedUrl' => $scraping->getUrl(),
         ];
     }

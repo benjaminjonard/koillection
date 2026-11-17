@@ -8,7 +8,6 @@ use HeadlessChromium\BrowserFactory;
 use HeadlessChromium\Communication\Connection;
 use HeadlessChromium\Communication\Message;
 use HeadlessChromium\Page;
-use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -24,10 +23,11 @@ class ScrapingBrowser
 
     public function __construct(
         private readonly ScrapingUrlGuard $urlGuard,
-        ?HttpClientInterface $httpClient = null,
+        HttpClientInterface $httpClient,
         private readonly array $extraFlags = [],
+        string|array|null $blockedSubnets = null,
     ) {
-        $this->httpClient = $httpClient ?? new NoPrivateNetworkHttpClient(new CurlHttpClient());
+        $this->httpClient = new NoPrivateNetworkHttpClient($httpClient, $blockedSubnets);
     }
 
     public function isAvailable(): bool

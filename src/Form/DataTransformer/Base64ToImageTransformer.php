@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Contracts\Service\ResetInterface;
@@ -13,12 +12,6 @@ use Symfony\Contracts\Service\ResetInterface;
 class Base64ToImageTransformer implements DataTransformerInterface, ResetInterface
 {
     private ?string $originalBase64 = null;
-
-    private readonly ?CurlHttpClient $client;
-
-    public function __construct() {
-        $this->client = new CurlHttpClient();
-    }
 
     #[\Override]
     public function transform($file): ?string

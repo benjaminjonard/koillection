@@ -11,6 +11,7 @@ use App\Tests\Factory\PathFactory;
 use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -162,5 +163,37 @@ class CollectionScraperTest extends AppTestCase
         $this->assertSame('#//h1/img/@src]#', $crawler->filter('.list-element')->eq(1)->filter('td')->eq(1)->text());
         $this->assertSame('Length', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(0)->text());
         $this->assertSame('#//span/text()]#', $crawler->filter('.list-element')->eq(2)->filter('td')->eq(1)->text());
+    }
+
+    public function test_can_scrap_collection_from_html_file(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $scraper = ScraperFactory::createOne(['type' => ScraperTypeEnum::TYPE_COLLECTION, 'owner' => $user, 'namePath' => '#//h1/text()#', 'imagePath' => '#//img/@src#']);
+
+        $htmlPath = '/tmp/' . uniqid() . '.html';
+        file_put_contents($htmlPath, '<html><body><h1>Frieren</h1><img src="https://example.com/cover.png"></body></html>');
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/collections/add');
+        $token = $crawler->filter('input[name="scraping_collection[_token]"]')->attr('value');
+
+        // Act
+        $this->client->request(Request::METHOD_POST, '/scrapers/collection-scrapers/scrap', [
+            'scraping_collection' => [
+                'scraper' => $scraper->getId(),
+                'scrapName' => '1',
+                'scrapImage' => '1',
+                '_token' => $token,
+            ],
+        ], [
+            'scraping_collection' => ['file' => new UploadedFile($htmlPath, 'page.html', 'text/html', test: true)],
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $result = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertSame('Frieren', $result['name']);
+        $this->assertNull($result['base64Image']);
     }
 }

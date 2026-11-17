@@ -27,7 +27,7 @@ abstract class ContentScraper implements Scraper
 
     protected function guessHost(?string $url, ScrapingItem|ScrapingCollection|ScrapingWish $scraping): ?string
     {
-        if ($url === null || $scraping->getUrl() === null) {
+        if ($url === null || $url === '' || $scraping->getUrl() === null) {
             return null;
         }
 
