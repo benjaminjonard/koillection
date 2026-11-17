@@ -43,7 +43,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(),
-        new Post(uriTemplate: '/data/{id}/image', denormalizationContext: ['groups' => ['datum:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Datum image.')),
+        new Post(uriTemplate: '/data/{id}/image', denormalizationContext: ['groups' => ['datum:image']], validationContext: ['groups' => ['Default', 'datum:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Datum image.')),
         new Post(uriTemplate: '/data/{id}/file', denormalizationContext: ['groups' => ['datum:file']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Datum file.')),
         new Post(uriTemplate: '/data/{id}/video', denormalizationContext: ['groups' => ['datum:video']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Datum video.'))
     ],

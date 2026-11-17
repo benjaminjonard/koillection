@@ -47,7 +47,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(uriTemplate: '/albums/{id}'),
         new GetCollection(uriTemplate: '/albums'),
         new Post(uriTemplate: '/albums'),
-        new Post(uriTemplate: '/albums/{id}/image', denormalizationContext: ['groups' => ['album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Album image.')),
+        new Post(uriTemplate: '/albums/{id}/image', denormalizationContext: ['groups' => ['album:image']], validationContext: ['groups' => ['Default', 'album:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Album image.')),
     ]
 )]
 #[ApiResource(uriTemplate: '/albums/{id}/children', uriVariables: ['id' => new Link(fromClass: Album::class, fromProperty: 'children')], normalizationContext: ['groups' => ['album:read']], operations: [new GetCollection()])]

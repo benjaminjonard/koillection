@@ -48,7 +48,7 @@ use Symfony\Component\Validator\Constraints as Assert;
         new Patch(),
         new GetCollection(),
         new Post(),
-        new Post(uriTemplate: '/collections/{id}/image', denormalizationContext: ['groups' => ['collection:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Collection image.'))
+        new Post(uriTemplate: '/collections/{id}/image', denormalizationContext: ['groups' => ['collection:image']], validationContext: ['groups' => ['Default', 'collection:image']], inputFormats: ['multipart' => ['multipart/form-data']], openapi: new OpenApiOperation(summary: 'Upload the Collection image.'))
     ]
 )]
 #[ApiResource(uriTemplate: '/collections/{id}/children', uriVariables: ['id' => new Link(fromClass: Collection::class, fromProperty: 'children')], normalizationContext: ['groups' => ['collection:read']], operations: [new GetCollection()])]
@@ -109,7 +109,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     private ?string $color = null;
 
     #[Upload(pathProperty: 'image', deleteProperty: 'deleteImage', maxWidth: 200, maxHeight: 200)]
-    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['colletion:image'])]
+    #[Assert\Image(mimeTypes: ['image/png', 'image/jpeg', 'image/webp', 'image/avif'], groups: ['collection:image'])]
     #[AppAssert\HasEnoughSpaceForUpload]
     #[Groups(['collection:write', 'collection:image'])]
     private ?File $file = null;
