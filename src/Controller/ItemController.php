@@ -8,6 +8,7 @@ use App\Entity\Datum;
 use App\Entity\Item;
 use App\Entity\Loan;
 use App\Entity\Template;
+use App\Form\DataTransformer\JsonToItemTransformer;
 use App\Form\Type\Entity\ItemType;
 use App\Form\Type\Entity\LoanType;
 use App\Form\Type\Model\ScrapingItemType;
@@ -20,7 +21,6 @@ use App\Service\ItemNameGuesser;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
-use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -184,18 +184,8 @@ class ItemController extends AbstractController
     }
 
     #[Route(path: '/items/autocomplete/{search}', name: 'app_item_autocomplete', methods: ['GET'])]
-    public function autocomplete(string $search, ItemRepository $itemRepository, Packages $assetManager): JsonResponse
+    public function autocomplete(string $search, ItemRepository $itemRepository, JsonToItemTransformer $jsonToItemTransformer): JsonResponse
     {
-        $items = $itemRepository->findLike($search);
-        $data = [];
-        foreach ($items as $item) {
-            $data[] = [
-                'id' => $item->getId(),
-                'text' => $item->getName(),
-                'image' => $item->getImageSmallThumbnail() ? $assetManager->getUrl($item->getImageSmallThumbnail()) : null,
-            ];
-        }
-
-        return new JsonResponse($data);
+        return new JsonResponse($jsonToItemTransformer->transform($itemRepository->findLike($search)), json: true);
     }
 }
