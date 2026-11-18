@@ -2422,8 +2422,8 @@ tr {
     margin-left: 5px;
 }
 
-.row-file .btn-cancel {
-    padding-top: 17px;
+.row-file .btn {
+    vertical-align: top;
 }
 
 form .row-file .file-preview-label {

@@ -27,6 +27,7 @@ class ImportMappingType extends AbstractType
         $builder
             ->add('nameIndex', ChoiceType::class, [
                 'required' => true,
+                'placeholder' => '',
                 'choices' => $choices
             ])
             ->add('imageIndex', ChoiceType::class, [
@@ -65,6 +66,7 @@ class ImportMappingType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Import::class,
+            'validation_groups' => ['Default', 'import:mapping'],
         ]);
     }
 }

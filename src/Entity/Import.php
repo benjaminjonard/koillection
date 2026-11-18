@@ -41,6 +41,7 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
     private string $status;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
+    #[Assert\NotNull(groups: ['import:mapping'])]
     private ?int $nameIndex;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
@@ -89,6 +90,7 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
         $headers = [];
 
         if (($handle = fopen($this->fileFile->getPathname(), 'r')) !== false) {
+            $this->skipBom($handle);
             $headers = fgetcsv($handle, 0, ',', '"', '');
 
             fclose($handle);
@@ -101,6 +103,7 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
     {
         $data = [];
         if (($handle = fopen($this->fileFile->getPathname(), 'r')) !== false) {
+            $this->skipBom($handle);
             $headers = fgetcsv($handle, 0, ',', '"', '');
 
             while (($row = fgetcsv($handle, 0, ',', '"', '')) !== false) {
@@ -111,6 +114,13 @@ class Import implements BreadcrumbableInterface, LoggableInterface, \Stringable
         }
 
         return $data;
+    }
+
+    private function skipBom($handle): void
+    {
+        if (fread($handle, 3) !== "\xEF\xBB\xBF") {
+            rewind($handle);
+        }
     }
 
     public function getId(): ?string

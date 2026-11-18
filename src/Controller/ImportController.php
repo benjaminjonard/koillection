@@ -20,7 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ImportController extends AbstractController
 {
     #[Route(path: '/collections/{id}/import', name: 'app_collection_import', methods: ['GET', 'POST'])]
-    public function import(Request $request, Collection $collection, ManagerRegistry $managerRegistry): Response
+    public function import(Request $request, Collection $collection, ImportHandler $importHandler, ManagerRegistry $managerRegistry): Response
     {
         $import = new Import()
             ->setCollection($collection)
@@ -32,6 +32,7 @@ class ImportController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $importHandler->prefillMapping($import);
             $managerRegistry->getManager()->persist($import);
             $managerRegistry->getManager()->flush();
 
