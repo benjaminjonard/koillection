@@ -12,6 +12,7 @@ use App\Service\ConfigurationHelper;
 use App\Service\ContextHandler;
 use App\Service\FeatureChecker;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Attribute\AsTwigFilter;
@@ -182,6 +183,12 @@ readonly class AppExtension
     public function fileSize(string $path): int
     {
         return is_file($path) ? filesize($path) : 0;
+    }
+
+    #[AsTwigFunction('getMaxUploadSize')]
+    public function getMaxUploadSize(): int|float
+    {
+        return UploadedFile::getMaxFilesize();
     }
 
     #[AsTwigFilter('base64Encode')]

@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Type\Entity;
+namespace App\Form\Type\Model;
 
-use App\Entity\Import;
 use App\Form\DataTransformer\ImportMappingTransformer;
-use App\Form\Type\Model\ImportMapperElementType;
+use App\Model\Import;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;

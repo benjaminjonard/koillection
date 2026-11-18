@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Entity\Collection;
-use App\Entity\Import;
-use App\Enum\ImportStatusEnum;
-use App\Form\Type\Entity\ImportMappingType;
-use App\Form\Type\Entity\ImportUploadType;
+use App\Form\Type\Model\ImportMappingType;
+use App\Form\Type\Model\ImportUploadType;
+use App\Model\Import;
 use App\Service\ImportHandler;
+use App\Service\ImportStorage;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -20,21 +20,17 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ImportController extends AbstractController
 {
     #[Route(path: '/collections/{id}/import', name: 'app_collection_import', methods: ['GET', 'POST'])]
-    public function import(Request $request, Collection $collection, ImportHandler $importHandler, ManagerRegistry $managerRegistry): Response
+    public function import(Request $request, Collection $collection, ImportHandler $importHandler, ImportStorage $importStorage): Response
     {
-        $import = new Import()
-            ->setCollection($collection)
-            ->setOwner($this->getUser())
-            ->setStatus(ImportStatusEnum::NEW)
-        ;
+        $import = new Import()->setCollection($collection);
 
         $form = $this->createForm(ImportUploadType::class, $import);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $importStorage->create($import);
             $importHandler->prefillMapping($import);
-            $managerRegistry->getManager()->persist($import);
-            $managerRegistry->getManager()->flush();
+            $importStorage->save($import);
 
             return $this->redirectToRoute('app_collection_import_mapping', [
                 'id' => $collection->getId(),
@@ -49,17 +45,15 @@ class ImportController extends AbstractController
     }
 
     #[Route(path: '/collections/{id}/import/{importId}/mapping', name: 'app_collection_import_mapping', methods: ['GET', 'POST'])]
-    public function mapping(
-        Request $request,
-        Collection $collection,
-        #[MapEntity(expr: 'repository.find(importId)')] Import $import,
-        ManagerRegistry $managerRegistry
-    ): Response {
+    public function mapping(Request $request, Collection $collection, string $importId, ImportStorage $importStorage): Response
+    {
+        $import = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+
         $form = $this->createForm(ImportMappingType::class, $import);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $managerRegistry->getManager()->flush();
+            $importStorage->save($import);
 
             return $this->redirectToRoute('app_collection_import_preview', [
                 'id' => $collection->getId(),
@@ -75,11 +69,10 @@ class ImportController extends AbstractController
     }
 
     #[Route(path: '/collections/{id}/import/{importId}/preview', name: 'app_collection_import_preview', methods: ['GET'])]
-    public function preview(
-        Collection $collection,
-        #[MapEntity(expr: 'repository.find(importId)')] Import $import,
-        ImportHandler $importHandler
-    ): Response {
+    public function preview(Collection $collection, string $importId, ImportHandler $importHandler, ImportStorage $importStorage): Response
+    {
+        $import = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+
         $errors = $importHandler->validate($import);
 
         return $this->render('App/Import/import-preview.html.twig', [
@@ -91,20 +84,30 @@ class ImportController extends AbstractController
         ]);
     }
 
+    #[Route(path: '/collections/{id}/import/{importId}/image', name: 'app_collection_import_image', methods: ['GET'])]
+    public function image(Request $request, Collection $collection, string $importId, ImportStorage $importStorage): Response
+    {
+        $import = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+
+        $path = $import->getArchiveEntries()[(string) $request->query->get('name')]['path'] ?? throw $this->createNotFoundException();
+
+        return new BinaryFileResponse($path, Response::HTTP_OK, [
+            'Content-Type' => mime_content_type($path),
+            'X-Content-Type-Options' => 'nosniff',
+        ]);
+    }
+
     #[Route(path: '/collections/{id}/import/{importId}/import', name: 'app_collection_import_import', methods: ['POST'])]
     public function executeImport(
         Request $request,
         Collection $collection,
-        #[MapEntity(expr: 'repository.find(importId)')] Import $import,
+        string $importId,
         ImportHandler $importHandler,
+        ImportStorage $importStorage,
         ManagerRegistry $managerRegistry,
         TranslatorInterface $translator
     ): Response {
-        if ($import->getStatus() === ImportStatusEnum::DONE) {
-            $this->addFlash('error', $translator->trans('error.import.already_done'));
-
-            return $this->redirectToRoute('app_collection_show', ['id' => $collection->getId()]);
-        }
+        $import = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         if ($importHandler->validate($import) !== []) {
             return $this->redirectToRoute('app_collection_import_preview', [
@@ -123,24 +126,14 @@ class ImportController extends AbstractController
             ]);
         }
 
-        $totalNumberOfItems = \count($import->getRows());
-        $duplicates = $importHandler->findDuplicateRows($import);
-
         $items = $importHandler->createItems($import, false, $selectedRows);
         foreach ($items as $item) {
             $item->setCollection($collection);
             $managerRegistry->getManager()->persist($item);
         }
 
-        $import
-            ->setStatus(ImportStatusEnum::DONE)
-            ->setTotalNumberOfItems($totalNumberOfItems)
-            ->setNumberOfImportedItems(\count($items))
-            ->setNumberOfSkippedItems($totalNumberOfItems - \count($items))
-            ->setNumberOfDuplicatedItems(\count($duplicates))
-        ;
-
         $managerRegistry->getManager()->flush();
+        $importStorage->remove($import);
 
         $this->addFlash('notice', $translator->trans('message.items_imported', ['count' => \count($items)]));
 

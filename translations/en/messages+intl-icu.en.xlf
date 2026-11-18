@@ -4033,6 +4033,54 @@
         <target>Upload CSV</target>
       </segment>
     </unit>
+    <unit id="Ye0R5js" name="message.max_upload_size">
+      <segment state="translated">
+        <source>Maximum file size: {size}</source>
+        <target>Maximum file size: {size}</target>
+      </segment>
+    </unit>
+    <unit id="6UjkGmK" name="label.upload_image_archive">
+      <segment state="translated">
+        <source>Upload image archive (ZIP)</source>
+        <target>Upload image archive (ZIP)</target>
+      </segment>
+    </unit>
+    <unit id="huG8GP3" name="message.import_archive_image_types">
+      <segment state="translated">
+        <source>Accepted images: PNG, JPEG, WebP, AVIF</source>
+        <target>Accepted images: PNG, JPEG, WebP, AVIF</target>
+      </segment>
+    </unit>
+    <unit id="8g4o5MN" name="message.import_archive_max_dimension">
+      <segment state="translated">
+        <source>Maximum image size: {dimension} px per side</source>
+        <target>Maximum image size: {dimension} px per side</target>
+      </segment>
+    </unit>
+    <unit id="DrHooPM" name="error.import.image_not_found">
+      <segment state="translated">
+        <source>Image not found in the archive</source>
+        <target>Image not found in the archive</target>
+      </segment>
+    </unit>
+    <unit id="1FpAUWW" name="error.import.invalid_image_type">
+      <segment state="translated">
+        <source>Unsupported image type, use PNG, JPEG, WebP or AVIF</source>
+        <target>Unsupported image type, use PNG, JPEG, WebP or AVIF</target>
+      </segment>
+    </unit>
+    <unit id="MAILVcr" name="error.import.image_too_large">
+      <segment state="translated">
+        <source>Image dimensions are too large</source>
+        <target>Image dimensions are too large</target>
+      </segment>
+    </unit>
+    <unit id="APOzvvU" name="error.import.archive_too_large">
+      <segment state="translated">
+        <source>The archive contains more data than allowed</source>
+        <target>The archive contains more data than allowed</target>
+      </segment>
+    </unit>
     <unit id="Bw1fC95" name="breadcrumb.import_mapping">
       <segment state="translated">
         <source>Mapping</source>
@@ -4109,12 +4157,6 @@
       <segment state="translated">
         <source>Error</source>
         <target>Error</target>
-      </segment>
-    </unit>
-    <unit id="tCuek2j" name="error.import.already_done">
-      <segment state="translated">
-        <source>This import has already been done</source>
-        <target>This import has already been done</target>
       </segment>
     </unit>
     <unit id="hyG10TG" name="error.import.empty_name">

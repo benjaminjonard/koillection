@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Datum;
-use App\Entity\Import;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\UrlToImageTransformer;
+use App\Model\Import;
 use App\Repository\TagRepository;
 use App\Service\Scraper\ScrapingUrlGuard;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Intl\Countries;
 use Symfony\Component\Intl\Currencies;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class ImportHandler
 {
@@ -23,6 +24,7 @@ class ImportHandler
         private readonly TagRepository $tagRepository,
         private readonly UrlToImageTransformer $urlToImageTransformer,
         private readonly ScrapingUrlGuard $urlGuard,
+        private readonly UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -52,17 +54,26 @@ class ImportHandler
 
             $this->addTags($item, $this->getCell($row, $import->getTagsIndex()), $tags);
 
-            if ($import->getImageIndex() !== null) {
-                $url = trim((string) ($row[$import->getImageIndex()] ?? ''));
-
-                if ($url !== '') {
-                    if ($isPreview) {
-                        $item->setImage($this->isSupportedUrl($url) ? $url : null);
-                    } else {
-                        $file = $this->getFile($url);
-                        if ($file instanceof UploadedFile) {
-                            $item->setFile($file);
-                        }
+            $image = $this->getCell($row, $import->getImageIndex());
+            if ($image !== '' && !$this->isUrl($image)) {
+                if ($isPreview) {
+                    $item->setImage($this->urlGenerator->generate('app_collection_import_image', [
+                        'id' => $import->getCollection()?->getId(),
+                        'importId' => $import->getId(),
+                        'name' => $image,
+                    ]));
+                } else {
+                    $path = tempnam(sys_get_temp_dir(), 'koillection_import_');
+                    copy($import->getArchiveEntries()[$image]['path'], $path);
+                    $item->setFile(new UploadedFile($path, basename($image), mime_content_type($path), null, true));
+                }
+            } elseif ($image !== '') {
+                if ($isPreview) {
+                    $item->setImage($this->isSupportedUrl($image) ? $image : null);
+                } else {
+                    $file = $this->getFile($image);
+                    if ($file instanceof UploadedFile) {
+                        $item->setFile($file);
                     }
                 }
             }
@@ -78,7 +89,7 @@ class ImportHandler
                 ;
 
                 if ($mapping['datumType'] === DatumTypeEnum::TYPE_PRICE) {
-                    $datum->setCurrency($import->getOwner()?->getCurrency());
+                    $datum->setCurrency($import->getCollection()?->getOwner()?->getCurrency());
 
                     if ($value !== '') {
                         [$amount, $currency] = explode(' ', $value);
@@ -184,6 +195,15 @@ class ImportHandler
                 $errors[] = $this->createError($line, $headers[$import->getVisibilityIndex()] ?? '', $visibility, 'error.import.invalid_visibility');
             }
 
+            $image = $this->getCell($row, $import->getImageIndex());
+            if ($image !== '' && !$this->isUrl($image)) {
+                $entry = $import->getArchiveEntries()[$image] ?? null;
+                $error = $entry === null ? 'error.import.image_not_found' : $entry['error'];
+                if ($error !== null) {
+                    $errors[] = $this->createError($line, $headers[$import->getImageIndex()] ?? '', $image, $error);
+                }
+            }
+
             foreach ($import->getMapping() as $mapping) {
                 $value = trim((string) ($row[$mapping['columnIndex']] ?? ''));
                 if ($value === '') {
@@ -248,6 +268,11 @@ class ImportHandler
             'value' => $value,
             'message' => $message,
         ];
+    }
+
+    private function isUrl(string $value): bool
+    {
+        return str_starts_with($value, '//') || preg_match('#^[a-z][a-z0-9+.-]*://#i', $value) === 1;
     }
 
     private function isSupportedUrl(string $url): bool

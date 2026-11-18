@@ -2053,6 +2053,11 @@ i.btn input {
     line-height: 3rem;
 }
 
+.file-data .helper-text {
+    padding-top: 10px;
+    line-height: 1.6;
+}
+
 .switch-wrapper {
     margin-bottom: 4rem;
 }
@@ -2252,6 +2257,10 @@ input[type="text"]:not(.browser-default).password-input {
 .items-table td, .children-table td  {
     padding: 10px 5px;
     position: relative
+}
+
+.import-items-table td:first-child {
+    padding-left: 20px;
 }
 
 .items-table td .table-link, .children-table .table-link  {

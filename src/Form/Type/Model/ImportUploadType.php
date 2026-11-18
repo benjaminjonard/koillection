@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Type\Entity;
+namespace App\Form\Type\Model;
 
-use App\Entity\Import;
+use App\Model\Import;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,6 +19,10 @@ class ImportUploadType extends AbstractType
             ->add('fileFile', FileType::class, [
                 'label' => false,
                 'required' => true,
+            ])
+            ->add('archiveFile', FileType::class, [
+                'label' => false,
+                'required' => false,
             ])
         ;
     }

@@ -12,7 +12,10 @@
 
 {% block content %}
     <div class="title-block">
-        <h1>{{ 'title.import'|trans({'collection': collection.title}) }}</h1>
+        <div>
+            <h1>{{ 'title.import'|trans({'collection': collection.title}) }}</h1>
+            📖 <a target="_blank" href="https://github.com/benjaminjonard/koillection/wiki/Import">{{ 'message.wiki.scrapper'|trans }}</a>
+        </div>
     </div>
 
     <div class="content-block">
@@ -20,6 +23,9 @@
             <div class="row">
                 <div class="s12 l5 offset-l1 xl4 offset-xl2">
                     {{ form_widget(form.fileFile, {'label' : 'label.csv_file'}) }}
+                </div>
+                <div class="s12 l5 xl4">
+                    {{ form_widget(form.archiveFile) }}
                 </div>
             </div>
 
