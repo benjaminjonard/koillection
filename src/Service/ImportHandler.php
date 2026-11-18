@@ -106,6 +106,46 @@ class ImportHandler
         return $items;
     }
 
+    public function prefillMapping(Import $import): void
+    {
+        $headers = array_map(static fn ($header): string => trim((string) $header), $import->getHeaders() ?: []);
+        $normalizedHeaders = array_map(strtolower(...), $headers);
+
+        $import
+            ->setNameIndex($this->findHeaderIndex($normalizedHeaders, 'name'))
+            ->setImageIndex($this->findHeaderIndex($normalizedHeaders, 'image'))
+            ->setQuantityIndex($this->findHeaderIndex($normalizedHeaders, 'quantity'))
+            ->setTagsIndex($this->findHeaderIndex($normalizedHeaders, 'tags'))
+            ->setVisibilityIndex($this->findHeaderIndex($normalizedHeaders, 'visibility'))
+        ;
+
+        $baseIndexes = [
+            $import->getNameIndex(),
+            $import->getImageIndex(),
+            $import->getQuantityIndex(),
+            $import->getTagsIndex(),
+            $import->getVisibilityIndex(),
+        ];
+
+        $mapping = [];
+        foreach ($headers as $index => $header) {
+            if ($header === '' || \in_array($index, $baseIndexes, true)) {
+                continue;
+            }
+
+            $mapping[] = [
+                'columnIndex' => $index,
+                'datumType' => DatumTypeEnum::TYPE_TEXT,
+                'datumLabel' => $header,
+                'datumVisibility' => VisibilityEnum::VISIBILITY_PUBLIC,
+                'datumPosition' => \count($mapping) + 1,
+                'createCorrespondingTags' => false,
+            ];
+        }
+
+        $import->setMapping($mapping);
+    }
+
     public function findDuplicateRows(Import $import): array
     {
         $existingNames = [];
@@ -158,6 +198,13 @@ class ImportHandler
         }
 
         return $errors;
+    }
+
+    private function findHeaderIndex(array $headers, string $property): ?int
+    {
+        $index = array_search($property, $headers, true);
+
+        return $index === false ? null : $index;
     }
 
     private function getCell(array $row, ?int $index): string

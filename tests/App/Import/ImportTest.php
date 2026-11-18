@@ -89,6 +89,132 @@ class ImportTest extends AppTestCase
         $this->assertSame('https://example.com/cover.png', $crawler->filter('tbody img')->attr('src'));
     }
 
+    public function test_mapping_prefills_base_fields_from_headers(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $path = tempnam(sys_get_temp_dir(), 'import') . '.csv';
+        file_put_contents($path, "Author,TAGS, Image ,quantity,Visibility,Name\nAbe Tsukasa,Manga,,1,public,Frieren #1\n");
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import');
+        $form = $crawler->filter('form[name=import_upload]')->form();
+        $form['import_upload[fileFile]']->upload($path);
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+
+        $values = $crawler->filter('form[name=import_mapping]')->form()->getValues();
+        $this->assertSame('5', $values['import_mapping[nameIndex]']);
+        $this->assertSame('2', $values['import_mapping[imageIndex]']);
+        $this->assertSame('3', $values['import_mapping[quantityIndex]']);
+        $this->assertSame('1', $values['import_mapping[tagsIndex]']);
+        $this->assertSame('4', $values['import_mapping[visibilityIndex]']);
+
+        $this->assertCount(1, $crawler->filter('.mapping'));
+        $this->assertSame('0', $values['import_mapping[mapping][0][columnIndex]']);
+        $this->assertSame('Author', $values['import_mapping[mapping][0][datumLabel]']);
+        $this->assertSame(DatumTypeEnum::TYPE_TEXT, $values['import_mapping[mapping][0][datumType]']);
+        $this->assertSame(VisibilityEnum::VISIBILITY_PUBLIC, $values['import_mapping[mapping][0][datumVisibility]']);
+    }
+
+    public function test_prefilled_mapping_can_be_submitted_as_is(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $path = tempnam(sys_get_temp_dir(), 'import') . '.csv';
+        file_put_contents($path, "Name,Author,Year\nFrieren #1,Abe Tsukasa,2020\n");
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import');
+        $form = $crawler->filter('form[name=import_upload]')->form();
+        $form['import_upload[fileFile]']->upload($path);
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+
+        $this->client->submit($crawler->filter('form[name=import_mapping]')->form());
+        $this->assertResponseRedirects();
+
+        $em = static::getContainer()->get('doctrine')->getManager();
+        $em->clear();
+        $import = $em->getRepository(Import::class)->findOneBy([], ['createdAt' => 'DESC']);
+        $this->executeImport($collection, $import);
+
+        $item = $this->findItems()['Frieren #1'];
+        $this->assertSame('Abe Tsukasa', $item->getDatumByLabel('Author')?->getValue());
+        $this->assertSame('2020', $item->getDatumByLabel('Year')?->getValue());
+        $this->assertSame(DatumTypeEnum::TYPE_TEXT, $item->getDatumByLabel('Year')?->getType());
+    }
+
+    public function test_import_ignores_utf8_bom(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $path = tempnam(sys_get_temp_dir(), 'import') . '.csv';
+        file_put_contents($path, "\xEF\xBB\xBF\"Name\",Author\nFrieren #1,Abe Tsukasa\n");
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import');
+        $form = $crawler->filter('form[name=import_upload]')->form();
+        $form['import_upload[fileFile]']->upload($path);
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+
+        $this->assertSame('Name', $crawler->filter('select[name="import_mapping[nameIndex]"] option[value="0"]')->text());
+        $this->assertSame('0', $crawler->filter('form[name=import_mapping]')->form()->getValues()['import_mapping[nameIndex]']);
+    }
+
+    public function test_mapping_leaves_base_fields_empty_when_no_header_matches(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $path = tempnam(sys_get_temp_dir(), 'import') . '.csv';
+        file_put_contents($path, "Title,,Picture\nFrieren #1,,\n");
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import');
+        $form = $crawler->filter('form[name=import_upload]')->form();
+        $form['import_upload[fileFile]']->upload($path);
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+
+        $values = $crawler->filter('form[name=import_mapping]')->form()->getValues();
+        $this->assertSame('', $values['import_mapping[nameIndex]']);
+        $this->assertSame('', $values['import_mapping[imageIndex]']);
+        $this->assertSame('', $values['import_mapping[quantityIndex]']);
+        $this->assertSame('', $values['import_mapping[tagsIndex]']);
+        $this->assertSame('', $values['import_mapping[visibilityIndex]']);
+
+        $this->assertCount(2, $crawler->filter('.mapping'));
+        $this->assertSame('Title', $values['import_mapping[mapping][0][datumLabel]']);
+        $this->assertSame('0', $values['import_mapping[mapping][0][columnIndex]']);
+        $this->assertSame('Picture', $values['import_mapping[mapping][1][datumLabel]']);
+        $this->assertSame('2', $values['import_mapping[mapping][1][columnIndex]']);
+    }
+
+    public function test_mapping_requires_name_column(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $path = tempnam(sys_get_temp_dir(), 'import') . '.csv';
+        file_put_contents($path, "Title,Author\nFrieren #1,Abe Tsukasa\n");
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import');
+        $form = $crawler->filter('form[name=import_upload]')->form();
+        $form['import_upload[fileFile]']->upload($path);
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+
+        $this->client->submit($crawler->filter('form[name=import_mapping]')->form());
+
+        $this->assertResponseStatusCodeSame(422);
+    }
+
     public function test_import_does_not_read_local_files_as_image(): void
     {
         $user = UserFactory::createOne();
