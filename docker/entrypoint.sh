@@ -74,5 +74,5 @@ echo "**** 8/9 - Create API keys ****"
 cd /app/public && \
 $RUN_AS_USER php bin/console lexik:jwt:generate-keypair --skip-if-exists
 
-echo "**** 9/9 - Setup complete, starting the server. ****"
-exec $RUN_AS_USER frankenphp run --config /etc/caddy/Caddyfile
+echo "**** 9/9 - Setup complete, starting the server and the workers. ****"
+exec $RUN_AS_USER supervisord -c /app/public/docker/supervisord.conf

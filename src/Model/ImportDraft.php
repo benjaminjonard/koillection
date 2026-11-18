@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Import
+class ImportDraft
 {
     private string $id;
 
@@ -21,6 +21,8 @@ class Import
     private ?File $fileFile = null;
 
     private ?string $path = null;
+
+    private ?string $filename = null;
 
     #[Assert\File(mimeTypes: ['application/zip'])]
     private ?File $archiveFile = null;
@@ -51,6 +53,7 @@ class Import
             'id' => $this->id,
             'collectionId' => $this->collection?->getId() ?? $this->collectionId,
             'path' => $this->path,
+            'filename' => $this->filename,
             'archiveEntries' => $this->archiveEntries,
             'nameIndex' => $this->nameIndex,
             'imageIndex' => $this->imageIndex,
@@ -66,6 +69,7 @@ class Import
         $this->id = $data['id'];
         $this->collectionId = $data['collectionId'];
         $this->path = $data['path'];
+        $this->filename = $data['filename'];
         $this->archiveEntries = $data['archiveEntries'];
         $this->nameIndex = $data['nameIndex'];
         $this->imageIndex = $data['imageIndex'];
@@ -128,7 +132,7 @@ class Import
         return $this->collection;
     }
 
-    public function setCollection(?Collection $collection): Import
+    public function setCollection(?Collection $collection): ImportDraft
     {
         $this->collection = $collection;
 
@@ -140,7 +144,7 @@ class Import
         return $this->fileFile;
     }
 
-    public function setFileFile(?File $fileFile): Import
+    public function setFileFile(?File $fileFile): ImportDraft
     {
         $this->fileFile = $fileFile;
 
@@ -152,9 +156,21 @@ class Import
         return $this->path;
     }
 
-    public function setPath(?string $path): Import
+    public function setPath(?string $path): ImportDraft
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): ImportDraft
+    {
+        $this->filename = $filename;
 
         return $this;
     }
@@ -164,7 +180,7 @@ class Import
         return $this->archiveFile;
     }
 
-    public function setArchiveFile(?File $archiveFile): Import
+    public function setArchiveFile(?File $archiveFile): ImportDraft
     {
         $this->archiveFile = $archiveFile;
 
@@ -176,7 +192,7 @@ class Import
         return $this->archiveEntries;
     }
 
-    public function setArchiveEntries(array $archiveEntries): Import
+    public function setArchiveEntries(array $archiveEntries): ImportDraft
     {
         $this->archiveEntries = $archiveEntries;
 
@@ -193,7 +209,7 @@ class Import
         return $mapping;
     }
 
-    public function setMapping(?array $mapping): Import
+    public function setMapping(?array $mapping): ImportDraft
     {
         $this->mapping = $mapping ?? [];
 
@@ -205,7 +221,7 @@ class Import
         return $this->nameIndex;
     }
 
-    public function setNameIndex(?int $nameIndex): Import
+    public function setNameIndex(?int $nameIndex): ImportDraft
     {
         $this->nameIndex = $nameIndex;
 
@@ -217,7 +233,7 @@ class Import
         return $this->imageIndex;
     }
 
-    public function setImageIndex(?int $imageIndex): Import
+    public function setImageIndex(?int $imageIndex): ImportDraft
     {
         $this->imageIndex = $imageIndex;
 
@@ -229,7 +245,7 @@ class Import
         return $this->quantityIndex;
     }
 
-    public function setQuantityIndex(?int $quantityIndex): Import
+    public function setQuantityIndex(?int $quantityIndex): ImportDraft
     {
         $this->quantityIndex = $quantityIndex;
 
@@ -241,7 +257,7 @@ class Import
         return $this->tagsIndex;
     }
 
-    public function setTagsIndex(?int $tagsIndex): Import
+    public function setTagsIndex(?int $tagsIndex): ImportDraft
     {
         $this->tagsIndex = $tagsIndex;
 
@@ -253,7 +269,7 @@ class Import
         return $this->visibilityIndex;
     }
 
-    public function setVisibilityIndex(?int $visibilityIndex): Import
+    public function setVisibilityIndex(?int $visibilityIndex): ImportDraft
     {
         $this->visibilityIndex = $visibilityIndex;
 

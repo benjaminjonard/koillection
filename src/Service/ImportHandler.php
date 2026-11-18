@@ -10,7 +10,7 @@ use App\Entity\Tag;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\UrlToImageTransformer;
-use App\Model\Import;
+use App\Model\ImportDraft;
 use App\Repository\TagRepository;
 use App\Service\Scraper\ScrapingUrlGuard;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -28,7 +28,7 @@ class ImportHandler
     ) {
     }
 
-    public function createItems(Import $import, bool $isPreview, ?array $selectedRows = null): array
+    public function createItems(ImportDraft $import, bool $isPreview, ?array $selectedRows = null): array
     {
         $items = [];
         $tags = [];
@@ -63,7 +63,7 @@ class ImportHandler
                         'name' => $image,
                     ]));
                 } else {
-                    $path = tempnam(sys_get_temp_dir(), 'koillection_import_');
+                    $path = tempnam(sys_get_temp_dir(), ImportStorage::FILE_PREFIX);
                     copy($import->getArchiveEntries()[$image]['path'], $path);
                     $item->setFile(new UploadedFile($path, basename($image), mime_content_type($path), null, true));
                 }
@@ -117,7 +117,7 @@ class ImportHandler
         return $items;
     }
 
-    public function prefillMapping(Import $import): void
+    public function prefillMapping(ImportDraft $import): void
     {
         $headers = array_map(static fn ($header): string => trim((string) $header), $import->getHeaders() ?: []);
         $normalizedHeaders = array_map(strtolower(...), $headers);
@@ -157,7 +157,7 @@ class ImportHandler
         $import->setMapping($mapping);
     }
 
-    public function findDuplicateRows(Import $import): array
+    public function findDuplicateRows(ImportDraft $import): array
     {
         $existingNames = [];
         foreach ($import->getCollection()?->getItems() ?? [] as $item) {
@@ -174,7 +174,7 @@ class ImportHandler
         return $duplicates;
     }
 
-    public function validate(Import $import): array
+    public function validate(ImportDraft $import): array
     {
         $headers = $import->getHeaders();
         $errors = [];

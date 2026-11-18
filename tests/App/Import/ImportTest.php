@@ -5,13 +5,20 @@ declare(strict_types=1);
 namespace App\Tests\App\Import;
 
 use App\Entity\Collection;
+use App\Entity\Import;
 use App\Entity\Item;
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
+use App\Message\ProcessImportMessage;
+use App\MessageHandler\ProcessImportHandler;
+use App\Model\ImportDraft;
+use App\Service\ImportStorage;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
+use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +54,7 @@ class ImportTest extends AppTestCase
 
         $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $items = $this->findItems();
         $this->assertCount(2, $items);
         $this->assertSame('Frieren #1', $items['Frieren #1']->getName());
@@ -237,7 +244,7 @@ class ImportTest extends AppTestCase
 
         $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $items = $this->findItems();
         $this->assertCount(1, $items);
         $this->assertNull($items['A']->getImage());
@@ -266,7 +273,7 @@ class ImportTest extends AppTestCase
 
         $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $this->assertNotNull($this->findItems()['Frieren #1']->getImage());
         $this->assertFileDoesNotExist($imagePath);
     }
@@ -281,7 +288,7 @@ class ImportTest extends AppTestCase
         $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,frieren.png\nFrieren #2,frieren.png\n", 0, 1, [], [], $archive);
         $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $items = $this->findItems();
         $this->assertNotNull($items['Frieren #1']->getImage());
         $this->assertNotNull($items['Frieren #2']->getImage());
@@ -375,7 +382,7 @@ class ImportTest extends AppTestCase
 
         $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $items = $this->findItems();
         $this->assertSame('4.5', $items['A']->getDatumByLabel('Price')?->getValue());
         $this->assertSame('EUR', $items['A']->getDatumByLabel('Price')?->getCurrency());
@@ -438,10 +445,84 @@ class ImportTest extends AppTestCase
 
         $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $this->assertFileDoesNotExist($path);
         $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $importId . '/preview');
         $this->assertResponseStatusCodeSame(404);
+    }
+
+    public function test_import_is_tracked_on_imports_page(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $importId = $this->uploadAndMap($collection, "name\nFrieren #1\nFrieren #2\n", 0, null, []);
+        $this->executeImport($collection, $importId);
+        $crawler = $this->client->followRedirect();
+
+        $this->assertResponseIsSuccessful();
+        $cells = $crawler->filter('table tbody tr')->first()->filter('td')->each(static fn ($td): string => trim($td->text()));
+        $this->assertSame($collection->getTitle(), $cells[1]);
+        $this->assertStringStartsWith('import', $cells[2]);
+        $this->assertSame('Done', $cells[3]);
+        $this->assertSame('2/2', $cells[4]);
+        $this->assertSame('2', $cells[5]);
+        $this->assertSame('', $cells[6]);
+    }
+
+    public function test_import_failure_is_tracked(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $importId = $this->uploadAndMap($collection, "name\n" . str_repeat('Frieren', 50) . "\n", 0, null, []);
+        $this->executeImport($collection, $importId);
+        $crawler = $this->client->followRedirect();
+
+        $cells = $crawler->filter('table tbody tr')->first()->filter('td')->each(static fn ($td): string => trim($td->text()));
+        $this->assertSame('Failed', $cells[3]);
+        $this->assertSame('0/1', $cells[4]);
+        $this->assertStringStartsWith('Line 2 :', $cells[6]);
+        $this->assertCount(0, $this->findItems());
+    }
+
+    public function test_handler_imports_as_owner_without_logged_in_user(): void
+    {
+        $user = UserFactory::createOne();
+        $otherUser = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $otherTag = TagFactory::createOne(['label' => 'Manga', 'owner' => $otherUser]);
+
+        $path = tempnam(sys_get_temp_dir(), ImportStorage::FILE_PREFIX);
+        file_put_contents($path, "name,tags\nFrieren #1,Manga\n");
+        $draft = new ImportDraft()
+            ->setPath($path)
+            ->setFilename('import.csv')
+            ->setNameIndex(0)
+            ->setTagsIndex(1)
+        ;
+
+        $em = static::getContainer()->get('doctrine')->getManager();
+        $import = new Import()
+            ->setCollection($em->find(Collection::class, $collection->getId()))
+            ->setOwner($em->find(User::class, $user->getId()))
+            ->setFilename('import.csv')
+            ->setTotalRows(1)
+        ;
+        $em->persist($import);
+        $em->flush();
+
+        static::getContainer()->get(ProcessImportHandler::class)(new ProcessImportMessage($import->getId(), $draft, [0]));
+
+        $this->assertNull(static::getContainer()->get('security.token_storage')->getToken());
+        $this->assertFileDoesNotExist($path);
+        $item = $this->findItems()['Frieren #1'];
+        $this->assertSame($user->getId(), $item->getOwner()->getId());
+        $this->assertCount(1, $item->getTags());
+        $this->assertSame($user->getId(), $item->getTags()->first()->getOwner()->getId());
+        $this->assertNotSame($otherTag->getId(), $item->getTags()->first()->getId());
     }
 
     public function test_dedicated_columns_are_imported(): void
@@ -457,7 +538,7 @@ class ImportTest extends AppTestCase
         ]);
         $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $items = $this->findItems();
         $this->assertSame(3, $items['A']->getQuantity());
         $this->assertSame(VisibilityEnum::VISIBILITY_PRIVATE, $items['A']->getVisibility());
@@ -498,7 +579,7 @@ class ImportTest extends AppTestCase
 
         $this->executeImport($collection, $importId, [1]);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertResponseRedirects('/imports');
         $this->assertSame(['A', 'B'], $this->sortedNames());
     }
 

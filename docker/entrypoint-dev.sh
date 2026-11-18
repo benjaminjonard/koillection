@@ -82,8 +82,8 @@ chown -R "$USER":"$USER" /app/public/var/log
 chown -R "$USER":"$USER" /app/public/var/log/prod.log
 chown -R "$USER":"$USER" /app/public/.env.local
 
-echo "**** 10/10 - Setup complete, starting the server. ****"
-frankenphp run --config /etc/caddy/Caddyfile
+echo "**** 10/10 - Setup complete, starting the server and the workers. ****"
+supervisord -c /app/public/docker/supervisord.conf
 exec "$@"
 
 echo "**** All done ****"
