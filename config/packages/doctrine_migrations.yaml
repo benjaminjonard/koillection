@@ -5,6 +5,9 @@ doctrine_migrations:
     storage:
         table_storage:
             table_name: doctrine_migration_version
+    factories:
+        'Doctrine\Migrations\MigrationsRepository': 'App\Doctrine\Migrations\PlatformMigrationsRepositoryFactory'
+        'Doctrine\Migrations\Metadata\Storage\MetadataStorage': 'App\Doctrine\Migrations\PlatformMetadataStorageFactory'
     check_database_platform: true
     enable_profiler: false
     transactional: true
