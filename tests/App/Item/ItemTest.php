@@ -201,6 +201,29 @@ class ItemTest extends AppTestCase
         $this->assertSame('Frieren #5', $crawler->filter('h1')->innerText());
     }
 
+    public function test_lightbox_captions_are_not_interpreted_as_html(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        $payload = '<img src=x onerror=alert(1)> & co';
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_VIDEO, 'label' => $payload, 'fileVideo' => $this->createFile('mp4')]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 2, 'type' => DatumTypeEnum::TYPE_IMAGE, 'label' => $payload, 'fileImage' => $this->createFile('png')]);
+
+        // Act
+        $crawler = $this->client->request(Request::METHOD_GET, '/items/' . $item->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(3, $crawler->filter('.slider-frame a'));
+        $this->assertSame('&lt;img src=x onerror=alert(1)&gt; &amp; co', $crawler->filter('.slider-frame a')->eq(1)->attr('data-sub-html'));
+        $this->assertSame($payload, $crawler->filter('.slider-frame a')->eq(1)->filter('.image-label')->text());
+        $this->assertSame('&lt;img src=x onerror=alert(1)&gt; &amp; co', $crawler->filter('.slider-frame a')->eq(2)->attr('data-sub-html'));
+        $this->assertSame($payload, $crawler->filter('.slider-frame a')->eq(2)->filter('.image-label')->text());
+    }
+
     public function test_can_create_item(): void
     {
         // Arrange

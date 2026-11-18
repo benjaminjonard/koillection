@@ -46,7 +46,7 @@
                     <a class="collection-item element valign-wrapper"
                        href="{{ asset(sign.image|default('build/images/default.png')) }}"
                        data-lightbox-target="image"
-                       data-sub-html="{{ sign.item.name }} - {{ sign.label }}"
+                       data-sub-html="{{ sign.item.name|e|e }} - {{ sign.label|e|e }}"
                        data-show-url="{{ path('app_item_show'|applyContext, {'id': sign.item.id}) }}"
                     >
                         <img src="{{ asset(sign.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">

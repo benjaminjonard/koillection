@@ -50,4 +50,24 @@ class SignatureTest extends AppTestCase
         $this->assertSame('Signatures', $crawler->filter('h1')->text());
         $this->assertCount(3, $crawler->filter('.collection-item'));
     }
+
+    public function test_signature_lightbox_caption_is_not_interpreted_as_html(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $item = ItemFactory::createOne([
+            'name' => '<img src=x onerror=alert(1)>',
+            'owner' => $user,
+            'collection' => CollectionFactory::createOne(['owner' => $user]),
+        ]);
+        $item->addData(DatumFactory::createOne(['owner' => $user, 'type' => DatumTypeEnum::TYPE_SIGN, 'label' => '<b>Frieren</b> & co']));
+
+        // Act
+        $crawler = $this->client->request(Request::METHOD_GET, '/signatures');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('&lt;img src=x onerror=alert(1)&gt; - &lt;b&gt;Frieren&lt;/b&gt; &amp; co', $crawler->filter('.collection-item')->attr('data-sub-html'));
+    }
 }

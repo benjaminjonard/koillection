@@ -9,7 +9,7 @@ export default class extends DefaultController {
             return htmlStringToDomElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
         }
 
-        return htmlStringToDomElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span>' + category.text +'</span></div>');
+        return htmlStringToDomElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span></span></div>', category.text);
     }
 
     templateResult(category) {
@@ -17,6 +17,6 @@ export default class extends DefaultController {
             return htmlStringToDomElement('<span class="select-placeholder">' + Translator.trans('select2.none') + '</span>');
         }
 
-        return htmlStringToDomElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span>' + category.text + '</span></div>');
+        return htmlStringToDomElement('<div><span class="tag-category-select-option tag-category-color" style="background-color: ' + category.element.dataset.color + '"></span><span></span></div>', category.text);
     }
 }

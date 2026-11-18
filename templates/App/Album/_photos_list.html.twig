@@ -25,7 +25,7 @@
                            data-delete-path="{{ path('app_photo_delete', {'id': photo.id}) }}"
                            data-delete-message="{{ 'message.delete.photo'|trans }}"
                        {% endif %}
-                       data-sub-html="{{ photoText }}"
+                       data-sub-html="{{ photoText|e }}"
                        data-title="{{ photo.title }}"
                     >
                         <img src="{{ asset(photo.imageSmallThumbnail|default('build/images/default.png')) }}" loading="lazy">

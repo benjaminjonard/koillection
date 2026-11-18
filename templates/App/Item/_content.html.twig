@@ -65,7 +65,7 @@
                                                "controls": true
                                            }
                                        }'
-                           data-sub-html="{{ datum.label }}"
+                           data-sub-html="{{ datum.label|e|e }}"
                            data-slider-target="image"
                            data-id="{{ datum.id }}"
                            data-download-url="{{ asset(datum.video) }}"
@@ -80,7 +80,7 @@
                         </a>
                     {% else %}
                         <a href="{{ asset(datum.image|default('build/images/default.png')) }}"
-                           data-sub-html="{{ datum.label }}" data-slider-target="image" data-id="{{ datum.id }}">
+                           data-sub-html="{{ datum.label|e|e }}" data-slider-target="image" data-id="{{ datum.id }}">
                             <div>
                                 <img src="{{ preload(asset(datum.imageLargeThumbnail|default('build/images/default.png')), {as: 'image'}) }}"
                                      title="{{ 'label.main_image'|trans }}"

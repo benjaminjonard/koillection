@@ -88,6 +88,43 @@ class AlbumTest extends AppTestCase
         $this->assertCount(3, $crawler->filter('.items-table tbody tr'));
     }
 
+    public function test_photo_lightbox_captions_are_not_interpreted_as_html(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $gridAlbum = AlbumFactory::createOne(['owner' => $user]);
+        $listAlbum = AlbumFactory::createOne(['owner' => $user]);
+        $listAlbum->getPhotosDisplayConfiguration()->setDisplayMode(DisplayModeEnum::DISPLAY_MODE_LIST);
+        \Zenstruck\Foundry\Persistence\save($listAlbum);
+
+        foreach ([$gridAlbum, $listAlbum] as $album) {
+            PhotoFactory::createOne([
+                'owner' => $user,
+                'album' => $album,
+                'title' => '<img src=x onerror=alert(1)>',
+                'place' => '<b>Tokyo</b>',
+                'comment' => '<script>alert(2)</script>',
+            ]);
+        }
+
+        foreach ([$gridAlbum, $listAlbum] as $album) {
+            // Act
+            $crawler = $this->client->request(Request::METHOD_GET, '/albums/' . $album->getId());
+
+            // Assert
+            $this->assertResponseIsSuccessful();
+            $caption = $crawler->filter('[data-sub-html]')->attr('data-sub-html');
+            $this->assertStringContainsString('&lt;img src=x onerror=alert(1)&gt;', $caption);
+            $this->assertStringContainsString('&lt;b&gt;Tokyo&lt;/b&gt;', $caption);
+            $this->assertStringContainsString('<span>&lt;script&gt;alert(2)&lt;/script&gt;</span>', $caption);
+            $this->assertStringContainsString('<br>', $caption);
+            $this->assertStringNotContainsString('<img', $caption);
+            $this->assertStringNotContainsString('<b>', $caption);
+            $this->assertStringNotContainsString('<script>', $caption);
+        }
+    }
+
     public function test_can_post_album(): void
     {
         // Arrange
