@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Form\Type\Model;
 
 use App\Form\DataTransformer\ImportMappingTransformer;
-use App\Model\Import;
+use App\Model\ImportDraft;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -64,7 +64,7 @@ class ImportMappingType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Import::class,
+            'data_class' => ImportDraft::class,
             'validation_groups' => ['Default', 'import:mapping'],
         ]);
     }

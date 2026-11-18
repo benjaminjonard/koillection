@@ -27,7 +27,8 @@ RUN set -eux ; \
     ca-certificates \
     git \
     unzip \
-    openssl ; \
+    openssl \
+    supervisor ; \
     # Install PHP extensions \
     install-php-extensions opcache pdo_pgsql pdo_mysql intl gd zip apcu curl sockets ; \
     #Install composer dependencies \

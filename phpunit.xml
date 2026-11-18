@@ -23,6 +23,13 @@
     <server name="KERNEL_CLASS" value="App\Kernel"/>
     <server name="PHPUNIT_VERSION" value="12"/>
     <server name="USE_FOUNDRY_PHPUNIT_EXTENSION" value="1"/>
+
+        <!-- ###+ symfony/messenger ### -->
+        <!-- Choose one of the transports below -->
+        <!-- MESSENGER_TRANSPORT_DSN=amqp://guest:guest@localhost:5672/%2f/messages -->
+        <!-- MESSENGER_TRANSPORT_DSN=redis://localhost:6379/messages -->
+        <env name="MESSENGER_TRANSPORT_DSN" value="doctrine://default?auto_setup=0"/>
+        <!-- ###- symfony/messenger ### -->
   </php>
   <testsuites>
     <testsuite name="Project Test Suite">

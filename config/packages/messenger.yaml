@@ -1,0 +1,27 @@
+framework:
+    messenger:
+        failure_transport: failed
+
+        transports:
+            import:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    table_name: doctrine_messenger_message
+                    queue_name: import
+                retry_strategy:
+                    max_retries: 0
+            failed:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    table_name: doctrine_messenger_message
+                    queue_name: failed
+
+        routing:
+            'App\Message\ProcessImportMessage': import
+
+when@test:
+    framework:
+        messenger:
+            transports:
+                import: 'sync://'
+                failed: 'in-memory://'

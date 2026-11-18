@@ -4033,6 +4033,60 @@
         <target>Upload CSV</target>
       </segment>
     </unit>
+    <unit id="BjEyQib" name="menu.imports">
+      <segment state="translated">
+        <source>Imports</source>
+        <target>Imports</target>
+      </segment>
+    </unit>
+    <unit id="jzH3Yz2" name="label.status">
+      <segment state="translated">
+        <source>Status</source>
+        <target>Status</target>
+      </segment>
+    </unit>
+    <unit id="SO3kvjC" name="label.progress">
+      <segment state="translated">
+        <source>Progress</source>
+        <target>Progress</target>
+      </segment>
+    </unit>
+    <unit id="ALVs9Qg" name="label.imported_items">
+      <segment state="translated">
+        <source>Imported items</source>
+        <target>Imported items</target>
+      </segment>
+    </unit>
+    <unit id="lN0j4KU" name="message.import_started">
+      <segment state="translated">
+        <source>The import has started, items will be added to the collection in the background</source>
+        <target>The import has started, items will be added to the collection in the background</target>
+      </segment>
+    </unit>
+    <unit id="qyZOlks" name="global.import_statuses.pending">
+      <segment state="translated">
+        <source>Pending</source>
+        <target>Pending</target>
+      </segment>
+    </unit>
+    <unit id="fIk1hPb" name="global.import_statuses.processing">
+      <segment state="translated">
+        <source>Processing</source>
+        <target>Processing</target>
+      </segment>
+    </unit>
+    <unit id="7jtT9dx" name="global.import_statuses.done">
+      <segment state="translated">
+        <source>Done</source>
+        <target>Done</target>
+      </segment>
+    </unit>
+    <unit id="Vg4dzd9" name="global.import_statuses.failed">
+      <segment state="translated">
+        <source>Failed</source>
+        <target>Failed</target>
+      </segment>
+    </unit>
     <unit id="Ye0R5js" name="message.max_upload_size">
       <segment state="translated">
         <source>Maximum file size: {size}</source>
@@ -4139,12 +4193,6 @@
       <segment state="translated">
         <source>Some values are invalid. Fix the CSV file or the mapping, then try again.</source>
         <target>Some values are invalid. Fix the CSV file or the mapping, then try again.</target>
-      </segment>
-    </unit>
-    <unit id="DJiXZDG" name="message.items_imported">
-      <segment state="translated">
-        <source>{count, plural, one {# item imported} other {# items imported}}</source>
-        <target>{count, plural, one {# item imported} other {# items imported}}</target>
       </segment>
     </unit>
     <unit id="Y98nSFl" name="label.line">

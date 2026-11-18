@@ -48,7 +48,7 @@ class ImportArchiveReader
                 continue;
             }
 
-            $path = tempnam(sys_get_temp_dir(), 'koillection_import_');
+            $path = tempnam(sys_get_temp_dir(), ImportStorage::FILE_PREFIX);
             $output = fopen($path, 'w');
             $error = null;
 
