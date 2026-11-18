@@ -71,13 +71,15 @@
                                     <span>{{ 'menu.tools'|trans }}</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ path('app_import_index') }}">
-                                    <i
-                                            class="fa fa-upload fa-fw"></i>
-                                    <span>{{ 'menu.imports'|trans }}</span>
-                                </a>
-                            </li>
+                            {% if isFeatureEnabled('import') %}
+                                <li>
+                                    <a href="{{ path('app_import_index') }}">
+                                        <i
+                                                class="fa fa-upload fa-fw"></i>
+                                        <span>{{ 'menu.imports'|trans }}</span>
+                                    </a>
+                                </li>
+                            {% endif %}
                             {% if is_granted('ROLE_ADMIN') %}
                                 <li>
                                     <a href="{{ path('app_admin_index') }}">

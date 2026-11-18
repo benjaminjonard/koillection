@@ -96,6 +96,9 @@ class SettingsType extends AbstractType
             ->add('scrapingFeatureEnabled', CheckboxType::class, [
                 'required' => false,
             ])
+            ->add('importFeatureEnabled', CheckboxType::class, [
+                'required' => false,
+            ])
         ;
     }
 

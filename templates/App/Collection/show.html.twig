@@ -75,10 +75,12 @@
                            title="{{ 'tooltip.items'|trans }}">
                             <i class="fa fa-ellipsis-h fa-fw"></i>
                         </a>
-                        <a href="{{ path('app_collection_import', {'id': collection.id}) }}" class="button"
-                           title="{{ 'tooltip.import'|trans }}">
-                            <i class="fa fa-upload fa-fw"></i>
-                        </a>
+                        {% if isFeatureEnabled('import') %}
+                            <a href="{{ path('app_collection_import', {'id': collection.id}) }}" class="button"
+                               title="{{ 'tooltip.import'|trans }}">
+                                <i class="fa fa-upload fa-fw"></i>
+                            </a>
+                        {% endif %}
                         {{ include('App/_partials/_visibility.html.twig', {'visibility': collection.finalVisibility}) }}
                     {% endif %}
                 </div>

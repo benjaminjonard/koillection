@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\AlbumFactory;
 use App\Tests\Factory\ChoiceListFactory;
+use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ScraperFactory;
 use App\Tests\Factory\TagFactory;
 use App\Tests\Factory\TemplateFactory;
@@ -45,6 +46,7 @@ class DisabledFeatureTest extends AppTestCase
             'templatesFeatureEnabled' => false,
             'historyFeatureEnabled' => false,
             'statisticsFeatureEnabled' => false,
+            'importFeatureEnabled' => false,
         ]);
         $this->client->loginUser($user);
 
@@ -62,6 +64,7 @@ class DisabledFeatureTest extends AppTestCase
         $this->assertStringNotContainsString('Template', $crawler->filter('.nav-sidebar')->text());
         $this->assertStringNotContainsString('History', $crawler->filter('.nav-sidebar')->text());
         $this->assertStringNotContainsString('Statistics', $crawler->filter('.nav-sidebar')->text());
+        $this->assertCount(0, $crawler->filter('a[href="/imports"]'));
     }
 
     public function test_owner_cant_access_disabled_features(): void
@@ -77,6 +80,7 @@ class DisabledFeatureTest extends AppTestCase
             'historyFeatureEnabled' => false,
             'statisticsFeatureEnabled' => false,
             'scrapingFeatureEnabled' => false,
+            'importFeatureEnabled' => false,
         ]);
         $this->client->loginUser($user);
 
@@ -97,6 +101,7 @@ class DisabledFeatureTest extends AppTestCase
         $templateId = TemplateFactory::createOne(['owner' => $owner])->getId();
         $choiceListId = ChoiceListFactory::createOne(['owner' => $owner])->getId();
         $scraperId = ScraperFactory::createOne(['owner' => $owner])->getId();
+        $collectionId = CollectionFactory::createOne(['owner' => $owner])->getId();
 
         return [
             '/albums',
@@ -115,6 +120,8 @@ class DisabledFeatureTest extends AppTestCase
             '/signatures',
             '/statistics',
             '/signatures',
+            '/imports',
+            "/collections/{$collectionId}/import",
         ];
     }
 }
