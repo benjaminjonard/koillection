@@ -116,7 +116,7 @@
         {% endif %}
 
         <div class="center-align form-btn-holder">
-            {% if errors is empty and import.status != constant('App\\Enum\\ImportStatusEnum::DONE') %}
+            {% if errors is empty %}
             <form id="import-form" action="{{ path('app_collection_import_import', {'id': collection.id, 'importId': import.id}) }}" method="post">
                 <button type="submit" class="btn waves-effect waves-light">{{ 'btn.submit'|trans }}</button>
             </form>

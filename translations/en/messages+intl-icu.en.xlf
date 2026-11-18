@@ -4111,12 +4111,6 @@
         <target>Error</target>
       </segment>
     </unit>
-    <unit id="tCuek2j" name="error.import.already_done">
-      <segment state="translated">
-        <source>This import has already been done</source>
-        <target>This import has already been done</target>
-      </segment>
-    </unit>
     <unit id="hyG10TG" name="error.import.empty_name">
       <segment state="translated">
         <source>The name is empty</source>

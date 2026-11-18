@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Entity\Datum;
-use App\Entity\Import;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Form\DataTransformer\UrlToImageTransformer;
+use App\Model\Import;
 use App\Repository\TagRepository;
 use App\Service\Scraper\ScrapingUrlGuard;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -78,7 +78,7 @@ class ImportHandler
                 ;
 
                 if ($mapping['datumType'] === DatumTypeEnum::TYPE_PRICE) {
-                    $datum->setCurrency($import->getOwner()?->getCurrency());
+                    $datum->setCurrency($import->getCollection()?->getOwner()?->getCurrency());
 
                     if ($value !== '') {
                         [$amount, $currency] = explode(' ', $value);

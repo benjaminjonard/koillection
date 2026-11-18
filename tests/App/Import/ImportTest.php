@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Tests\App\Import;
 
 use App\Entity\Collection;
-use App\Entity\Import;
 use App\Entity\Item;
 use App\Entity\Tag;
 use App\Enum\DatumTypeEnum;
@@ -38,7 +37,7 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name,Author,Year\nFrieren #1,Abe Tsukasa,2020\nDune,Frank Herbert,1965\n", 0, null, [
+        $importId = $this->uploadAndMap($collection, "name,Author,Year\nFrieren #1,Abe Tsukasa,2020\nDune,Frank Herbert,1965\n", 0, null, [
             $this->mapping(1, DatumTypeEnum::TYPE_TEXT, 'Author', 1),
             $this->mapping(2, DatumTypeEnum::TYPE_NUMBER, 'Year', 2),
         ]);
@@ -46,7 +45,7 @@ class ImportTest extends AppTestCase
         $this->assertResponseIsSuccessful();
         $this->assertCount(2, $crawler->filter('tbody tr'));
 
-        $this->executeImport($collection, $import);
+        $this->executeImport($collection, $importId);
 
         $this->assertResponseRedirects('/collections/' . $collection->getId());
         $items = $this->findItems();
@@ -62,10 +61,10 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name,Author\nA,\"New tag, Other tag\"\nB,New tag\n", 0, null, [
+        $importId = $this->uploadAndMap($collection, "name,Author\nA,\"New tag, Other tag\"\nB,New tag\n", 0, null, [
             $this->mapping(1, DatumTypeEnum::TYPE_TEXT, 'Author', 1, true),
         ]);
-        $this->executeImport($collection, $import);
+        $this->executeImport($collection, $importId);
 
         $em = static::getContainer()->get('doctrine')->getManager();
         $em->clear();
@@ -133,13 +132,11 @@ class ImportTest extends AppTestCase
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
 
+        $importId = explode('/', $this->client->getRequest()->getPathInfo())[4];
         $this->client->submit($crawler->filter('form[name=import_mapping]')->form());
         $this->assertResponseRedirects();
 
-        $em = static::getContainer()->get('doctrine')->getManager();
-        $em->clear();
-        $import = $em->getRepository(Import::class)->findOneBy([], ['createdAt' => 'DESC']);
-        $this->executeImport($collection, $import);
+        $this->executeImport($collection, $importId);
 
         $item = $this->findItems()['Frieren #1'];
         $this->assertSame('Abe Tsukasa', $item->getDatumByLabel('Author')?->getValue());
@@ -221,12 +218,12 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name,image\nA,/etc/hostname\nB,file:///etc/hostname\n", 0, 1, []);
+        $importId = $this->uploadAndMap($collection, "name,image\nA,/etc/hostname\nB,file:///etc/hostname\n", 0, 1, []);
         $crawler = $this->client->followRedirect();
         $this->assertResponseIsSuccessful();
         $this->assertCount(0, $crawler->filter('tbody img'));
 
-        $this->executeImport($collection, $import);
+        $this->executeImport($collection, $importId);
 
         $this->assertResponseRedirects('/collections/' . $collection->getId());
         $items = $this->findItems();
@@ -241,7 +238,7 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name,Price,Country,Date,Owned,Rating\nA,4.5 eur,fr,2026-11-15,1,8\nB,,,,,\n", 0, null, [
+        $importId = $this->uploadAndMap($collection, "name,Price,Country,Date,Owned,Rating\nA,4.5 eur,fr,2026-11-15,1,8\nB,,,,,\n", 0, null, [
             $this->mapping(1, DatumTypeEnum::TYPE_PRICE, 'Price', 1),
             $this->mapping(2, DatumTypeEnum::TYPE_COUNTRY, 'Country', 2),
             $this->mapping(3, DatumTypeEnum::TYPE_DATE, 'Date', 3),
@@ -251,7 +248,7 @@ class ImportTest extends AppTestCase
         $this->client->followRedirect();
         $this->assertResponseIsSuccessful();
 
-        $this->executeImport($collection, $import);
+        $this->executeImport($collection, $importId);
 
         $this->assertResponseRedirects('/collections/' . $collection->getId());
         $items = $this->findItems();
@@ -268,7 +265,7 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name,Price,Country,Date,Owned,Rating,Year\nA,10,EN,15/11/2026,yes,11,abc\n,,,,,,\n", 0, null, [
+        $importId = $this->uploadAndMap($collection, "name,Price,Country,Date,Owned,Rating,Year\nA,10,EN,15/11/2026,yes,11,abc\n,,,,,,\n", 0, null, [
             $this->mapping(1, DatumTypeEnum::TYPE_PRICE, 'Price', 1),
             $this->mapping(2, DatumTypeEnum::TYPE_COUNTRY, 'Country', 2),
             $this->mapping(3, DatumTypeEnum::TYPE_DATE, 'Date', 3),
@@ -281,11 +278,11 @@ class ImportTest extends AppTestCase
         $this->assertResponseIsSuccessful();
         $this->assertCount(7, $crawler->filter('.import-errors-table tbody tr'));
         $this->assertCount(0, $crawler->filter('.items-table'));
-        $this->assertStringNotContainsString('/import/' . $import->getId() . '/import', (string) $this->client->getResponse()->getContent());
+        $this->assertStringNotContainsString('/import/' . $importId . '/import', (string) $this->client->getResponse()->getContent());
 
-        $this->executeImport($collection, $import);
+        $this->executeImport($collection, $importId);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId() . '/import/' . $import->getId() . '/preview');
+        $this->assertResponseRedirects('/collections/' . $collection->getId() . '/import/' . $importId . '/preview');
         $this->assertCount(0, $this->findItems());
     }
 
@@ -295,12 +292,31 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name\nA\nB\n", 0, null, []);
-        $this->executeImport($collection, $import);
-        $this->executeImport($collection, $import);
+        $importId = $this->uploadAndMap($collection, "name\nA\nB\n", 0, null, []);
+        $this->executeImport($collection, $importId);
+        $this->executeImport($collection, $importId);
+
+        $this->assertResponseStatusCodeSame(404);
+        $this->assertCount(2, static::getContainer()->get('doctrine')->getRepository(Item::class)->findAll());
+    }
+
+    public function test_csv_is_stored_in_temp_dir_and_removed_after_import(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $importId = $this->uploadAndMap($collection, "name\nFrieren #1\n", 0, null, []);
+        $path = $this->client->getRequest()->getSession()->get('import_' . $importId)->getPath();
+        $this->assertStringStartsWith(sys_get_temp_dir() . '/koillection_import_', $path);
+        $this->assertFileExists($path);
+
+        $this->executeImport($collection, $importId);
 
         $this->assertResponseRedirects('/collections/' . $collection->getId());
-        $this->assertCount(2, static::getContainer()->get('doctrine')->getRepository(Item::class)->findAll());
+        $this->assertFileDoesNotExist($path);
+        $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $importId . '/preview');
+        $this->assertResponseStatusCodeSame(404);
     }
 
     public function test_dedicated_columns_are_imported(): void
@@ -309,12 +325,12 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user, 'visibility' => VisibilityEnum::VISIBILITY_INTERNAL]);
 
-        $import = $this->uploadAndMap($collection, "name,Quantity,Tags,Visibility\nA,3,\"x, y\",Private\nB,,,\n", 0, null, [], [
+        $importId = $this->uploadAndMap($collection, "name,Quantity,Tags,Visibility\nA,3,\"x, y\",Private\nB,,,\n", 0, null, [], [
             'quantityIndex' => 1,
             'tagsIndex' => 2,
             'visibilityIndex' => 3,
         ]);
-        $this->executeImport($collection, $import);
+        $this->executeImport($collection, $importId);
 
         $this->assertResponseRedirects('/collections/' . $collection->getId());
         $items = $this->findItems();
@@ -348,23 +364,17 @@ class ImportTest extends AppTestCase
         $collection = CollectionFactory::createOne(['owner' => $user]);
         ItemFactory::createOne(['name' => 'A', 'collection' => $collection, 'owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name\nA\nB\nC\n", 0, null, []);
+        $importId = $this->uploadAndMap($collection, "name\nA\nB\nC\n", 0, null, []);
         $crawler = $this->client->followRedirect();
 
         $this->assertCount(1, $crawler->filter('tr.import-duplicate'));
         $this->assertCount(0, $crawler->filter('tr.import-duplicate input[checked]'));
         $this->assertCount(2, $crawler->filter('input[name="rows[]"][checked]'));
 
-        $this->executeImport($collection, $import, [1]);
+        $this->executeImport($collection, $importId, [1]);
 
         $this->assertResponseRedirects('/collections/' . $collection->getId());
         $this->assertSame(['A', 'B'], $this->sortedNames());
-        $em = static::getContainer()->get('doctrine')->getManager();
-        $import = $em->getRepository(Import::class)->find($import->getId());
-        $this->assertSame(3, $import->getTotalNumberOfItems());
-        $this->assertSame(1, $import->getNumberOfImportedItems());
-        $this->assertSame(2, $import->getNumberOfSkippedItems());
-        $this->assertSame(1, $import->getNumberOfDuplicatedItems());
     }
 
     public function test_import_without_selected_rows_is_refused(): void
@@ -373,10 +383,10 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $import = $this->uploadAndMap($collection, "name\nA\n", 0, null, []);
-        $this->executeImport($collection, $import, []);
+        $importId = $this->uploadAndMap($collection, "name\nA\n", 0, null, []);
+        $this->executeImport($collection, $importId, []);
 
-        $this->assertResponseRedirects('/collections/' . $collection->getId() . '/import/' . $import->getId() . '/preview');
+        $this->assertResponseRedirects('/collections/' . $collection->getId() . '/import/' . $importId . '/preview');
         $this->assertCount(0, $this->findItems());
     }
 
@@ -386,15 +396,15 @@ class ImportTest extends AppTestCase
         $otherUser = UserFactory::createOne();
         $this->client->loginUser($owner);
         $collection = CollectionFactory::createOne(['owner' => $owner]);
-        $import = $this->uploadAndMap($collection, "name\nA\n", 0, null, []);
+        $importId = $this->uploadAndMap($collection, "name\nA\n", 0, null, []);
 
         $this->client->loginUser($otherUser);
-        $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $import->getId() . '/preview');
+        $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $importId . '/preview');
 
         $this->assertResponseStatusCodeSame(404);
     }
 
-    private function uploadAndMap(Collection $collection, string $csv, int $nameIndex, ?int $imageIndex, array $mapping, array $indexes = []): Import
+    private function uploadAndMap(Collection $collection, string $csv, int $nameIndex, ?int $imageIndex, array $mapping, array $indexes = []): string
     {
         $path = tempnam(sys_get_temp_dir(), 'import') . '.csv';
         file_put_contents($path, $csv);
@@ -404,6 +414,7 @@ class ImportTest extends AppTestCase
         $form['import_upload[fileFile]']->upload($path);
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
+        $importId = explode('/', $this->client->getRequest()->getPathInfo())[4];
 
         $form = $crawler->filter('form[name=import_mapping]')->form();
         $values = $form->getPhpValues();
@@ -416,10 +427,7 @@ class ImportTest extends AppTestCase
         $this->client->request($form->getMethod(), $form->getUri(), $values);
         $this->assertResponseRedirects();
 
-        $em = static::getContainer()->get('doctrine')->getManager();
-        $em->clear();
-
-        return $em->getRepository(Import::class)->findOneBy([], ['createdAt' => 'DESC']);
+        return $importId;
     }
 
     private function mapping(int $columnIndex, string $type, string $label, int $position, bool $createTags = false): array
@@ -439,16 +447,21 @@ class ImportTest extends AppTestCase
         return $mapping;
     }
 
-    private function executeImport(Collection $collection, Import $import, ?array $rows = null): void
+    private function executeImport(Collection $collection, string $importId, ?array $rows = null): void
     {
-        $this->client->request(Request::METHOD_POST, $this->importUrl($collection, $import), [
-            'rows' => $rows ?? array_keys($import->getRows()),
+        if ($rows === null) {
+            $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $importId . '/preview');
+            $rows = $crawler->filter('input[name="rows[]"]')->each(static fn ($input): string => $input->attr('value'));
+        }
+
+        $this->client->request(Request::METHOD_POST, $this->importUrl($collection, $importId), [
+            'rows' => $rows,
         ]);
     }
 
-    private function importUrl(Collection $collection, Import $import): string
+    private function importUrl(Collection $collection, string $importId): string
     {
-        return '/collections/' . $collection->getId() . '/import/' . $import->getId() . '/import';
+        return '/collections/' . $collection->getId() . '/import/' . $importId . '/import';
     }
 
     private function sortedNames(): array
