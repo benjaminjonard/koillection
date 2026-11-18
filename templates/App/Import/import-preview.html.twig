@@ -39,7 +39,7 @@
             </tbody>
         </table>
         {% else %}
-        <table class="highlight items-table" data-controller="table">
+        <table class="highlight items-table import-items-table" data-controller="table">
             <thead>
             <tr>
                 <th></th>
@@ -86,9 +86,11 @@
                     <td>
                         {{ ('global.visibilities.' ~ item.visibility)|trans }}
                     </td>
-                    <td>
+                    <td data-controller="lightbox">
                         {% if item.image %}
-                            <img height="200px" src="{{ item.image }}">
+                            <a href="{{ item.image }}">
+                                <img height="200px" src="{{ item.image }}">
+                            </a>
                         {% endif %}
                     </td>
                     <td>

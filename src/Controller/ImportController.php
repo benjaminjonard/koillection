@@ -11,6 +11,7 @@ use App\Model\Import;
 use App\Service\ImportHandler;
 use App\Service\ImportStorage;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -80,6 +81,19 @@ class ImportController extends AbstractController
             'errors' => $errors,
             'items' => $errors === [] ? $importHandler->createItems($import, true) : [],
             'duplicates' => $importHandler->findDuplicateRows($import),
+        ]);
+    }
+
+    #[Route(path: '/collections/{id}/import/{importId}/image', name: 'app_collection_import_image', methods: ['GET'])]
+    public function image(Request $request, Collection $collection, string $importId, ImportStorage $importStorage): Response
+    {
+        $import = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+
+        $path = $import->getArchiveEntries()[(string) $request->query->get('name')]['path'] ?? throw $this->createNotFoundException();
+
+        return new BinaryFileResponse($path, Response::HTTP_OK, [
+            'Content-Type' => mime_content_type($path),
+            'X-Content-Type-Options' => 'nosniff',
         ]);
     }
 

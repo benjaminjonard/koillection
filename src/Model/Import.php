@@ -22,6 +22,11 @@ class Import
 
     private ?string $path = null;
 
+    #[Assert\File(mimeTypes: ['application/zip'])]
+    private ?File $archiveFile = null;
+
+    private array $archiveEntries = [];
+
     #[Assert\NotNull(groups: ['import:mapping'])]
     private ?int $nameIndex = null;
 
@@ -46,6 +51,7 @@ class Import
             'id' => $this->id,
             'collectionId' => $this->collection?->getId() ?? $this->collectionId,
             'path' => $this->path,
+            'archiveEntries' => $this->archiveEntries,
             'nameIndex' => $this->nameIndex,
             'imageIndex' => $this->imageIndex,
             'quantityIndex' => $this->quantityIndex,
@@ -60,6 +66,7 @@ class Import
         $this->id = $data['id'];
         $this->collectionId = $data['collectionId'];
         $this->path = $data['path'];
+        $this->archiveEntries = $data['archiveEntries'];
         $this->nameIndex = $data['nameIndex'];
         $this->imageIndex = $data['imageIndex'];
         $this->quantityIndex = $data['quantityIndex'];
@@ -148,6 +155,30 @@ class Import
     public function setPath(?string $path): Import
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getArchiveFile(): ?File
+    {
+        return $this->archiveFile;
+    }
+
+    public function setArchiveFile(?File $archiveFile): Import
+    {
+        $this->archiveFile = $archiveFile;
+
+        return $this;
+    }
+
+    public function getArchiveEntries(): array
+    {
+        return $this->archiveEntries;
+    }
+
+    public function setArchiveEntries(array $archiveEntries): Import
+    {
+        $this->archiveEntries = $archiveEntries;
 
         return $this;
     }

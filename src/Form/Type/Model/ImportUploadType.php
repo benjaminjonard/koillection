@@ -20,6 +20,10 @@ class ImportUploadType extends AbstractType
                 'label' => false,
                 'required' => true,
             ])
+            ->add('archiveFile', FileType::class, [
+                'label' => false,
+                'required' => false,
+            ])
         ;
     }
 

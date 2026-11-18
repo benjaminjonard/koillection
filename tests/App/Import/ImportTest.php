@@ -88,6 +88,18 @@ class ImportTest extends AppTestCase
         $this->assertSame('https://example.com/cover.png', $crawler->filter('tbody img')->attr('src'));
     }
 
+    public function test_upload_page_displays_max_upload_size(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import');
+
+        $this->assertResponseIsSuccessful();
+        $this->assertStringStartsWith('Maximum file size: ', $crawler->filter('form[name=import_upload] .helper-text')->text());
+    }
+
     public function test_mapping_prefills_base_fields_from_headers(): void
     {
         $user = UserFactory::createOne();
@@ -218,7 +230,7 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
 
-        $importId = $this->uploadAndMap($collection, "name,image\nA,/etc/hostname\nB,file:///etc/hostname\n", 0, 1, []);
+        $importId = $this->uploadAndMap($collection, "name,image\nA,file:///etc/hostname\n", 0, 1, []);
         $crawler = $this->client->followRedirect();
         $this->assertResponseIsSuccessful();
         $this->assertCount(0, $crawler->filter('tbody img'));
@@ -227,9 +239,122 @@ class ImportTest extends AppTestCase
 
         $this->assertResponseRedirects('/collections/' . $collection->getId());
         $items = $this->findItems();
-        $this->assertCount(2, $items);
+        $this->assertCount(1, $items);
         $this->assertNull($items['A']->getImage());
-        $this->assertNull($items['B']->getImage());
+    }
+
+    public function test_images_are_imported_from_archive(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $archive = $this->createArchive(['covers/frieren.png' => $this->createPng(10, 10)]);
+
+        $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,covers/frieren.png\n", 0, 1, [], [], $archive);
+        $imagePath = $this->client->getRequest()->getSession()->get('import_' . $importId)->getArchiveEntries()['covers/frieren.png']['path'];
+        $this->assertStringStartsWith(sys_get_temp_dir() . '/koillection_import_', $imagePath);
+        $this->assertFileExists($imagePath);
+
+        $crawler = $this->client->followRedirect();
+        $this->assertResponseIsSuccessful();
+        $src = $crawler->filter('tbody img')->attr('src');
+        $this->assertStringContainsString('/import/' . $importId . '/image?name=covers', $src);
+
+        $this->client->request(Request::METHOD_GET, $src);
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseHeaderSame('Content-Type', 'image/png');
+
+        $this->executeImport($collection, $importId);
+
+        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $this->assertNotNull($this->findItems()['Frieren #1']->getImage());
+        $this->assertFileDoesNotExist($imagePath);
+    }
+
+    public function test_same_archive_image_can_be_used_by_several_rows(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $archive = $this->createArchive(['frieren.png' => $this->createPng(10, 10)]);
+
+        $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,frieren.png\nFrieren #2,frieren.png\n", 0, 1, [], [], $archive);
+        $this->executeImport($collection, $importId);
+
+        $this->assertResponseRedirects('/collections/' . $collection->getId());
+        $items = $this->findItems();
+        $this->assertNotNull($items['Frieren #1']->getImage());
+        $this->assertNotNull($items['Frieren #2']->getImage());
+        $this->assertNotSame($items['Frieren #1']->getImage(), $items['Frieren #2']->getImage());
+    }
+
+    public function test_archive_images_are_validated(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $archive = $this->createArchive([
+            'frieren.png' => $this->createPng(10, 10),
+            'script.png' => '<?php echo "Frieren";',
+            'huge.png' => $this->createPng(8001, 1),
+            'notes.txt' => 'Frieren',
+        ]);
+
+        $importId = $this->uploadAndMap($collection, "name,image\nA,missing.png\nB,../frieren.png\nC,/etc/hostname\nD,script.png\nE,huge.png\nF,notes.txt\n", 0, 1, [], [], $archive);
+        $crawler = $this->client->followRedirect();
+
+        $errors = $crawler->filter('.import-errors-table tbody tr td:last-child')->each(static fn ($td): string => $td->text());
+        $this->assertSame([
+            'Image not found in the archive',
+            'Image not found in the archive',
+            'Image not found in the archive',
+            'Unsupported image type, use PNG, JPEG, WebP or AVIF',
+            'Image dimensions are too large',
+            'Unsupported image type, use PNG, JPEG, WebP or AVIF',
+        ], $errors);
+
+        $this->executeImport($collection, $importId);
+
+        $this->assertResponseRedirects('/collections/' . $collection->getId() . '/import/' . $importId . '/preview');
+        $this->assertCount(0, $this->findItems());
+    }
+
+    public function test_archive_image_is_required_when_value_is_not_an_url(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        $this->uploadAndMap($collection, "name,image\nFrieren #1,frieren.png\n", 0, 1, []);
+        $crawler = $this->client->followRedirect();
+
+        $this->assertSame('Image not found in the archive', $crawler->filter('.import-errors-table tbody tr td:last-child')->text());
+    }
+
+    public function test_archive_decompression_is_limited(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $archive = $this->createArchive(['frieren.png' => str_repeat("\0", 5_000_000)]);
+
+        $this->uploadAndMap($collection, "name,image\nFrieren #1,frieren.png\n", 0, 1, [], [], $archive);
+        $crawler = $this->client->followRedirect();
+
+        $this->assertSame('The archive contains more data than allowed', $crawler->filter('.import-errors-table tbody tr td:last-child')->text());
+    }
+
+    public function test_archive_image_route_returns_404_for_invalid_entry(): void
+    {
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $archive = $this->createArchive(['frieren.png' => $this->createPng(10, 10)]);
+
+        $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,frieren.png\n", 0, 1, [], [], $archive);
+        $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $importId . '/image?name=../frieren.png');
+
+        $this->assertResponseStatusCodeSame(404);
     }
 
     public function test_typed_values_are_normalized(): void
@@ -404,7 +529,7 @@ class ImportTest extends AppTestCase
         $this->assertResponseStatusCodeSame(404);
     }
 
-    private function uploadAndMap(Collection $collection, string $csv, int $nameIndex, ?int $imageIndex, array $mapping, array $indexes = []): string
+    private function uploadAndMap(Collection $collection, string $csv, int $nameIndex, ?int $imageIndex, array $mapping, array $indexes = [], ?string $archive = null): string
     {
         $path = tempnam(sys_get_temp_dir(), 'import') . '.csv';
         file_put_contents($path, $csv);
@@ -412,6 +537,9 @@ class ImportTest extends AppTestCase
         $crawler = $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import');
         $form = $crawler->filter('form[name=import_upload]')->form();
         $form['import_upload[fileFile]']->upload($path);
+        if ($archive !== null) {
+            $form['import_upload[archiveFile]']->upload($archive);
+        }
         $this->client->submit($form);
         $crawler = $this->client->followRedirect();
         $importId = explode('/', $this->client->getRequest()->getPathInfo())[4];
@@ -428,6 +556,28 @@ class ImportTest extends AppTestCase
         $this->assertResponseRedirects();
 
         return $importId;
+    }
+
+    private function createArchive(array $entries): string
+    {
+        $path = tempnam(sys_get_temp_dir(), 'import') . '.zip';
+        $zip = new \ZipArchive();
+        $zip->open($path, \ZipArchive::CREATE);
+        foreach ($entries as $name => $content) {
+            $zip->addFromString($name, $content);
+        }
+        $zip->close();
+
+        return $path;
+    }
+
+    private function createPng(int $width, int $height): string
+    {
+        $image = imagecreatetruecolor($width, $height);
+        ob_start();
+        imagepng($image);
+
+        return ob_get_clean();
     }
 
     private function mapping(int $columnIndex, string $type, string $label, int $position, bool $createTags = false): array
