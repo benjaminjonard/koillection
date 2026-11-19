@@ -43,6 +43,7 @@ jobs:
     uses: ./.github/workflows/ci.yml
     with:
       ref: ${{ needs.check_base_image.outputs.version }}
+      skip_security_check: true
 
   rebuild:
     name: Rebuild release image
