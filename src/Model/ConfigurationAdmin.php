@@ -27,7 +27,9 @@ class ConfigurationAdmin
         private readonly Configuration $customDarkThemeCss,
         private readonly Configuration $enableMetrics,
         private readonly Configuration $appName,
-        private readonly Configuration $appLogo
+        private readonly Configuration $appLogo,
+        private readonly Configuration $enableScraping,
+        private readonly Configuration $enableImport
     ) {
     }
 
@@ -59,6 +61,16 @@ class ConfigurationAdmin
     public function getAppLogo(): Configuration
     {
         return $this->appLogo;
+    }
+
+    public function getEnableScraping(): Configuration
+    {
+        return $this->enableScraping;
+    }
+
+    public function getEnableImport(): Configuration
+    {
+        return $this->enableImport;
     }
 
     public function getImage(): ?string

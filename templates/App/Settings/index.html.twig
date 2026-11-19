@@ -115,8 +115,11 @@
             </div>
 
             <div class="row">
-                <div class="s12 l5 offset-l1 xl4 offset-xl2">
+                <div class="s12 l5 offset-l1 xl4 offset-xl2 {{ form.scrapingFeatureEnabled.vars.disabled ? 'disabled-by-admin' }}" {% if form.scrapingFeatureEnabled.vars.disabled %}title="{{ 'tooltip.disabled_by_admin'|trans }}"{% endif %}>
                     {{ form_row(form.scrapingFeatureEnabled, {'label' : 'label.scraping_feature_enabled'}) }}
+                </div>
+                <div class="s12 l5 xl4 {{ form.importFeatureEnabled.vars.disabled ? 'disabled-by-admin' }}" {% if form.importFeatureEnabled.vars.disabled %}title="{{ 'tooltip.disabled_by_admin'|trans }}"{% endif %}>
+                    {{ form_row(form.importFeatureEnabled, {'label' : 'label.import_feature_enabled'}) }}
                 </div>
             </div>
 

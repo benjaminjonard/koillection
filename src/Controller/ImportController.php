@@ -26,6 +26,8 @@ class ImportController extends AbstractController
     #[Route(path: '/collections/{id}/import', name: 'app_collection_import', methods: ['GET', 'POST'])]
     public function import(Request $request, Collection $collection, ImportHandler $importHandler, ImportStorage $importStorage): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['import']);
+
         $draft = new ImportDraft()->setCollection($collection);
 
         $form = $this->createForm(ImportUploadType::class, $draft);
@@ -51,6 +53,8 @@ class ImportController extends AbstractController
     #[Route(path: '/collections/{id}/import/{importId}/mapping', name: 'app_collection_import_mapping', methods: ['GET', 'POST'])]
     public function mapping(Request $request, Collection $collection, string $importId, ImportStorage $importStorage): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['import']);
+
         $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         $form = $this->createForm(ImportMappingType::class, $draft);
@@ -75,6 +79,8 @@ class ImportController extends AbstractController
     #[Route(path: '/collections/{id}/import/{importId}/preview', name: 'app_collection_import_preview', methods: ['GET'])]
     public function preview(Collection $collection, string $importId, ImportHandler $importHandler, ImportStorage $importStorage): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['import']);
+
         $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         $errors = $importHandler->validate($draft);
@@ -91,6 +97,8 @@ class ImportController extends AbstractController
     #[Route(path: '/collections/{id}/import/{importId}/image', name: 'app_collection_import_image', methods: ['GET'])]
     public function image(Request $request, Collection $collection, string $importId, ImportStorage $importStorage): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['import']);
+
         $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         $path = $draft->getArchiveEntries()[(string) $request->query->get('name')]['path'] ?? throw $this->createNotFoundException();
@@ -112,6 +120,8 @@ class ImportController extends AbstractController
         MessageBusInterface $messageBus,
         TranslatorInterface $translator
     ): Response {
+        $this->denyAccessUnlessFeaturesEnabled(['import']);
+
         $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         if ($importHandler->validate($draft) !== []) {
@@ -151,6 +161,8 @@ class ImportController extends AbstractController
     #[Route(path: '/imports', name: 'app_import_index', methods: ['GET'])]
     public function index(ImportRepository $importRepository): Response
     {
+        $this->denyAccessUnlessFeaturesEnabled(['import']);
+
         return $this->render('App/Import/index.html.twig', [
             'imports' => $importRepository->findBy([], ['createdAt' => 'DESC']),
         ]);

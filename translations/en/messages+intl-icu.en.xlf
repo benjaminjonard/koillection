@@ -3499,6 +3499,12 @@
         <target>Scraping</target>
       </segment>
     </unit>
+    <unit id="pQ7vXn2" name="label.import_feature_enabled">
+      <segment state="translated">
+        <source>Import</source>
+        <target>Import</target>
+      </segment>
+    </unit>
     <unit id="zrNqfUb" name="label.scrap_name">
       <segment state="translated">
         <source>Scrape name</source>
@@ -3647,6 +3653,36 @@
       <segment state="translated">
         <source>Quantity</source>
         <target>Quantity</target>
+      </segment>
+    </unit>
+    <unit id="Jm3wQx7" name="message.configuration_applies_to_all_users">
+      <segment state="translated">
+        <source>These options apply to all users.</source>
+        <target>These options apply to all users.</target>
+      </segment>
+    </unit>
+    <unit id="Rt5gKd8" name="tooltip.disabled_by_admin">
+      <segment state="translated">
+        <source>Disabled by the administrator</source>
+        <target>Disabled by the administrator</target>
+      </segment>
+    </unit>
+    <unit id="Hq4mTzR" name="title.features">
+      <segment state="translated">
+        <source>Features</source>
+        <target>Features</target>
+      </segment>
+    </unit>
+    <unit id="Wk8sLc3" name="label.enable_scraping">
+      <segment state="translated">
+        <source>Enable scraping</source>
+        <target>Enable scraping</target>
+      </segment>
+    </unit>
+    <unit id="Yb2nVf6" name="label.enable_import">
+      <segment state="translated">
+        <source>Enable import</source>
+        <target>Enable import</target>
       </segment>
     </unit>
     <unit id="npBJeAW" name="label.enable_metrics">
