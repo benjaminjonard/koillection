@@ -25,6 +25,7 @@ class ImportHandler
         private readonly UrlToImageTransformer $urlToImageTransformer,
         private readonly ScrapingUrlGuard $urlGuard,
         private readonly UrlGeneratorInterface $urlGenerator,
+        private readonly TemporaryFileManager $temporaryFileManager,
     ) {
     }
 
@@ -63,7 +64,7 @@ class ImportHandler
                         'name' => $image,
                     ]));
                 } else {
-                    $path = tempnam(sys_get_temp_dir(), ImportStorage::FILE_PREFIX);
+                    $path = $this->temporaryFileManager->createFilePath();
                     copy($import->getArchiveEntries()[$image]['path'], $path);
                     $item->setFile(new UploadedFile($path, basename($image), mime_content_type($path), null, true));
                 }

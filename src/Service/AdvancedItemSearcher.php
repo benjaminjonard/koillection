@@ -65,21 +65,25 @@ class AdvancedItemSearcher
 
         if ($operator === OperatorEnum::OPERATOR_EQUAL) {
             $queryBuilder->setParameter($paramValue, $value);
+
             return "LOWER(item.name) = LOWER(:{$paramValue})";
         }
 
         if ($operator === OperatorEnum::OPERATOR_NOT_EQUAL) {
             $queryBuilder->setParameter($paramValue, $value);
+
             return "LOWER(item.name) != LOWER(:{$paramValue})";
         }
 
         if ($operator === OperatorEnum::OPERATOR_CONTAINS) {
             $queryBuilder->setParameter($paramValue, "%{$value}%");
+
             return "LOWER(item.name) LIKE LOWER(:{$paramValue})";
         }
 
         if ($operator === OperatorEnum::OPERATOR_DOES_NOT_CONTAIN) {
             $queryBuilder->setParameter($paramValue, "%{$value}%");
+
             return "LOWER(item.name) NOT LIKE LOWER(:{$paramValue})";
         }
 
@@ -92,11 +96,13 @@ class AdvancedItemSearcher
 
         if ($operator === OperatorEnum::OPERATOR_EQUAL) {
             $queryBuilder->setParameter($paramValue, $value);
+
             return "item.collection = :{$paramValue}";
         }
 
         if ($operator === OperatorEnum::OPERATOR_NOT_EQUAL) {
             $queryBuilder->setParameter($paramValue, $value);
+
             return "item.collection != :{$paramValue}";
         }
 
@@ -111,6 +117,7 @@ class AdvancedItemSearcher
         if ($operator === OperatorEnum::OPERATOR_EQUAL) {
             $queryBuilder->leftJoin('item.tags', $tagAlias, 'WITH', "$tagAlias.id = :{$paramValue}");
             $queryBuilder->setParameter($paramValue, $value);
+
             return "$tagAlias.id IS NOT NULL";
         }
 
@@ -190,7 +197,7 @@ class AdvancedItemSearcher
                 $sql = "LOWER($datumAlias.value) NOT LIKE LOWER(:{$paramValue})";
             } else {
                 $queryBuilder->setParameter($paramValue, "%{$value}%");
-                $sql = "LOWER($datumAlias.value) NOT LIKE LOWER(:{$paramValue})";;
+                $sql = "LOWER($datumAlias.value) NOT LIKE LOWER(:{$paramValue})";
             }
         }
 

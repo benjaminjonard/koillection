@@ -68,7 +68,7 @@ readonly class CachedValuesGetter
         $result = $array1;
 
         foreach ($array2 as $key => $value) {
-            if (isset($result[$key]) && is_array($result[$key]) && is_array($value)) {
+            if (isset($result[$key]) && \is_array($result[$key]) && \is_array($value)) {
                 $result[$key] = $this->mergeAndAdd($result[$key], $value);
             } elseif (isset($result[$key]) && (is_numeric($result[$key]) && is_numeric($value))) {
                 $result[$key] += $value;
