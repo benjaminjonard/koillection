@@ -4,6 +4,6 @@ declare(strict_types=1);
 
 namespace App\Message;
 
-final readonly class RemoveExpiredImportFilesMessage
+final readonly class RemoveExpiredTemporaryFilesMessage
 {
 }

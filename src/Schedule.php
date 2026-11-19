@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Message\RemoveExpiredImportFilesMessage;
+use App\Message\RemoveExpiredTemporaryFilesMessage;
 use Symfony\Component\Scheduler\Attribute\AsSchedule;
 use Symfony\Component\Scheduler\RecurringMessage;
 use Symfony\Component\Scheduler\Schedule as SymfonySchedule;
@@ -24,7 +24,7 @@ class Schedule implements ScheduleProviderInterface
         return new SymfonySchedule()
             ->stateful($this->cache)
             ->processOnlyLastMissedRun(true)
-            ->add(RecurringMessage::every('1 hour', new RemoveExpiredImportFilesMessage()))
+            ->add(RecurringMessage::every('1 hour', new RemoveExpiredTemporaryFilesMessage()))
         ;
     }
 }

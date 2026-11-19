@@ -14,7 +14,7 @@ use App\Enum\VisibilityEnum;
 use App\Message\ProcessImportMessage;
 use App\MessageHandler\ProcessImportHandler;
 use App\Model\ImportDraft;
-use App\Service\ImportStorage;
+use App\Service\TemporaryFileManager;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
 use App\Tests\Factory\ItemFactory;
@@ -259,7 +259,7 @@ class ImportTest extends AppTestCase
 
         $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,covers/frieren.png\n", 0, 1, [], [], $archive);
         $imagePath = $this->client->getRequest()->getSession()->get('import_' . $importId)->getArchiveEntries()['covers/frieren.png']['path'];
-        $this->assertStringStartsWith(sys_get_temp_dir() . '/koillection_import_', $imagePath);
+        $this->assertStringStartsWith(static::getContainer()->get(TemporaryFileManager::class)->getDirectory() . '/', $imagePath);
         $this->assertFileExists($imagePath);
 
         $crawler = $this->client->followRedirect();
@@ -440,7 +440,7 @@ class ImportTest extends AppTestCase
 
         $importId = $this->uploadAndMap($collection, "name\nFrieren #1\n", 0, null, []);
         $path = $this->client->getRequest()->getSession()->get('import_' . $importId)->getPath();
-        $this->assertStringStartsWith(sys_get_temp_dir() . '/koillection_import_', $path);
+        $this->assertStringStartsWith(static::getContainer()->get(TemporaryFileManager::class)->getDirectory() . '/', $path);
         $this->assertFileExists($path);
 
         $this->executeImport($collection, $importId);
@@ -495,7 +495,7 @@ class ImportTest extends AppTestCase
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $otherTag = TagFactory::createOne(['label' => 'Manga', 'owner' => $otherUser]);
 
-        $path = tempnam(sys_get_temp_dir(), ImportStorage::FILE_PREFIX);
+        $path = static::getContainer()->get(TemporaryFileManager::class)->createFilePath();
         file_put_contents($path, "name,tags\nFrieren #1,Manga\n");
         $draft = new ImportDraft()
             ->setPath($path)

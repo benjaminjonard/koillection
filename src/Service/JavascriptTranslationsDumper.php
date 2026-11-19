@@ -35,7 +35,7 @@ class JavascriptTranslationsDumper
 
     private function dumpConfig(string $pattern, string $target): void
     {
-        $file = sprintf('%s/%s',
+        $file = \sprintf('%s/%s',
             $target,
             strtr($pattern, [
                 '{domain}' => 'config',
@@ -68,10 +68,10 @@ class JavascriptTranslationsDumper
 
             $content = $this->twig->render('translations/translations.js.twig', $renderContext);
 
-            $file = sprintf('%s/%s',
+            $file = \sprintf('%s/%s',
                 $target,
                 strtr($pattern, [
-                    '{domain}' => sprintf('%s/%s', 'javascript+intl-icu', $locale),
+                    '{domain}' => \sprintf('%s/%s', 'javascript+intl-icu', $locale),
                     '{_format}' => 'js'
                 ])
             );

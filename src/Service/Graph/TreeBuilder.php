@@ -46,7 +46,7 @@ class TreeBuilder
         $name = '';
         if ($collection instanceof Collection) {
             $title = $collection->getTitle();
-            $name = \mb_strlen($title) > 21 ? \mb_substr($title, 0, 18) . '...' : $title;
+            $name = mb_strlen($title) > 21 ? mb_substr($title, 0, 18) . '...' : $title;
         }
 
         return [

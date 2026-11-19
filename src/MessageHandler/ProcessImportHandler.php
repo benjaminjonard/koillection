@@ -7,8 +7,8 @@ namespace App\MessageHandler;
 use App\Entity\Import;
 use App\Enum\ImportStatusEnum;
 use App\Message\ProcessImportMessage;
+use App\Service\ImportDraftManager;
 use App\Service\ImportHandler;
-use App\Service\ImportStorage;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -22,7 +22,7 @@ final readonly class ProcessImportHandler
     public function __construct(
         private ManagerRegistry $managerRegistry,
         private ImportHandler $importHandler,
-        private ImportStorage $importStorage,
+        private ImportDraftManager $importDraftManager,
         private TokenStorageInterface $tokenStorage,
     ) {
     }
@@ -31,7 +31,7 @@ final readonly class ProcessImportHandler
     {
         $import = $this->managerRegistry->getRepository(Import::class)->find($message->getImportId());
         if (!$import instanceof Import) {
-            $this->importStorage->removeFiles($message->getDraft());
+            $this->importDraftManager->removeFiles($message->getDraft());
 
             return;
         }
@@ -47,7 +47,7 @@ final readonly class ProcessImportHandler
         try {
             $this->process($import, $message);
         } finally {
-            $this->importStorage->removeFiles($message->getDraft());
+            $this->importDraftManager->removeFiles($message->getDraft());
             $this->tokenStorage->setToken($previousToken);
 
             if (!$isOwnershipFilterEnabled && $this->managerRegistry->getManager()->getFilters()->isEnabled('ownership')) {

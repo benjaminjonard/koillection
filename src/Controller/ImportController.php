@@ -11,8 +11,8 @@ use App\Form\Type\Model\ImportUploadType;
 use App\Message\ProcessImportMessage;
 use App\Model\ImportDraft;
 use App\Repository\ImportRepository;
+use App\Service\ImportDraftManager;
 use App\Service\ImportHandler;
-use App\Service\ImportStorage;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +24,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ImportController extends AbstractController
 {
     #[Route(path: '/collections/{id}/import', name: 'app_collection_import', methods: ['GET', 'POST'])]
-    public function import(Request $request, Collection $collection, ImportHandler $importHandler, ImportStorage $importStorage): Response
+    public function import(Request $request, Collection $collection, ImportHandler $importHandler, ImportDraftManager $importDraftManager): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['import']);
 
@@ -34,9 +34,9 @@ class ImportController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $importStorage->create($draft);
+            $importDraftManager->create($draft);
             $importHandler->prefillMapping($draft);
-            $importStorage->save($draft);
+            $importDraftManager->save($draft);
 
             return $this->redirectToRoute('app_collection_import_mapping', [
                 'id' => $collection->getId(),
@@ -51,17 +51,17 @@ class ImportController extends AbstractController
     }
 
     #[Route(path: '/collections/{id}/import/{importId}/mapping', name: 'app_collection_import_mapping', methods: ['GET', 'POST'])]
-    public function mapping(Request $request, Collection $collection, string $importId, ImportStorage $importStorage): Response
+    public function mapping(Request $request, Collection $collection, string $importId, ImportDraftManager $importDraftManager): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['import']);
 
-        $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+        $draft = $importDraftManager->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         $form = $this->createForm(ImportMappingType::class, $draft);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $importStorage->save($draft);
+            $importDraftManager->save($draft);
 
             return $this->redirectToRoute('app_collection_import_preview', [
                 'id' => $collection->getId(),
@@ -77,11 +77,11 @@ class ImportController extends AbstractController
     }
 
     #[Route(path: '/collections/{id}/import/{importId}/preview', name: 'app_collection_import_preview', methods: ['GET'])]
-    public function preview(Collection $collection, string $importId, ImportHandler $importHandler, ImportStorage $importStorage): Response
+    public function preview(Collection $collection, string $importId, ImportHandler $importHandler, ImportDraftManager $importDraftManager): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['import']);
 
-        $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+        $draft = $importDraftManager->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         $errors = $importHandler->validate($draft);
 
@@ -95,11 +95,11 @@ class ImportController extends AbstractController
     }
 
     #[Route(path: '/collections/{id}/import/{importId}/image', name: 'app_collection_import_image', methods: ['GET'])]
-    public function image(Request $request, Collection $collection, string $importId, ImportStorage $importStorage): Response
+    public function image(Request $request, Collection $collection, string $importId, ImportDraftManager $importDraftManager): Response
     {
         $this->denyAccessUnlessFeaturesEnabled(['import']);
 
-        $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+        $draft = $importDraftManager->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         $path = $draft->getArchiveEntries()[(string) $request->query->get('name')]['path'] ?? throw $this->createNotFoundException();
 
@@ -115,14 +115,14 @@ class ImportController extends AbstractController
         Collection $collection,
         string $importId,
         ImportHandler $importHandler,
-        ImportStorage $importStorage,
+        ImportDraftManager $importDraftManager,
         ManagerRegistry $managerRegistry,
         MessageBusInterface $messageBus,
         TranslatorInterface $translator
     ): Response {
         $this->denyAccessUnlessFeaturesEnabled(['import']);
 
-        $draft = $importStorage->find($importId, $collection) ?? throw $this->createNotFoundException();
+        $draft = $importDraftManager->find($importId, $collection) ?? throw $this->createNotFoundException();
 
         if ($importHandler->validate($draft) !== []) {
             return $this->redirectToRoute('app_collection_import_preview', [
@@ -150,7 +150,7 @@ class ImportController extends AbstractController
         $managerRegistry->getManager()->persist($import);
         $managerRegistry->getManager()->flush();
 
-        $importStorage->forget($draft);
+        $importDraftManager->forget($draft);
         $messageBus->dispatch(new ProcessImportMessage($import->getId(), $draft, $selectedRows));
 
         $this->addFlash('notice', $translator->trans('message.import_started'));

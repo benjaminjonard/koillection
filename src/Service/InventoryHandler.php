@@ -25,7 +25,7 @@ class InventoryHandler
         return $this->computeCheckedValues($content);
     }
 
-    public function buildCollection(Collection $collection, array $collectionIdsToAddInInventory): array|null
+    public function buildCollection(Collection $collection, array $collectionIdsToAddInInventory): ?array
     {
         $element = null;
 

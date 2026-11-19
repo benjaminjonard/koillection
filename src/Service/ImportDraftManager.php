@@ -9,15 +9,14 @@ use App\Model\ImportDraft;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\RequestStack;
 
-class ImportStorage
+class ImportDraftManager
 {
     private const string SESSION_PREFIX = 'import_';
-
-    public const string FILE_PREFIX = 'koillection_import_';
 
     public function __construct(
         private readonly RequestStack $requestStack,
         private readonly ImportArchiveReader $archiveReader,
+        private readonly TemporaryFileManager $temporaryFileManager,
     ) {
     }
 
@@ -25,7 +24,7 @@ class ImportStorage
     {
         $import
             ->setFilename($import->getFileFile()->getClientOriginalName())
-            ->setPath($this->moveToTempDir($import->getFileFile()))
+            ->setPath($this->moveToTemporaryDirectory($import->getFileFile()))
             ->setFileFile(null)
         ;
 
@@ -68,9 +67,9 @@ class ImportStorage
         }
     }
 
-    private function moveToTempDir(File $file): string
+    private function moveToTemporaryDirectory(File $file): string
     {
-        $path = tempnam(sys_get_temp_dir(), self::FILE_PREFIX);
+        $path = $this->temporaryFileManager->createFilePath();
         $file->move(\dirname($path), basename($path));
 
         return $path;

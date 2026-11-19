@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Form\DataTransformer;
 
 use App\Service\Scraper\ScrapingUrlGuard;
+use App\Service\TemporaryFileManager;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpClient\CurlHttpClient;
 use Symfony\Component\HttpClient\NoPrivateNetworkHttpClient;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class UrlToImageTransformer implements DataTransformerInterface
@@ -17,6 +18,7 @@ class UrlToImageTransformer implements DataTransformerInterface
 
     public function __construct(
         private readonly ScrapingUrlGuard $urlGuard,
+        private readonly TemporaryFileManager $temporaryFileManager,
     ) {
         $this->client = new NoPrivateNetworkHttpClient(new CurlHttpClient());
     }
@@ -41,15 +43,16 @@ class UrlToImageTransformer implements DataTransformerInterface
         $this->urlGuard->assertSchemeIsSupported($url);
 
         $response = $this->client->request(
-                'GET',
-                $url,
-                ['timeout' => 2.5]
+            'GET',
+            $url,
+            ['timeout' => 2.5]
         );
         $name = 'scraped' . uniqid();
 
-        file_put_contents("/tmp/{$name}", $response->getContent());
-        $mime = mime_content_type("/tmp/{$name}");
+        $path = $this->temporaryFileManager->createFilePath();
+        file_put_contents($path, $response->getContent());
+        $mime = mime_content_type($path);
 
-        return new UploadedFile("/tmp/{$name}", $name, $mime, null, true);
+        return new UploadedFile($path, $name, $mime, null, true);
     }
 }

@@ -16,6 +16,11 @@ class ImportArchiveReader
 
     private const int CHUNK_SIZE = 8192;
 
+    public function __construct(
+        private readonly TemporaryFileManager $temporaryFileManager,
+    ) {
+    }
+
     public function extract(string $archivePath): array
     {
         $zip = new \ZipArchive();
@@ -48,7 +53,7 @@ class ImportArchiveReader
                 continue;
             }
 
-            $path = tempnam(sys_get_temp_dir(), ImportStorage::FILE_PREFIX);
+            $path = $this->temporaryFileManager->createFilePath();
             $output = fopen($path, 'w');
             $error = null;
 
