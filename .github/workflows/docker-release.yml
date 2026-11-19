@@ -51,6 +51,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v7
         with:
+          context: .
           file: Dockerfile
           push: true
           tags: docker.io/koillection/koillection,docker.io/koillection/koillection:latest,docker.io/koillection/koillection:${{ env.VERSION }}

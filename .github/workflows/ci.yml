@@ -30,6 +30,7 @@ jobs:
       - name: Build Container
         uses: docker/build-push-action@v7
         with:
+          context: .
           file: Dockerfile
           tags: ci-image
           push: false
