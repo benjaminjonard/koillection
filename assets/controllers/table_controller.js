@@ -21,10 +21,8 @@ export default class extends Controller {
         } else {
             if (direction === 'asc') {
                 orderedValues = Array.from(values).sort((a, b) => a.dataset.value - b.dataset.value)
-                console.log(orderedValues)
             } else {
                 orderedValues = Array.from(values).sort((a, b) => b.dataset.value - a.dataset.value)
-                console.log(orderedValues)
             }
         }
 

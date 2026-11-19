@@ -29,7 +29,7 @@ export default class extends Controller {
         let self = this;
 
         let symbol = '?'
-        for (let [key, element] of Object.entries(this.formTarget.elements)) {
+        for (let element of Object.values(this.formTarget.elements)) {
             if ((element.type === 'text' && element.value !== '') || (element.type === 'checkbox' && element.checked)) {
                 url += symbol + element.name + '=' + element.value;
                 symbol = '&';

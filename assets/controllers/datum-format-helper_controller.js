@@ -1,5 +1,4 @@
 import { Controller } from '@hotwired/stimulus';
-import Sortable from "sortablejs";
 import Translator from "bazinga-translator";
 
 export default class extends Controller {
@@ -9,8 +8,15 @@ export default class extends Controller {
         let value = event.target.value;
         let help = '';
 
-        if (value === 'date' || value === 'checkbox' || value === 'price' || value === 'country') {
-            help = Translator.trans('label.expected_format') + ' ' + Translator.trans('label.' + value + '.format')
+        const formats = {
+            date: 'YYYY-MM-DD',
+            price: '1 USD, 4.5 EUR...',
+            country: 'US, FR...',
+            checkbox: Translator.trans('label.checkbox.format'),
+        };
+
+        if (value in formats) {
+            help = Translator.trans('label.expected_format') + ' ' + formats[value];
         }
 
         this.helpTarget.innerHTML = help;

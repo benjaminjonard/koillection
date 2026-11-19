@@ -23,7 +23,6 @@ export default class extends Controller {
             startY,
             distX,
             distY,
-            dist,
             threshold = 100, //required min distance traveled to be considered swipe
             restraint = 100, // maximum distance allowed at the same time in perpendicular direction
             allowedTime = 300, // maximum time allowed to travel that distance
@@ -35,7 +34,6 @@ export default class extends Controller {
         touchsurface.addEventListener('touchstart', function(e){
             let touchobj = e.changedTouches[0]
             swipedir = 'none'
-            dist = 0
             startX = touchobj.pageX
             startY = touchobj.pageY
             startTime = new Date().getTime() // record time when finger first makes contact with surface
