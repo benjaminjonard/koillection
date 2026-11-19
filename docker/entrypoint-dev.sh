@@ -2,6 +2,18 @@
 
 set -e
 
+MISSING_VARS=""
+for VAR in APP_SECRET JWT_PASSPHRASE DB_DRIVER DB_NAME DB_HOST DB_PORT DB_USER DB_PASSWORD DB_VERSION; do
+	if [ -z "${!VAR}" ]; then
+		MISSING_VARS="$MISSING_VARS $VAR"
+	fi
+done
+
+if [ -n "$MISSING_VARS" ]; then
+	echo "ERROR: the following mandatory environment variables are not set:$MISSING_VARS"
+	exit 1
+fi
+
 echo "**** 1/10 - Make sure /uploads folders exist ****"
 [ ! -f /uploads ] && \
 	mkdir -p /uploads
@@ -18,11 +30,11 @@ touch /app/public/.env.local
 
 echo "APP_ENV=${APP_ENV:-prod}" >> "/app/public/.env.local"
 echo "APP_DEBUG=${APP_DEBUG:-0}" >> "/app/public/.env.local"
-echo "APP_SECRET=${APP_SECRET:-$(openssl rand -base64 21)}" >> "/app/public/.env.local"
+echo "APP_SECRET=${APP_SECRET:-}" >> "/app/public/.env.local"
 
 echo "JWT_SECRET_KEY=${JWT_SECRET_KEY:-%kernel.project_dir%/config/jwt/private.pem}" >> "/app/public/.env.local"
 echo "JWT_PUBLIC_KEY=${JWT_PUBLIC_KEY:-%kernel.project_dir%/config/jwt/public.pem}" >> "/app/public/.env.local"
-echo "JWT_PASSPHRASE=${JWT_PASSPHRASE:-$(openssl rand -base64 21)}" >> "/app/public/.env.local"
+echo "JWT_PASSPHRASE=${JWT_PASSPHRASE:-}" >> "/app/public/.env.local"
 
 echo "DB_DRIVER=${DB_DRIVER:-}" >> "/app/public/.env.local"
 echo "DB_NAME=${DB_NAME:-}" >> "/app/public/.env.local"

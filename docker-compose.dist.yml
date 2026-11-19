@@ -10,6 +10,8 @@ services:
         environment:
             - APP_ENV=dev
             - APP_DEBUG=1
+            - APP_SECRET=changeMe
+            - JWT_PASSPHRASE=changeMe
             - DB_DRIVER=pdo_pgsql
             - DB_NAME=koillection
             - DB_HOST=postgresql
