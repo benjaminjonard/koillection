@@ -115,5 +115,11 @@
         <target>La valeur doit être une chaîne formatée Année-mois-jour comme '2024-06-10'</target>
       </segment>
     </unit>
+    <unit id="S3x2djr" name="error.csrf.session_expired">
+      <segment state="translated">
+        <source>Your session has expired. Please submit the form again.</source>
+        <target>Votre session a expiré. Veuillez soumettre le formulaire à nouveau.</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
