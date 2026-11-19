@@ -1,4 +1,4 @@
-name: Koillection CI
+name: CI
 on:
   workflow_dispatch:
   push:
