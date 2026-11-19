@@ -11,8 +11,13 @@ on:
 
 jobs:
   build_docker_ci_container:
-    name: Build Docker CI container
-    runs-on: ubuntu-latest
+    name: Build Docker CI container for ${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - { arch: amd64, runner: ubuntu-latest }
+          - { arch: arm64, runner: ubuntu-24.04-arm }
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -33,27 +38,30 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: ci-container
+          name: ci-container-${{ matrix.arch }}
           path: /tmp/ci-container.tar
 
   remove_docker_ci_container:
     name: Remove Docker CI container
     if: always()
     runs-on: ubuntu-latest
-    needs: [ build_docker_ci_container, phpunit_mysql, phpunit_mariadb, phpunit_postgres, doctrine_schema_validator ]
+    needs: [ build_docker_ci_container, smoke_test, phpunit_mysql, phpunit_mariadb, phpunit_postgres, doctrine_schema_validator ]
     steps:
       - uses: geekyeggo/delete-artifact@v6
         with:
-          name: ci-container
+          name: |
+            ci-container-amd64
+            ci-container-arm64
 
   smoke_test:
-    name: Smoke test on ${{ matrix.platform }}
+    name: Smoke test on ${{ matrix.arch }}
     runs-on: ${{ matrix.runner }}
+    needs: [ build_docker_ci_container ]
     strategy:
       matrix:
         include:
-          - { platform: linux/amd64, runner: ubuntu-latest }
-          - { platform: linux/arm64, runner: ubuntu-24.04-arm }
+          - { arch: amd64, runner: ubuntu-latest }
+          - { arch: arm64, runner: ubuntu-24.04-arm }
     services:
       postgres:
         image: postgres:18
@@ -64,21 +72,14 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
+      - name: Download artifact
+        uses: actions/download-artifact@v8
         with:
-          ref: ${{ inputs.ref }}
+          name: ci-container-${{ matrix.arch }}
+          path: /tmp
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
-
-      - name: Build Container
-        uses: docker/build-push-action@v7
-        with:
-          file: Dockerfile
-          tags: smoke-image
-          push: false
-          load: true
+      - name: Load image
+        run: docker load --input /tmp/ci-container.tar
 
       - name: Start container
         run: |
@@ -92,7 +93,7 @@ jobs:
             -e DB_USER=postgres \
             -e DB_PASSWORD=root \
             -e DB_VERSION=18 \
-            smoke-image
+            ci-image
 
       - name: Check that the application responds
         run: |
@@ -127,7 +128,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
 
       - name: Load image
@@ -159,7 +160,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
           
       - name: Load image
@@ -210,7 +211,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
 
       - name: Load image
@@ -258,7 +259,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
 
       - name: Load image
