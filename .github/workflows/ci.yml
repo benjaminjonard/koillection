@@ -86,6 +86,8 @@ jobs:
           docker run -d --name koillection \
             --add-host=host.docker.internal:host-gateway \
             -p 8080:80 \
+            -e APP_SECRET=changeMe \
+            -e JWT_PASSPHRASE=changeMe \
             -e DB_DRIVER=pdo_pgsql \
             -e DB_NAME=koillection \
             -e DB_HOST=host.docker.internal \
