@@ -4,7 +4,7 @@ set -e
 
 MISSING_VARS=""
 for VAR in APP_SECRET JWT_PASSPHRASE DB_DRIVER DB_NAME DB_HOST DB_PORT DB_USER DB_PASSWORD DB_VERSION; do
-	if [ -z "${!VAR}" ]; then
+	if [ -z "$(printenv "$VAR")" ]; then
 		MISSING_VARS="$MISSING_VARS $VAR"
 	fi
 done
