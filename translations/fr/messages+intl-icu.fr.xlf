@@ -1141,6 +1141,12 @@
         <target>Texte long</target>
       </segment>
     </unit>
+    <unit id="kp3Slwy" name="btn.add_markdown">
+      <segment state="translated">
+        <source>Markdown</source>
+        <target>Markdown</target>
+      </segment>
+    </unit>
     <unit id="9qwO627" name="btn.add_rating">
       <segment state="translated">
         <source>Rating</source>
@@ -1325,6 +1331,12 @@
       <segment state="translated">
         <source>Description</source>
         <target>Description</target>
+      </segment>
+    </unit>
+    <unit id="fMWEoBC" name="label.description_markdown">
+      <segment state="translated">
+        <source>Description (supports Markdown)</source>
+        <target>Description (prend en charge Markdown)</target>
       </segment>
     </unit>
     <unit id="ak1St8x" name="label.number_of_items">
@@ -2443,6 +2455,12 @@
         <target>Format de date</target>
       </segment>
     </unit>
+    <unit id="VDGyjKl" name="label.first_day_of_week">
+      <segment state="translated">
+        <source>First day of the week</source>
+        <target>Premier jour de la semaine</target>
+      </segment>
+    </unit>
     <unit id="V5iMey4" name="global.optgroup.date_formats.slash">
       <segment state="translated">
         <source>Slash separated</source>
@@ -2777,6 +2795,12 @@
       <segment state="translated">
         <source>Long text</source>
         <target>Texte long</target>
+      </segment>
+    </unit>
+    <unit id="fandJOu" name="label.markdown">
+      <segment state="translated">
+        <source>Markdown</source>
+        <target>Markdown</target>
       </segment>
     </unit>
     <unit id="0ZXz2Ap" name="label.items_list_columns">
@@ -3211,10 +3235,28 @@
         <target>Configuration mise à jour</target>
       </segment>
     </unit>
+    <unit id="nCc714I" name="message.app_logo_format">
+      <segment state="translated">
+        <source>Square PNG, JPEG or WebP, at least 512×512 px.</source>
+        <target>PNG, JPEG ou WebP carrés, au moins 512×512 px.</target>
+      </segment>
+    </unit>
+    <unit id="Eyser7b" name="message.app_logo_usage">
+      <segment state="translated">
+        <source>It replaces the logo, the favicon and the webapp icons.</source>
+        <target>Remplace le logo, le favicon et les icônes de l'application web.</target>
+      </segment>
+    </unit>
     <unit id="YX0yhdx" name="tooltip.cancel_modifications">
       <segment state="translated">
         <source>Cancel modifications</source>
         <target>Annuler les modifications</target>
+      </segment>
+    </unit>
+    <unit id="2S05T7l" name="tooltip.remove_image">
+      <segment state="translated">
+        <source>Remove image</source>
+        <target>Supprimer l’image</target>
       </segment>
     </unit>
     <unit id="oAD2Kex" name="tooltip.remove_thumbnail">
@@ -3227,6 +3269,12 @@
       <segment state="translated">
         <source>Custom CSS</source>
         <target>CSS personnalisé</target>
+      </segment>
+    </unit>
+    <unit id="pEIjP3T" name="title.branding">
+      <segment state="translated">
+        <source>Branding</source>
+        <target>Marque</target>
       </segment>
     </unit>
     <unit id="OCFAuxO" name="label.custom_light_theme_css">
@@ -3607,10 +3655,58 @@
         <target>Quantité</target>
       </segment>
     </unit>
+    <unit id="Jm3wQx7" name="message.configuration_applies_to_all_users">
+      <segment state="translated">
+        <source>These options apply to all users.</source>
+        <target>Ces options s'appliquent à tous les utilisateurs.</target>
+      </segment>
+    </unit>
+    <unit id="Rt5gKd8" name="tooltip.disabled_by_admin">
+      <segment state="translated">
+        <source>Disabled by the administrator</source>
+        <target>Désactivé par l'administrateur</target>
+      </segment>
+    </unit>
+    <unit id="Hq4mTzR" name="title.features">
+      <segment state="translated">
+        <source>Features</source>
+        <target>Fonctionnalités</target>
+      </segment>
+    </unit>
+    <unit id="Wk8sLc3" name="label.enable_scraping">
+      <segment state="translated">
+        <source>Enable scraping</source>
+        <target>Activer le scraping</target>
+      </segment>
+    </unit>
+    <unit id="Yb2nVf6" name="label.enable_import">
+      <segment state="translated">
+        <source>Enable import</source>
+        <target>Activer l'import</target>
+      </segment>
+    </unit>
     <unit id="npBJeAW" name="label.enable_metrics">
       <segment state="translated">
         <source>Enable metrics</source>
         <target>Activer les métriques</target>
+      </segment>
+    </unit>
+    <unit id="ambKnvk" name="label.delete_app_logo">
+      <segment state="translated">
+        <source>Delete the logo</source>
+        <target>Supprimer le logo</target>
+      </segment>
+    </unit>
+    <unit id="W7mufHQ" name="label.app_logo">
+      <segment state="translated">
+        <source>Logo</source>
+        <target>Logo</target>
+      </segment>
+    </unit>
+    <unit id="VLuzAw7" name="label.app_name">
+      <segment state="translated">
+        <source>Application name</source>
+        <target>Nom de l'application</target>
       </segment>
     </unit>
     <unit id="zNpYLvW" name="label.display_mode">
@@ -3967,10 +4063,250 @@
         <target>Importer</target>
       </segment>
     </unit>
+    <unit id="YoGl2Lk" name="label.upload_csv">
+      <segment state="translated">
+        <source>Upload CSV</source>
+        <target>Importer CSV</target>
+      </segment>
+    </unit>
+    <unit id="BjEyQib" name="menu.imports">
+      <segment state="translated">
+        <source>Imports</source>
+        <target>Imports</target>
+      </segment>
+    </unit>
+    <unit id="jzH3Yz2" name="label.status">
+      <segment state="translated">
+        <source>Status</source>
+        <target>Statut</target>
+      </segment>
+    </unit>
+    <unit id="SO3kvjC" name="label.progress">
+      <segment state="translated">
+        <source>Progress</source>
+        <target>Progression</target>
+      </segment>
+    </unit>
+    <unit id="ALVs9Qg" name="label.imported_items">
+      <segment state="translated">
+        <source>Imported items</source>
+        <target>Objets importés</target>
+      </segment>
+    </unit>
+    <unit id="lN0j4KU" name="message.import_started">
+      <segment state="translated">
+        <source>The import has started, items will be added to the collection in the background</source>
+        <target>L'import a commencé, les éléments seront ajoutés à la collection en arrière-plan</target>
+      </segment>
+    </unit>
+    <unit id="qyZOlks" name="global.import_statuses.pending">
+      <segment state="translated">
+        <source>Pending</source>
+        <target>En attente</target>
+      </segment>
+    </unit>
+    <unit id="fIk1hPb" name="global.import_statuses.processing">
+      <segment state="translated">
+        <source>Processing</source>
+        <target>En cours</target>
+      </segment>
+    </unit>
+    <unit id="7jtT9dx" name="global.import_statuses.done">
+      <segment state="translated">
+        <source>Done</source>
+        <target>Terminé</target>
+      </segment>
+    </unit>
+    <unit id="Vg4dzd9" name="global.import_statuses.failed">
+      <segment state="translated">
+        <source>Failed</source>
+        <target>Échec</target>
+      </segment>
+    </unit>
+    <unit id="Ye0R5js" name="message.max_upload_size">
+      <segment state="translated">
+        <source>Maximum file size: {size}</source>
+        <target>Taille maximale du fichier : {size}</target>
+      </segment>
+    </unit>
+    <unit id="6UjkGmK" name="label.upload_image_archive">
+      <segment state="translated">
+        <source>Upload image archive (ZIP)</source>
+        <target>Charger une archive d'image (ZIP)</target>
+      </segment>
+    </unit>
+    <unit id="huG8GP3" name="message.import_archive_image_types">
+      <segment state="translated">
+        <source>Accepted images: PNG, JPEG, WebP, AVIF</source>
+        <target>Images acceptées : PNG, JPEG, WebP, AVIF</target>
+      </segment>
+    </unit>
+    <unit id="8g4o5MN" name="message.import_archive_max_dimension">
+      <segment state="translated">
+        <source>Maximum image size: {dimension} px per side</source>
+        <target>Taille d'image maximale : {dimension} px par côté</target>
+      </segment>
+    </unit>
+    <unit id="DrHooPM" name="error.import.image_not_found">
+      <segment state="translated">
+        <source>Image not found in the archive</source>
+        <target>Image non trouvée dans l'archive</target>
+      </segment>
+    </unit>
+    <unit id="1FpAUWW" name="error.import.invalid_image_type">
+      <segment state="translated">
+        <source>Unsupported image type, use PNG, JPEG, WebP or AVIF</source>
+        <target>Type d'image non pris en charge, utiliser PNG, JPEG, WebP ou AVIF</target>
+      </segment>
+    </unit>
+    <unit id="MAILVcr" name="error.import.image_too_large">
+      <segment state="translated">
+        <source>Image dimensions are too large</source>
+        <target>Les dimensions de l'image sont trop grandes</target>
+      </segment>
+    </unit>
+    <unit id="APOzvvU" name="error.import.archive_too_large">
+      <segment state="translated">
+        <source>The archive contains more data than allowed</source>
+        <target>L'archive contient plus de données qu'autorisé</target>
+      </segment>
+    </unit>
+    <unit id="Bw1fC95" name="breadcrumb.import_mapping">
+      <segment state="translated">
+        <source>Mapping</source>
+        <target>Mapping</target>
+      </segment>
+    </unit>
+    <unit id="UfayUHA" name="title.import_mapping">
+      <segment state="translated">
+        <source>Mapping</source>
+        <target>Mapping</target>
+      </segment>
+    </unit>
+    <unit id="DXHcj6L" name="label.csv_column">
+      <segment state="translated">
+        <source>CSV column</source>
+        <target>Colonne CSV</target>
+      </segment>
+    </unit>
+    <unit id="uCqmRsl" name="label.create_corresponding_tags">
+      <segment state="translated">
+        <source>Create corresponding tags</source>
+        <target>Créer les tags correspondants</target>
+      </segment>
+    </unit>
+    <unit id="I7bXTNs" name="btn.add_mapping">
+      <segment state="translated">
+        <source>Add an extra field mapping</source>
+        <target>Ajouter un mapping de champ supplémentaire</target>
+      </segment>
+    </unit>
+    <unit id="CMx8YJG" name="btn.preview">
+      <segment state="translated">
+        <source>Preview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
+    <unit id="SEL8F3E" name="breadcrumb.import_preview">
+      <segment state="translated">
+        <source>Preview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
+    <unit id="YBB235N" name="title.import_preview">
+      <segment state="translated">
+        <source>Preview</source>
+        <target>Aperçu</target>
+      </segment>
+    </unit>
+    <unit id="jD3L17U" name="btn.back_to_mapping">
+      <segment state="translated">
+        <source>Back to mapping</source>
+        <target>Retour au mapping</target>
+      </segment>
+    </unit>
+    <unit id="WhL0AEX" name="message.import_has_errors">
+      <segment state="translated">
+        <source>Some values are invalid. Fix the CSV file or the mapping, then try again.</source>
+        <target>Certaines valeurs ne sont pas valides. Corriger le fichier CSV ou le mapping, puis réessayer.</target>
+      </segment>
+    </unit>
+    <unit id="Y98nSFl" name="label.line">
+      <segment state="translated">
+        <source>Line</source>
+        <target>Ligne</target>
+      </segment>
+    </unit>
     <unit id="X15rkl3" name="label.error">
       <segment state="translated">
         <source>Error</source>
         <target>Erreur</target>
+      </segment>
+    </unit>
+    <unit id="hyG10TG" name="error.import.empty_name">
+      <segment state="translated">
+        <source>The name is empty</source>
+        <target>Le nom est vide.</target>
+      </segment>
+    </unit>
+    <unit id="baJ2xlr" name="error.import.invalid_number">
+      <segment state="translated">
+        <source>Expected a number</source>
+        <target>Un nombre est attendu</target>
+      </segment>
+    </unit>
+    <unit id="16fmqJX" name="error.import.invalid_rating">
+      <segment state="translated">
+        <source>Expected a whole number between 1 and 10</source>
+        <target>Un nombre entier entre 1 et 10 est attendu</target>
+      </segment>
+    </unit>
+    <unit id="F80QRXK" name="error.import.invalid_checkbox">
+      <segment state="translated">
+        <source>Expected 0 or 1</source>
+        <target>0 ou 1 attendu</target>
+      </segment>
+    </unit>
+    <unit id="Z2DgPrW" name="error.import.invalid_country">
+      <segment state="translated">
+        <source>Expected a 2-letter country code (US, FR...)</source>
+        <target>Code pays à 2 lettres attendu (US, FR...)</target>
+      </segment>
+    </unit>
+    <unit id="0Imwg0W" name="error.import.invalid_date">
+      <segment state="translated">
+        <source>Expected a date in the YYYY-MM-DD format</source>
+        <target>Date attendue au format AAAA-MM-JJ</target>
+      </segment>
+    </unit>
+    <unit id="QnxwN2p" name="error.import.invalid_price">
+      <segment state="translated">
+        <source>Expected an amount followed by a currency code (4.5 EUR)</source>
+        <target>Montant attendu suivi d'un code de devise (4.5 EUR)</target>
+      </segment>
+    </unit>
+    <unit id="WXPQ93K" name="label.already_in_collection">
+      <segment state="translated">
+        <source>already in the collection</source>
+        <target>déjà dans la collection</target>
+      </segment>
+    </unit>
+    <unit id="MVVGGI0" name="error.import.invalid_quantity">
+      <segment state="translated">
+        <source>Expected a whole number greater than 0</source>
+        <target>Un nombre entier supérieur à 0 est attendu</target>
+      </segment>
+    </unit>
+    <unit id="0Rj72uO" name="error.import.invalid_visibility">
+      <segment state="translated">
+        <source>Expected public, internal or private</source>
+        <target>"public", "internal" ou "private" attendu</target>
+      </segment>
+    </unit>
+    <unit id="tGtVVcL" name="error.import.no_rows_selected">
+      <segment state="translated">
+        <source>Select at least one item to import</source>
+        <target>Sélectionnez au moins un objet à importer</target>
       </segment>
     </unit>
   </file>

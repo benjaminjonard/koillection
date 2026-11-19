@@ -199,5 +199,17 @@
         <target>Valeur de l'élément</target>
       </segment>
     </unit>
+    <unit id="agUEhZP" name="label.checkbox.format">
+      <segment state="translated">
+        <source>0 or 1</source>
+        <target>0 ou 1</target>
+      </segment>
+    </unit>
+    <unit id="DC3MB8m" name="label.expected_format">
+      <segment state="translated">
+        <source>Expected format :</source>
+        <target>Format attendu :</target>
+      </segment>
+    </unit>
   </file>
 </xliff>
