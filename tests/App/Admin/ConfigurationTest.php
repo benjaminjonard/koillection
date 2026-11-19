@@ -57,4 +57,23 @@ class ConfigurationTest extends AppTestCase
         $this->assertResponseIsSuccessful();
         ConfigurationFactory::assert()->exists(['label' => ConfigurationEnum::THUMBNAILS_FORMAT, 'value' => ConfigurationEnum::THUMBNAILS_FORMAT_WEBP]);
     }
+
+    public function test_admin_can_disable_features_on_instance(): void
+    {
+        // Arrange
+        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]]);
+        $this->client->loginUser($admin);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/admin/configuration');
+        $this->client->submitForm('submit', [
+            'configuration_admin[enableScraping][value]' => false,
+            'configuration_admin[enableImport][value]' => false,
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        ConfigurationFactory::assert()->exists(['label' => ConfigurationEnum::ENABLE_SCRAPING, 'value' => '0']);
+        ConfigurationFactory::assert()->exists(['label' => ConfigurationEnum::ENABLE_IMPORT, 'value' => '0']);
+    }
 }

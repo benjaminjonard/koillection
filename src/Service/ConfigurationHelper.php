@@ -29,8 +29,10 @@ class ConfigurationHelper
         $enableMetrics = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::ENABLE_METRICS]);
         $appName = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::APP_NAME]);
         $appLogo = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::APP_LOGO]);
+        $enableScraping = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::ENABLE_SCRAPING]);
+        $enableImport = $this->configurationRepository->findOneBy(['label' => ConfigurationEnum::ENABLE_IMPORT]);
 
-        return new ConfigurationAdmin($thumbnailsFormat, $customCssLightTheme, $customCssDarkTheme, $enableMetrics, $appName, $appLogo);
+        return new ConfigurationAdmin($thumbnailsFormat, $customCssLightTheme, $customCssDarkTheme, $enableMetrics, $appName, $appLogo, $enableScraping, $enableImport);
     }
 
     public function getValue(string $label): ?string

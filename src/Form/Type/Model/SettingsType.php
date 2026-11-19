@@ -9,6 +9,7 @@ use App\Enum\CurrencyEnum;
 use App\Enum\DateFormatEnum;
 use App\Enum\ThemeEnum;
 use App\Enum\VisibilityEnum;
+use App\Service\FeatureChecker;
 use App\Service\LocaleHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -20,7 +21,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SettingsType extends AbstractType
 {
     public function __construct(
-        private readonly LocaleHelper $localeHelper
+        private readonly LocaleHelper $localeHelper,
+        private readonly FeatureChecker $featureChecker
     ) {
     }
 
@@ -95,9 +97,11 @@ class SettingsType extends AbstractType
             ])
             ->add('scrapingFeatureEnabled', CheckboxType::class, [
                 'required' => false,
+                'disabled' => !$this->featureChecker->isFeatureEnabledOnInstance('scraping'),
             ])
             ->add('importFeatureEnabled', CheckboxType::class, [
                 'required' => false,
+                'disabled' => !$this->featureChecker->isFeatureEnabledOnInstance('import'),
             ])
         ;
     }

@@ -36,6 +36,12 @@ class ConfigurationAdminType extends AbstractType
             ->add('enableMetrics', ConfigurationCheckboxType::class, [
                 'required' => false,
             ])
+            ->add('enableScraping', ConfigurationCheckboxType::class, [
+                'required' => false,
+            ])
+            ->add('enableImport', ConfigurationCheckboxType::class, [
+                'required' => false,
+            ])
             ->add('appName', ConfigurationTextType::class, [
                 'required' => false,
             ])

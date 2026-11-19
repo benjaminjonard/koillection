@@ -23,7 +23,9 @@
     <div class="content-block">
         {{ include('/App/Admin/_tabs.html.twig', {current: 'configuration'}) }}
 
-        <h2 class="header">{{ 'title.edit_configuration'|trans }}</h2>
+        <p class="center-align">{{ 'message.configuration_applies_to_all_users'|trans }}</p>
+
+        <h3 class="header">{{ 'title.edit_configuration'|trans }}</h3>
 
         <div class="form">
             {{ form_start(form) }}
@@ -34,6 +36,18 @@
 
                     <div class="s12 l5 xl4">
                         {{ form_row(form.enableMetrics.value, { 'label' : 'label.enable_metrics' }) }}
+                    </div>
+                </div>
+
+                <h3 class="header">{{ 'title.features'|trans }}</h3>
+
+                <div class="row">
+                    <div class="s12 l5 offset-l1 xl4 offset-xl2">
+                        {{ form_row(form.enableScraping.value, { 'label' : 'label.enable_scraping' }) }}
+                    </div>
+
+                    <div class="s12 l5 xl4">
+                        {{ form_row(form.enableImport.value, { 'label' : 'label.enable_import' }) }}
                     </div>
                 </div>
 

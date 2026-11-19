@@ -18,6 +18,15 @@ class ConfigurationEnum
 
     public const string APP_LOGO = 'app-logo';
 
+    public const string ENABLE_SCRAPING = 'enable-scraping';
+
+    public const string ENABLE_IMPORT = 'enable-import';
+
+    public const array INSTANCE_FEATURES = [
+        'scraping' => self::ENABLE_SCRAPING,
+        'import' => self::ENABLE_IMPORT,
+    ];
+
     public const string DEFAULT_APP_NAME = 'Koillection';
 
     public const array APP_LOGO_SIZES = [16, 32, 48, 72, 96, 128, 144, 168, 192, 256, 512];
