@@ -1,0 +1,53 @@
+name: Rebuild latest release when the base image is updated
+on:
+  schedule:
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+
+jobs:
+  check_base_image:
+    name: Check base image
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      needs_rebuild: ${{ steps.compare.outputs.needs_rebuild }}
+    steps:
+      - name: Get latest release
+        id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "version=$(gh release view --repo ${{ github.repository }} --json tagName --jq .tagName)" >> "$GITHUB_OUTPUT"
+
+      - name: Check out the repo
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.release.outputs.version }}
+
+      - name: Compare base image digests
+        id: compare
+        run: |
+          name=$(grep -m1 '^FROM' Dockerfile | awk '{print $2}')
+          current=$(docker buildx imagetools inspect "$name" --format '{{.Manifest.Digest}}')
+          used=$(docker buildx imagetools inspect docker.io/koillection/koillection:${{ steps.release.outputs.version }} --format '{{index (index .Image "linux/amd64").Config.Labels "org.opencontainers.image.base.digest"}}')
+          echo "Base image $name: current $current, used $used"
+          if [ "$current" != "$used" ]; then
+            echo "needs_rebuild=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "needs_rebuild=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  ci:
+    name: CI
+    needs: [ check_base_image ]
+    if: needs.check_base_image.outputs.needs_rebuild == 'true'
+    uses: ./.github/workflows/ci.yml
+    with:
+      ref: ${{ needs.check_base_image.outputs.version }}
+
+  rebuild:
+    name: Rebuild release image
+    needs: [ check_base_image, ci ]
+    uses: ./.github/workflows/docker-release.yml
+    with:
+      version: ${{ needs.check_base_image.outputs.version }}
+    secrets: inherit
