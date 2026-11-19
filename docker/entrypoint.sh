@@ -57,6 +57,7 @@ if [ "$(id -u)" -eq 0 ]; then
 	find /uploads \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod ug+w,ugo+rX \{\} \;
 	mkdir -p /app/public/var/log /app/public/config/jwt
 	chown -R "$USER":"$USER" /app/public/var /app/public/config/jwt /app/public/.env.local /data /config
+	chown "$USER" /dev/stdout /dev/stderr
 else
 	echo "**** 4/9 - Running as UID $(id -u), skipping user creation ****"
 	echo "**** 5/9 - Running as UID $(id -u), skipping permissions ****"
