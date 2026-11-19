@@ -31,17 +31,6 @@ See the <a href="https://github.com/koillection/koillection/wiki/Updating">Updat
 ## Scraping
 See the <a href="https://github.com/koillection/koillection/wiki/Scraping">Scraping page</a> in the wiki
 
-## Demo
-
-Gitpod will run a new and temporary instance for you.
-
-When Gitpod has finished loading, select :
-
-    More actions -> Open in browser
-
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/koillection/koillection-gitpod)
-
 ## Screenshots
 
 <p align="center">
