@@ -1,16 +1,28 @@
-name: Koillection CI
+name: CI
 on:
   workflow_dispatch:
   push:
   release:
+  workflow_call:
+    inputs:
+      ref:
+        type: string
+        required: true
 
 jobs:
   build_docker_ci_container:
-    name: Build Docker CI container
-    runs-on: ubuntu-latest
+    name: Build Docker CI container for ${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      matrix:
+        include:
+          - { arch: amd64, runner: ubuntu-latest }
+          - { arch: arm64, runner: ubuntu-24.04-arm }
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
@@ -26,24 +38,81 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: ci-container
+          name: ci-container-${{ matrix.arch }}
           path: /tmp/ci-container.tar
 
   remove_docker_ci_container:
     name: Remove Docker CI container
     if: always()
     runs-on: ubuntu-latest
-    needs: [ build_docker_ci_container, phpunit_mysql, phpunit_mariadb, phpunit_postgres, doctrine_schema_validator ]
+    needs: [ build_docker_ci_container, smoke_test, phpunit_mysql, phpunit_mariadb, phpunit_postgres, doctrine_schema_validator ]
     steps:
       - uses: geekyeggo/delete-artifact@v6
         with:
-          name: ci-container
+          name: |
+            ci-container-amd64
+            ci-container-arm64
+
+  smoke_test:
+    name: Smoke test on ${{ matrix.arch }}
+    runs-on: ${{ matrix.runner }}
+    needs: [ build_docker_ci_container ]
+    strategy:
+      matrix:
+        include:
+          - { arch: amd64, runner: ubuntu-latest }
+          - { arch: arm64, runner: ubuntu-24.04-arm }
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: root
+          POSTGRES_DB: koillection
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: ci-container-${{ matrix.arch }}
+          path: /tmp
+
+      - name: Load image
+        run: docker load --input /tmp/ci-container.tar
+
+      - name: Start container
+        run: |
+          docker run -d --name koillection \
+            --add-host=host.docker.internal:host-gateway \
+            -p 8080:80 \
+            -e DB_DRIVER=pdo_pgsql \
+            -e DB_NAME=koillection \
+            -e DB_HOST=host.docker.internal \
+            -e DB_PORT=5432 \
+            -e DB_USER=postgres \
+            -e DB_PASSWORD=root \
+            -e DB_VERSION=18 \
+            ci-image
+
+      - name: Check that the application responds
+        run: |
+          for i in $(seq 1 60); do
+            if curl -fsSL -o /dev/null http://localhost:8080/; then
+              exit 0
+            fi
+            sleep 5
+          done
+          docker logs koillection
+          exit 1
 
   security_checker:
     name: Security checker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref }}
       - uses: actions/cache@v6
         id: cache-db
         with:
@@ -59,7 +128,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
 
       - name: Load image
@@ -91,7 +160,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
           
       - name: Load image
@@ -142,7 +211,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
 
       - name: Load image
@@ -190,7 +259,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v8
         with:
-          name: ci-container
+          name: ci-container-amd64
           path: /tmp
 
       - name: Load image
