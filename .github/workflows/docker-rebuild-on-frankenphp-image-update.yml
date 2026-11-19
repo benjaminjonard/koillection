@@ -1,4 +1,4 @@
-name: Rebuild latest release when the base image is updated
+name: Docker rebuild on FrankenPHP image update
 on:
   schedule:
     - cron: "0 4 * * *"

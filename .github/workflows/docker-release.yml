@@ -1,9 +1,9 @@
-name: Build release image using for Docker Hub
+name: Build release image for Docker Hub
 on:
   workflow_dispatch:
     inputs:
       version:
-        type: string
+        description: 'Git tag / version to build (e.g. 1.4.1)'
         required: true
   workflow_call:
     inputs:
@@ -13,9 +13,12 @@ on:
   release:
     types: [published]
 
+env:
+  VERSION: ${{ github.event.release.tag_name || inputs.version }}
+
 jobs:
   push_release_image:
-    name: Build release image using for Docker Hub
+    name: Build release image for Docker Hub
     runs-on: ubuntu-latest
 
     steps:
@@ -23,7 +26,7 @@ jobs:
         uses: actions/checkout@v7
         with:
           repository: benjaminjonard/koillection
-          ref: ${{ inputs.version || github.event.release.tag_name }}
+          ref: ${{ env.VERSION }}
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get base image digest
@@ -50,7 +53,7 @@ jobs:
         with:
           file: Dockerfile
           push: true
-          tags: docker.io/koillection/koillection,docker.io/koillection/koillection:latest,docker.io/koillection/koillection:${{ inputs.version || github.event.release.tag_name }}
+          tags: docker.io/koillection/koillection,docker.io/koillection/koillection:latest,docker.io/koillection/koillection:${{ env.VERSION }}
           platforms: linux/amd64,linux/arm64
           labels: |
             org.opencontainers.image.base.name=${{ steps.base_image.outputs.name }}
