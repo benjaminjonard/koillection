@@ -3451,6 +3451,12 @@
         <target>正在抓取</target>
       </segment>
     </unit>
+    <unit id="pQ7vXn2" name="label.import_feature_enabled">
+      <segment state="translated">
+        <source>Import</source>
+        <target>导入</target>
+      </segment>
+    </unit>
     <unit id="zrNqfUb" name="label.scrap_name">
       <segment state="translated">
         <source>Scrape name</source>
