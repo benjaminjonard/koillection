@@ -12,8 +12,6 @@ class ConfigurationAdmin
 {
     #[Assert\Image(
         mimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
-        minWidth: 512,
-        minHeight: 512,
         allowLandscape: false,
         allowPortrait: false
     )]

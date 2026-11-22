@@ -275,7 +275,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
             return $this;
         }
 
-        if (\in_array($parent, $this->getChildrenRecursively())) {
+        if (\in_array($parent, $this->getChildrenRecursively(), true)) {
             $this->hasParentEqualToOneOfItsChildren = true;
 
             return $this;

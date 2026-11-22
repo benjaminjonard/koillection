@@ -3237,8 +3237,8 @@
     </unit>
     <unit id="nCc714I" name="message.app_logo_format">
       <segment state="translated">
-        <source>Square PNG, JPEG or WebP, at least 512×512 px.</source>
-        <target>Square PNG, JPEG or WebP, at least 512×512 px.</target>
+        <source>Square PNG, JPEG or WebP, recommended 512×512 px or more.</source>
+        <target>Square PNG, JPEG or WebP, recommended 512×512 px or more.</target>
       </segment>
     </unit>
     <unit id="Eyser7b" name="message.app_logo_usage">

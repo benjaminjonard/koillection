@@ -2,11 +2,11 @@
 	{$CADDY_GLOBAL_OPTIONS}
 
 	frankenphp {
-		num_threads {$FRANKENPHP_THREADS_NUMBER:2}
+		num_threads {$FRANKENPHP_THREADS_NUMBER:4}
 
 		worker {
 			file /app/public/public/index.php
-			num {$FRANKENPHP_WORKERS_NUMBER:1}
+			num {$FRANKENPHP_WORKERS_NUMBER:2}
 		}
 
 		{$FRANKENPHP_CONFIG}

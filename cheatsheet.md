@@ -30,6 +30,3 @@ Then
 
 ###### PHP CS fixer
 - `./vendor/bin/php-cs-fixer fix`
-
-###### Rector
-- `./vendor/bin/rector --dry-run`

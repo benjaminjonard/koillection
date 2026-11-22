@@ -1,4 +1,4 @@
-FROM dunglas/frankenphp:php8.5 AS koillection-base
+FROM dunglas/frankenphp:php8.6 AS koillection-base
 
 # Environment variables
 ENV APP_ENV=prod
@@ -30,7 +30,7 @@ RUN set -eux ; \
     openssl \
     supervisor ; \
     # Install PHP extensions \
-    install-php-extensions opcache pdo_pgsql pdo_mysql intl gd zip apcu curl sockets ; \
+    install-php-extensions opcache pdo_pgsql pdo_mysql intl gd zip curl sockets mbstring ; \
     #Install composer dependencies \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer ; \
     cd /app/public ; \

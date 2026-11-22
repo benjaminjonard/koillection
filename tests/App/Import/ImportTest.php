@@ -255,7 +255,7 @@ class ImportTest extends AppTestCase
         $user = UserFactory::createOne();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
-        $archive = $this->createArchive(['covers/frieren.png' => $this->createPng(10, 10)]);
+        $archive = $this->createArchive(['covers/frieren.png' => $this->createFileContent('png', 10, 10)]);
 
         $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,covers/frieren.png\n", 0, 1, [], [], $archive);
         $imagePath = $this->client->getRequest()->getSession()->get('import_' . $importId)->getArchiveEntries()['covers/frieren.png']['path'];
@@ -283,7 +283,7 @@ class ImportTest extends AppTestCase
         $user = UserFactory::createOne();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
-        $archive = $this->createArchive(['frieren.png' => $this->createPng(10, 10)]);
+        $archive = $this->createArchive(['frieren.png' => $this->createFileContent('png', 10, 10)]);
 
         $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,frieren.png\nFrieren #2,frieren.png\n", 0, 1, [], [], $archive);
         $this->executeImport($collection, $importId);
@@ -301,13 +301,13 @@ class ImportTest extends AppTestCase
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
         $archive = $this->createArchive([
-            'frieren.png' => $this->createPng(10, 10),
+            'frieren.webp' => $this->createFileContent('webp', 10, 10),
             'script.png' => '<?php echo "Frieren";',
-            'huge.png' => $this->createPng(8001, 1),
+            'huge.png' => $this->createFileContent('png', 8001, 1),
             'notes.txt' => 'Frieren',
         ]);
 
-        $importId = $this->uploadAndMap($collection, "name,image\nA,missing.png\nB,../frieren.png\nC,/etc/hostname\nD,script.png\nE,huge.png\nF,notes.txt\n", 0, 1, [], [], $archive);
+        $importId = $this->uploadAndMap($collection, "name,image\nA,missing.png\nB,../frieren.webp\nC,/etc/hostname\nD,script.png\nE,huge.png\nF,notes.txt\n", 0, 1, [], [], $archive);
         $crawler = $this->client->followRedirect();
 
         $errors = $crawler->filter('.import-errors-table tbody tr td:last-child')->each(static fn ($td): string => $td->text());
@@ -356,7 +356,7 @@ class ImportTest extends AppTestCase
         $user = UserFactory::createOne();
         $this->client->loginUser($user);
         $collection = CollectionFactory::createOne(['owner' => $user]);
-        $archive = $this->createArchive(['frieren.png' => $this->createPng(10, 10)]);
+        $archive = $this->createArchive(['frieren.png' => $this->createFileContent('png', 10, 10)]);
 
         $importId = $this->uploadAndMap($collection, "name,image\nFrieren #1,frieren.png\n", 0, 1, [], [], $archive);
         $this->client->request(Request::METHOD_GET, '/collections/' . $collection->getId() . '/import/' . $importId . '/image?name=../frieren.png');
@@ -650,15 +650,6 @@ class ImportTest extends AppTestCase
         $zip->close();
 
         return $path;
-    }
-
-    private function createPng(int $width, int $height): string
-    {
-        $image = imagecreatetruecolor($width, $height);
-        ob_start();
-        imagepng($image);
-
-        return ob_get_clean();
     }
 
     private function mapping(int $columnIndex, string $type, string $label, int $position, bool $createTags = false): array

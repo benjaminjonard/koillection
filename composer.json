@@ -7,7 +7,7 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
-        "php": ">=8.5",
+        "php": ">=8.6",
         "ext-ctype": "*",
         "ext-fileinfo": "*",
         "ext-gd": "*",
@@ -83,7 +83,6 @@
         "justinrainbow/json-schema": "6.14.0",
         "phpunit/php-code-coverage": "14.5.2",
         "phpunit/phpunit": "13.4.7",
-        "rector/rector": "2.8.5",
         "symfony/maker-bundle": "1.68.0",
         "symfony/stopwatch": "8.1.0",
         "symfony/var-dumper": "8.1.10",

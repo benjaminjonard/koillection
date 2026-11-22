@@ -33,22 +33,13 @@ class JsonToTagTransformer implements DataTransformerInterface
         foreach (json_decode($json) as $raw) {
             $label = trim($raw);
 
-            if ('' === $label) {
+            if ('' === $label || isset($tags[$label])) {
                 continue;
             }
 
-            $tag = $this->tagRepository->findOneBy(['label' => $label]);
-
-            if ($tag === null) {
-                $tag = new Tag();
-                $tag->setLabel($label);
-            }
-
-            if (!\in_array($tag, $tags, false)) {
-                $tags[] = $tag;
-            }
+            $tags[$label] = $this->tagRepository->findOneBy(['label' => $label]) ?? new Tag()->setLabel($label);
         }
 
-        return $tags;
+        return array_values($tags);
     }
 }

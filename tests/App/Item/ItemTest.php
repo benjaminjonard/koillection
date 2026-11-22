@@ -129,7 +129,7 @@ class ItemTest extends AppTestCase
         $this->assertSame('Lent :', $crawler->filter('.datum-row')->eq(10)->text());
         $this->assertCount(1, $crawler->filter('.datum-row')->eq(10)->filter('.fa-close.font-red'));
 
-        $this->assertSame("File : {$filename} (104 B)", $crawler->filter('.datum-row')->eq(11)->text());
+        $this->assertSame("File : {$filename} (7 B)", $crawler->filter('.datum-row')->eq(11)->text());
         $this->assertFileExists($crawler->filter('.datum-row')->eq(11)->filter('a')->attr('href'));
 
         $this->assertSame('List : Test1 Test2', $crawler->filter('.datum-row')->eq(12)->text());
@@ -255,6 +255,29 @@ class ItemTest extends AppTestCase
         $this->assertFileExists(ItemFactory::first()->getImage());
         TagFactory::assert()->exists(['label' => 'Manga', 'owner' => $user->getId()]);
         TagFactory::assert()->exists(['label' => 'Frieren', 'owner' => $user->getId()]);
+    }
+
+    public function test_duplicated_new_tag_is_created_once(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/items/add?collection=' . $collection->getId());
+        $this->client->submitForm('Submit', [
+            'item[name]' => 'Frieren #1',
+            'item[collection]' => $collection->getId(),
+            'item[quantity]' => 1,
+            'item[visibility]' => VisibilityEnum::VISIBILITY_PRIVATE,
+            'item[tags]' => json_encode(['Manga', ' Manga ', 'Manga'])
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        TagFactory::assert()->count(1, ['label' => 'Manga', 'owner' => $user->getId()]);
+        $this->assertCount(1, ItemFactory::first()->getTags());
     }
 
     public function test_uploaded_image_overrides_scraped_image(): void

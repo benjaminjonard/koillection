@@ -41,7 +41,7 @@ class JsonToItemTransformer implements DataTransformerInterface
         foreach (json_decode($json, true) as $id) {
             $item = $this->itemRepository->find($id);
 
-            if (!\in_array($item, $items, false)) {
+            if (!\in_array($item, $items, true)) {
                 $items[] = $item;
             }
         }

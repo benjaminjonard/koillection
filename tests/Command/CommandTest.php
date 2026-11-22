@@ -10,17 +10,17 @@ use App\Tests\Factory\DatumFactory;
 use App\Tests\Factory\ItemFactory;
 use App\Tests\Factory\LogFactory;
 use App\Tests\Factory\UserFactory;
+use App\Tests\FileTrait;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
-use Symfony\Component\Filesystem\Filesystem;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
 
 class CommandTest extends KernelTestCase
 {
     use Factories;
+    use FileTrait;
     use ResetDatabase;
 
     public function test_command_clean_up_is_successful(): void
@@ -91,17 +91,10 @@ class CommandTest extends KernelTestCase
         $item = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
         $datum = DatumFactory::createOne(['owner' => $user, 'item' => $item, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Japanese title', 'value' => '葬送のフリーレン']);
 
-        $filesystem = new Filesystem();
-        $uniqId = uniqid();
-
-        $filesystem->copy(__DIR__ . '/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png", null, null, true);
-        $item->setFile($uploadedFile);
+        $item->setFile($this->createFile('png'));
         \Zenstruck\Foundry\Persistence\save($item);
 
-        $filesystem->copy(__DIR__ . '/../../assets/fixtures/nyancat.png', "/tmp/{$uniqId}.png");
-        $uploadedFile = new UploadedFile("/tmp/{$uniqId}.png", "{$uniqId}.png", null, null, true);
-        $datum->setFileImage($uploadedFile);
+        $datum->setFileImage($this->createFile('png'));
         \Zenstruck\Foundry\Persistence\save($datum);
 
         // Act

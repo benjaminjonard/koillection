@@ -11,7 +11,6 @@ use App\Tests\AppTestCase;
 use App\Tests\Factory\ConfigurationFactory;
 use App\Tests\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Zenstruck\Foundry\Test\Factories;
 use Zenstruck\Foundry\Test\ResetDatabase;
@@ -103,7 +102,7 @@ class BrandingTest extends AppTestCase
         // Act
         $this->client->request(Request::METHOD_GET, '/admin/configuration');
         $crawler = $this->client->submitForm('submit', [
-            'configuration_admin[appLogoFile]' => $this->createSquareImage(600),
+            'configuration_admin[appLogoFile]' => $this->createFile('png', 600, 600),
         ]);
 
         // Assert
@@ -142,23 +141,6 @@ class BrandingTest extends AppTestCase
         ConfigurationFactory::assert()->exists(['label' => ConfigurationEnum::APP_LOGO, 'value' => null]);
     }
 
-    public function test_app_logo_must_be_at_least_512_pixels(): void
-    {
-        // Arrange
-        $admin = UserFactory::createOne(['roles' => [RoleEnum::ROLE_ADMIN]]);
-        $this->client->loginUser($admin);
-
-        // Act
-        $this->client->request(Request::METHOD_GET, '/admin/configuration');
-        $this->client->submitForm('submit', [
-            'configuration_admin[appLogoFile]' => $this->createSquareImage(256),
-        ]);
-
-        // Assert
-        $this->assertResponseStatusCodeSame(422);
-        ConfigurationFactory::assert()->exists(['label' => ConfigurationEnum::APP_LOGO, 'value' => null]);
-    }
-
     public function test_admin_can_delete_app_logo(): void
     {
         // Arrange
@@ -166,7 +148,7 @@ class BrandingTest extends AppTestCase
         $this->client->loginUser($admin);
         $this->client->request(Request::METHOD_GET, '/admin/configuration');
         $this->client->submitForm('submit', [
-            'configuration_admin[appLogoFile]' => $this->createSquareImage(600),
+            'configuration_admin[appLogoFile]' => $this->createFile('png', 600, 600),
         ]);
         $paths = json_decode((string) ConfigurationFactory::repository()->findOneBy(['label' => ConfigurationEnum::APP_LOGO])->getValue(), true);
 
@@ -187,16 +169,5 @@ class BrandingTest extends AppTestCase
         $entityManager = static::getContainer()->get('doctrine')->getManager();
         $entityManager->getRepository(Configuration::class)->findOneBy(['label' => $label])->setValue($value);
         $entityManager->flush();
-    }
-
-    private function createSquareImage(int $size): UploadedFile
-    {
-        $path = '/tmp/' . uniqid() . '.png';
-        $image = imagecreatetruecolor($size, $size);
-        imagefill($image, 0, 0, imagecolorallocate($image, 200, 40, 40));
-        imagefilledellipse($image, intdiv($size, 2), intdiv($size, 2), intdiv($size, 2), intdiv($size, 2), imagecolorallocate($image, 250, 220, 0));
-        imagepng($image, $path);
-
-        return new UploadedFile($path, 'logo.png', 'image/png', test: true);
     }
 }

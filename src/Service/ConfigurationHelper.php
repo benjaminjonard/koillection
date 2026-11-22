@@ -7,18 +7,19 @@ namespace App\Service;
 use App\Enum\ConfigurationEnum;
 use App\Model\ConfigurationAdmin;
 use App\Repository\ConfigurationRepository;
-use Symfony\Component\Cache\Adapter\ApcuAdapter;
+use Symfony\Component\Cache\Adapter\AdapterInterface;
+use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
 class ConfigurationHelper
 {
     private const string PREFIX = 'configuration_';
 
-    private readonly ApcuAdapter $cache;
-
-    public function __construct(private readonly ConfigurationRepository $configurationRepository)
-    {
-        $this->cache = new ApcuAdapter();
+    public function __construct(
+        private readonly ConfigurationRepository $configurationRepository,
+        #[Autowire(service: 'cache.app')] private readonly AdapterInterface&CacheInterface $cache
+    ) {
     }
 
     public function getAdminConfiguration(): ConfigurationAdmin

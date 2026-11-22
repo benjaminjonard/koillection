@@ -21,6 +21,7 @@ class LatestReleaseChecker implements ResetInterface
         '1.6' => '8.4',
         '1.7' => '8.4', // Security release, potential BC
         '1.8' => '8.5',
+        '1.9' => '8.6',
     ];
 
     private readonly ?CurlHttpClient $client;
