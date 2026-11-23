@@ -12,9 +12,10 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Contracts\Service\ResetInterface;
 
 #[AsEventListener(event: 'kernel.request')]
-final readonly class FilterListener
+final readonly class FilterListener implements ResetInterface
 {
     public function __construct(
         private ManagerRegistry $managerRegistry,
@@ -66,5 +67,14 @@ final readonly class FilterListener
         }
 
         $this->contextHandler->setContextUser($user);
+    }
+
+    #[\Override]
+    public function reset(): void
+    {
+        $filters = $this->managerRegistry->getManager()->getFilters();
+        foreach (array_keys($filters->getEnabledFilters()) as $name) {
+            $filters->disable($name);
+        }
     }
 }
