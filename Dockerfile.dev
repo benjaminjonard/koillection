@@ -44,8 +44,6 @@ RUN apt-get update && \
 # Add PHP config files
     mkdir /run/php
 
-VOLUME /uploads
-
 EXPOSE 80
 EXPOSE 443
 
