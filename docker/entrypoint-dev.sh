@@ -14,17 +14,7 @@ if [ -n "$MISSING_VARS" ]; then
 	exit 1
 fi
 
-echo "**** 1/10 - Make sure /uploads folders exist ****"
-[ ! -f /uploads ] && \
-	mkdir -p /uploads
-
-echo "**** 2/10 - Create the symbolic link for the /uploads folder ****"
-[ ! -L /app/public/public/uploads ] && \
-	cp -r /app/public/public/uploads/. /uploads && \
-	rm -r /app/public/public/uploads && \
-	ln -s /uploads /app/public/public/uploads
-
-echo "**** 3/10 - Setting env variables ****"
+echo "**** 1/8 - Setting env variables ****"
 rm -rf /app/public/.env.local
 touch /app/public/.env.local
 
@@ -56,19 +46,19 @@ echo "post_max_size=${UPLOAD_MAX_FILESIZE:-'100M'}" >> /usr/local/etc/php/conf.d
 
 echo "opcache.enable=0" >> /usr/local/etc/php/conf.d/php.ini
 
-echo "**** 4/10 - Migrate the database ****"
+echo "**** 2/8 - Migrate the database ****"
 cd /app/public && \
 php bin/console doctrine:migration:migrate --no-interaction --allow-no-migration
 
-echo "**** 5/10 - Refresh cached values ****"
+echo "**** 3/8 - Refresh cached values ****"
 cd /app/public && \
 php bin/console app:refresh-cached-values
 
-echo "**** 6/10 - Create API keys ****"
+echo "**** 4/8 - Create API keys ****"
 cd /app/public && \
 php bin/console lexik:jwt:generate-keypair --skip-if-exists
 
-echo "**** 7/10 - Create user and use PUID/PGID ****"
+echo "**** 5/8 - Create user and use PUID/PGID ****"
 PUID=${PUID:-1000}
 PGID=${PGID:-1000}
 if [ ! "$(id -u "$USER")" -eq "$PUID" ]; then usermod -o -u "$PUID" "$USER" ; fi
@@ -76,14 +66,14 @@ if [ ! "$(id -g "$USER")" -eq "$PGID" ]; then groupmod -o -g "$PGID" "$USER" ; f
 echo -e " \tUser UID :\t$(id -u "$USER")"
 echo -e " \tUser GID :\t$(id -g "$USER")"
 
-echo "**** 8/10 - Set Permissions ****" && \
-find /uploads -type d \( ! -user "$USER" -o ! -group "$USER" \) -exec chown -R "$USER":"$USER" \{\} \;
-find /uploads \( ! -user "$USER" -o ! -group "$USER" \) -exec chown "$USER":"$USER" \{\} \;
+echo "**** 6/8 - Set Permissions ****" && \
+find /app/public/public/uploads -type d \( ! -user "$USER" -o ! -group "$USER" \) -exec chown -R "$USER":"$USER" \{\} \;
+find /app/public/public/uploads \( ! -user "$USER" -o ! -group "$USER" \) -exec chown "$USER":"$USER" \{\} \;
 usermod -a -G "$USER" www-data
-find /uploads -type d \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod -R ug+w,ugo+rX \{\} \;
-find /uploads \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod ug+w,ugo+rX \{\} \;
+find /app/public/public/uploads -type d \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod -R ug+w,ugo+rX \{\} \;
+find /app/public/public/uploads \( ! -perm -ug+w -o ! -perm -ugo+rX \) -exec chmod ug+w,ugo+rX \{\} \;
 
-echo "**** 9/10 - Create symfony log files ****" && \
+echo "**** 7/8 - Create symfony log files ****" && \
 [ ! -f /app/public/var/log ] && \
 	mkdir -p /app/public/var/log
 
@@ -94,7 +84,7 @@ chown -R "$USER":"$USER" /app/public/var/log
 chown -R "$USER":"$USER" /app/public/var/log/prod.log
 chown -R "$USER":"$USER" /app/public/.env.local
 
-echo "**** 10/10 - Setup complete, starting the server and the workers. ****"
+echo "**** 8/8 - Setup complete, starting the server and the workers. ****"
 supervisord -c /app/public/docker/supervisord.conf
 exec "$@"
 

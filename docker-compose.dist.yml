@@ -25,7 +25,7 @@ services:
             - mysql
             - postgresql
         volumes:
-            - "./docker/volumes/koillection/public/uploads:/uploads"
+            - "./docker/volumes/koillection/public/uploads:/app/public/public/uploads"
             - ./:/app/public
 
     postgresql:
