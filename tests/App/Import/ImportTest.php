@@ -14,6 +14,7 @@ use App\Enum\VisibilityEnum;
 use App\Message\ProcessImportMessage;
 use App\MessageHandler\ProcessImportHandler;
 use App\Model\ImportDraft;
+use App\Service\RefreshCachedValuesQueue;
 use App\Service\TemporaryFileManager;
 use App\Tests\AppTestCase;
 use App\Tests\Factory\CollectionFactory;
@@ -525,6 +526,30 @@ class ImportTest extends AppTestCase
         $this->assertNotSame($otherTag->getId(), $item->getTags()->first()->getId());
     }
 
+    public function test_handler_refreshes_collection_counters(): void
+    {
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        static::getContainer()->get(RefreshCachedValuesQueue::class)->process();
+
+        $this->handleImport($user, $collection, "name\nFrieren #1\nFrieren #2\n", [0, 1]);
+
+        $this->assertSame(2, $this->getItemsCounter($collection));
+    }
+
+    public function test_handler_refreshes_collection_counters_after_partial_failure(): void
+    {
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        static::getContainer()->get(RefreshCachedValuesQueue::class)->process();
+
+        $rows = array_map(static fn (int $index): string => 'Frieren #' . $index, range(1, 20));
+        $rows[] = str_repeat('Frieren', 50);
+        $this->handleImport($user, $collection, "name\n" . implode("\n", $rows) . "\n", range(0, 20));
+
+        $this->assertSame(20, $this->getItemsCounter($collection));
+    }
+
     public function test_dedicated_columns_are_imported(): void
     {
         $user = UserFactory::createOne();
@@ -692,6 +717,37 @@ class ImportTest extends AppTestCase
         sort($names);
 
         return $names;
+    }
+
+    private function handleImport(User $user, Collection $collection, string $csv, array $selectedRows): void
+    {
+        $path = static::getContainer()->get(TemporaryFileManager::class)->createFilePath();
+        file_put_contents($path, $csv);
+        $draft = new ImportDraft()
+            ->setPath($path)
+            ->setFilename('import.csv')
+            ->setNameIndex(0)
+        ;
+
+        $em = static::getContainer()->get('doctrine')->getManager();
+        $import = new Import()
+            ->setCollection($em->find(Collection::class, $collection->getId()))
+            ->setOwner($em->find(User::class, $user->getId()))
+            ->setFilename('import.csv')
+            ->setTotalRows(\count($selectedRows))
+        ;
+        $em->persist($import);
+        $em->flush();
+
+        static::getContainer()->get(ProcessImportHandler::class)(new ProcessImportMessage($import->getId(), $draft, $selectedRows));
+    }
+
+    private function getItemsCounter(Collection $collection): int
+    {
+        $em = static::getContainer()->get('doctrine')->getManager();
+        $em->clear();
+
+        return $em->find(Collection::class, $collection->getId())->getCachedValues()['counters']['publicCounters']['items'];
     }
 
     private function findItems(): array
