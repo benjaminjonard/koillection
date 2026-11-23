@@ -6,6 +6,7 @@ namespace App\Tests\App\Collection;
 
 use App\Entity\Collection;
 use App\Entity\Item;
+use App\Enum\VisibilityEnum;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
@@ -208,5 +209,45 @@ class CollectionCountersTest extends AppTestCase
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1)['counters']['items']);
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2)['counters']['items']);
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel3)['counters']['items']);
+    }
+
+    public function test_change_item_visibility(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
+        $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collectionLevel2, 'owner' => $user, 'name' => 'Frieren #1']);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $item->setVisibility(VisibilityEnum::VISIBILITY_PRIVATE);
+        save($item);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1)['counters']['items']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel2)['counters']['items']);
+    }
+
+    public function test_change_child_collection_visibility(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $collectionLevel1 = CollectionFactory::createOne(['owner' => $user]);
+        $collectionLevel2 = CollectionFactory::createOne(['parent' => $collectionLevel1, 'owner' => $user]);
+        ItemFactory::createOne(['collection' => $collectionLevel2, 'owner' => $user, 'name' => 'Frieren #1']);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $collectionLevel2->setVisibility(VisibilityEnum::VISIBILITY_PRIVATE);
+        save($collectionLevel2);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1)['counters']['children']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($collectionLevel1)['counters']['items']);
     }
 }

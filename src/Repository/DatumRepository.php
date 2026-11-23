@@ -8,6 +8,8 @@ use App\Entity\Collection;
 use App\Entity\Datum;
 use App\Enum\DatumTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\ArrayParameterType;
+use Doctrine\DBAL\Platforms\PostgreSQLPlatform;
 use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -72,38 +74,35 @@ class DatumRepository extends ServiceEntityRepository
         return $qb->getQuery()->getArrayResult();
     }
 
-    public function computePricesForCollection(Collection $collection, string $visibility): array
+    public function sumPricesForCachedValues(array $collectionIds): array
     {
         $rsm = new ResultSetMapping();
+        $rsm->addScalarResult('collection_id', 'collectionId');
+        $rsm->addScalarResult('visibility', 'visibility');
         $rsm->addScalarResult('label', 'label');
         $rsm->addScalarResult('currency', 'currency');
-        $rsm->addScalarResult('value', 'value');
-        $rsm->addScalarResult('quantity', 'quantity');
+        $rsm->addScalarResult('total', 'total');
 
-        $sql = '
-            SELECT datum.label AS label, datum.currency AS currency, datum.value AS value, item.quantity AS quantity
+        [$regexOperator, $numericType] = match (true) {
+            $this->getEntityManager()->getConnection()->getDatabasePlatform() instanceof PostgreSQLPlatform => ['~', 'NUMERIC'],
+            default => ['REGEXP', 'DECIMAL(65,30)'],
+        };
+
+        $sql = "
+            SELECT item.collection_id AS collection_id, datum.final_visibility AS visibility, datum.label AS label, datum.currency AS currency,
+                SUM(CASE WHEN datum.value {$regexOperator} '^([0-9]+|[0-9]*[.][0-9]+)$' THEN CAST(datum.value AS {$numericType}) ELSE 0 END * item.quantity) AS total
             FROM koi_datum datum
-            JOIN koi_item item ON datum.item_id = item.id AND item.collection_id = :collectionId
-            WHERE datum.type = :type
-            AND datum.final_visibility = :visibility
-        ';
+            JOIN koi_item item ON datum.item_id = item.id
+            WHERE item.collection_id IN (:collectionIds)
+            AND datum.type = :type
+            GROUP BY item.collection_id, datum.final_visibility, datum.label, datum.currency
+        ";
 
-        $prices = [];
-        $results = $this->getEntityManager()->createNativeQuery($sql, $rsm)
-            ->setParameter('collectionId', $collection->getId())
+        return $this->getEntityManager()->createNativeQuery($sql, $rsm)
+            ->setParameter('collectionIds', $collectionIds, ArrayParameterType::STRING)
             ->setParameter('type', DatumTypeEnum::TYPE_PRICE)
-            ->setParameter('visibility', $visibility)
             ->getArrayResult()
         ;
-        foreach ($results as $result) {
-            if (!isset($prices[$result['label']][$result['currency']])) {
-                $prices[$result['label']][$result['currency']] = 0.0;
-            }
-
-            $prices[$result['label']][$result['currency']] += (float) $result['value'] * $result['quantity'];
-        }
-
-        return $prices;
     }
 
     public function findAllUniqueLabels()

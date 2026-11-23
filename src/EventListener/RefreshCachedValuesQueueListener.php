@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use App\Entity\Album;
-use App\Entity\Collection;
-use App\Entity\Wishlist;
 use App\Service\CachedValuesCalculator;
 use App\Service\RefreshCachedValuesQueue;
 use Doctrine\Persistence\ManagerRegistry;
@@ -49,15 +46,7 @@ final readonly class RefreshCachedValuesQueueListener
                 }
             }
 
-            foreach ($this->refreshCachedValuesQueue->getEntities() as $entity) {
-                if ($entity instanceof Album) {
-                    $this->cachedValuesCalculator->computeForAlbum($entity);
-                } elseif ($entity instanceof Collection) {
-                    $this->cachedValuesCalculator->computeForCollection($entity);
-                } elseif ($entity instanceof Wishlist) {
-                    $this->cachedValuesCalculator->computeForWishlist($entity);
-                }
-            }
+            $this->cachedValuesCalculator->compute($this->refreshCachedValuesQueue->getEntities());
 
             $this->managerRegistry->getManager()->flush();
         }

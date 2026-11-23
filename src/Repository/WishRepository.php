@@ -28,4 +28,17 @@ class WishRepository extends ServiceEntityRepository
 
         return (int) $maxPosition + 1;
     }
+
+    public function countForCachedValues(array $ids): array
+    {
+        return $this
+            ->createQueryBuilder('wish')
+            ->select('IDENTITY(wish.wishlist) AS id, wish.finalVisibility AS visibility, COUNT(wish.id) AS total')
+            ->where('wish.wishlist IN (:ids)')
+            ->groupBy('wish.wishlist, wish.finalVisibility')
+            ->setParameter('ids', $ids)
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
 }

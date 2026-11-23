@@ -22,15 +22,7 @@ class RefreshCachedValuesQueue implements ResetInterface
 
     public function process(): void
     {
-        foreach ($this->getEntities() as $entity) {
-            if ($entity instanceof Album) {
-                $this->cachedValuesCalculator->computeForAlbum($entity);
-            } elseif ($entity instanceof Collection) {
-                $this->cachedValuesCalculator->computeForCollection($entity);
-            } elseif ($entity instanceof Wishlist) {
-                $this->cachedValuesCalculator->computeForWishlist($entity);
-            }
-        }
+        $this->cachedValuesCalculator->compute($this->getEntities());
 
         $this->managerRegistry->getManager()->flush();
 

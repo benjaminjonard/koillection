@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Entity\Collection;
 use App\Entity\Datum;
+use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
@@ -235,5 +236,17 @@ class CollectionRepository extends ServiceEntityRepository
         }
 
         return $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
+    }
+
+    public function findTreeForCachedValues(User $owner): array
+    {
+        return $this
+            ->createQueryBuilder('collection')
+            ->select('collection.id AS id, IDENTITY(collection.parent) AS parentId, collection.finalVisibility AS visibility')
+            ->where('collection.owner = :owner')
+            ->setParameter('owner', $owner->getId())
+            ->getQuery()
+            ->getArrayResult()
+        ;
     }
 }

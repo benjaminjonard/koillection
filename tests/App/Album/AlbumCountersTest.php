@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\App\Album;
 
 use App\Entity\Album;
+use App\Enum\VisibilityEnum;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
@@ -71,7 +72,6 @@ class AlbumCountersTest extends AppTestCase
         PhotoFactory::createMany(3, ['album' => $albumLevel4, 'owner' => $user]);
 
         // Act
-        $user = UserFactory::createOne();
         $newParentAlbum = AlbumFactory::createOne(['owner' => $user]);
         $albumLevel3->setParent($newParentAlbum);
         \Zenstruck\Foundry\Persistence\save($albumLevel3);
@@ -207,5 +207,25 @@ class AlbumCountersTest extends AppTestCase
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1)['counters']['photos']);
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2)['counters']['photos']);
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel3)['counters']['photos']);
+    }
+
+    public function test_change_photo_visibility(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $albumLevel1 = AlbumFactory::createOne(['owner' => $user]);
+        $albumLevel2 = AlbumFactory::createOne(['parent' => $albumLevel1, 'owner' => $user]);
+        $photo = PhotoFactory::createOne(['album' => $albumLevel2, 'owner' => $user]);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $photo->setVisibility(VisibilityEnum::VISIBILITY_PRIVATE);
+        \Zenstruck\Foundry\Persistence\save($photo);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel1)['counters']['photos']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($albumLevel2)['counters']['photos']);
     }
 }

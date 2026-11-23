@@ -253,4 +253,118 @@ class CollectionPricesTest extends AppTestCase
 
         $this->assertArrayNotHasKey('Price', $this->cachedValuesGetter->getCachedValues($collection)['prices']);
     }
+
+    public function test_change_item_quantity(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Frieren #1']);
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '100', 'item' => $item, 'owner' => $user]);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $item->setQuantity(3);
+        \Zenstruck\Foundry\Persistence\save($item);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertEqualsWithDelta(300.0, $this->cachedValuesGetter->getCachedValues($collection)['prices']['Price']['EUR'], PHP_FLOAT_EPSILON);
+    }
+
+    public function test_change_price_datum_value(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Frieren #1']);
+        $datum = DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '100', 'item' => $item, 'owner' => $user]);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $datum->setValue('150');
+        \Zenstruck\Foundry\Persistence\save($datum);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertEqualsWithDelta(150.0, $this->cachedValuesGetter->getCachedValues($collection)['prices']['Price']['EUR'], PHP_FLOAT_EPSILON);
+    }
+
+    public function test_change_text_datum_does_not_refresh_cached_values(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Frieren #1']);
+        $datum = DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Author', 'value' => 'Abe Tsukasa', 'item' => $item, 'owner' => $user]);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $datum->setValue('Yamada Kanehito');
+        \Zenstruck\Foundry\Persistence\save($datum);
+
+        // Assert
+        $this->assertSame([], $this->refreshCachedValuesQueue->getEntities());
+    }
+
+    public function test_invalid_price_values_are_ignored(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Frieren #1', 'quantity' => 2]);
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '12.5', 'item' => $item, 'owner' => $user]);
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '12,50', 'item' => $item, 'owner' => $user]);
+        DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => 'abc', 'item' => $item, 'owner' => $user]);
+
+        // Act
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertEqualsWithDelta(25.0, $this->cachedValuesGetter->getCachedValues($collection)['prices']['Price']['EUR'], PHP_FLOAT_EPSILON);
+    }
+
+    public function test_rename_price_datum(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Frieren #1']);
+        $datum = DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '100', 'item' => $item, 'owner' => $user]);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $datum->setLabel('Original price');
+        \Zenstruck\Foundry\Persistence\save($datum);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertArrayNotHasKey('Price', $this->cachedValuesGetter->getCachedValues($collection)['prices']);
+        $this->assertEqualsWithDelta(100.0, $this->cachedValuesGetter->getCachedValues($collection)['prices']['Original price']['EUR'], PHP_FLOAT_EPSILON);
+    }
+
+    public function test_move_price_datum_to_another_item(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $oldCollection = CollectionFactory::createOne(['owner' => $user]);
+        $oldItem = ItemFactory::createOne(['collection' => $oldCollection, 'owner' => $user, 'name' => 'Frieren #1']);
+        $newCollection = CollectionFactory::createOne(['owner' => $user]);
+        $newItem = ItemFactory::createOne(['collection' => $newCollection, 'owner' => $user, 'name' => 'Frieren #2']);
+        $datum = DatumFactory::createOne(['type' => DatumTypeEnum::TYPE_PRICE, 'currency' => 'EUR', 'label' => 'Price', 'value' => '100', 'item' => $oldItem, 'owner' => $user]);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $datum->setItem($newItem);
+        \Zenstruck\Foundry\Persistence\save($datum);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertArrayNotHasKey('Price', $this->cachedValuesGetter->getCachedValues($oldCollection)['prices']);
+        $this->assertEqualsWithDelta(100.0, $this->cachedValuesGetter->getCachedValues($newCollection)['prices']['Price']['EUR'], PHP_FLOAT_EPSILON);
+    }
 }
