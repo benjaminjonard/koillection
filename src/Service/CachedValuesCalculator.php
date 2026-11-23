@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Album;
 use App\Entity\Collection;
+use App\Entity\User;
 use App\Entity\Wishlist;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
@@ -13,8 +14,10 @@ use App\Repository\CollectionRepository;
 use App\Repository\DatumRepository;
 use App\Repository\ItemRepository;
 use App\Repository\PhotoRepository;
+use App\Repository\UserRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -28,120 +31,201 @@ class CachedValuesCalculator
         private readonly WishRepository $wishRepository,
         private readonly AlbumRepository $albumRepository,
         private readonly PhotoRepository $photoRepository,
+        private readonly UserRepository $userRepository,
         private readonly ManagerRegistry $managerRegistry,
     ) {
     }
 
     public function refreshAllCaches(?OutputInterface $output = null): void
     {
+        $users = $this->userRepository->findAll();
+
         $output?->writeln('Refreshing cached values for collections...');
-        foreach ($this->collectionRepository->findBy(['parent' => null]) as $rootCollection) {
-            $this->computeForCollection($rootCollection);
+        foreach ($users as $user) {
+            $this->computeCollections($user, null);
         }
 
         $output?->writeln('Refreshing cached values for wishlists...');
-        foreach ($this->wishlistRepository->findBy(['parent' => null]) as $rootWishlist) {
-            $this->computeForWishlist($rootWishlist);
+        foreach ($users as $user) {
+            $this->computeWishlists($user, null);
         }
 
         $output?->writeln('Refreshing cached values for albums...');
-        foreach ($this->albumRepository->findBy(['parent' => null]) as $rootAlbum) {
-            $this->computeForAlbum($rootAlbum);
+        foreach ($users as $user) {
+            $this->computeAlbums($user, null);
         }
 
         $this->managerRegistry->getManager()->flush();
     }
 
-    public function computeForCollection(Collection $collection): array
+    /**
+     * @param iterable<Album|Collection|Wishlist> $roots
+     */
+    public function compute(iterable $roots): void
     {
-        $values = ['counters' => [], 'prices' => []];
+        $groups = [];
+        foreach ($roots as $root) {
+            $type = match (true) {
+                $root instanceof Collection => Collection::class,
+                $root instanceof Wishlist => Wishlist::class,
+                $root instanceof Album => Album::class,
+            };
 
-        foreach (VisibilityEnum::VISIBILITIES as $visibility) {
-            $countersKey = $visibility . 'Counters';
-            $pricesKey = $visibility . 'Prices';
-
-            $values['counters'][$countersKey] = [
-                'children' => $this->collectionRepository->count(['parent' => $collection->getId(), 'finalVisibility' => $visibility]),
-                'items' => $this->itemRepository->count(['collection' => $collection->getId(), 'finalVisibility' => $visibility]),
-            ];
-
-            $values['prices'][$pricesKey] = $this->datumRepository->computePricesForCollection($collection, $visibility);
+            $owner = $root->getOwner();
+            $groups[$type][$owner->getId()]['owner'] = $owner;
+            $groups[$type][$owner->getId()]['rootIds'][] = $root->getId();
         }
 
-        foreach ($collection->getChildren() as $child) {
-            $nested = $this->computeForCollection($child);
+        foreach ($groups[Collection::class] ?? [] as $group) {
+            $this->computeCollections($group['owner'], $group['rootIds']);
+        }
 
-            foreach (VisibilityEnum::VISIBILITIES as $visibility) {
-                $countersKey = $visibility . 'Counters';
-                $pricesKey = $visibility . 'Prices';
+        foreach ($groups[Wishlist::class] ?? [] as $group) {
+            $this->computeWishlists($group['owner'], $group['rootIds']);
+        }
 
-                $values['counters'][$countersKey]['children'] += $nested['counters'][$countersKey]['children'];
-                $values['counters'][$countersKey]['items'] += $nested['counters'][$countersKey]['items'];
+        foreach ($groups[Album::class] ?? [] as $group) {
+            $this->computeAlbums($group['owner'], $group['rootIds']);
+        }
+    }
 
-                $values['prices'][$pricesKey] = $this->mergePrices(
-                    $values['prices'][$pricesKey],
-                    $nested['prices'][$pricesKey]
-                );
+    private function computeCollections(User $owner, ?array $rootIds): void
+    {
+        $this->computeTree(
+            $this->collectionRepository,
+            $this->collectionRepository->findTreeForCachedValues($owner),
+            $rootIds,
+            fn (array $ids): array => $this->itemRepository->countForCachedValues($ids),
+            'items',
+            true
+        );
+    }
+
+    private function computeWishlists(User $owner, ?array $rootIds): void
+    {
+        $this->computeTree(
+            $this->wishlistRepository,
+            $this->wishlistRepository->findTreeForCachedValues($owner),
+            $rootIds,
+            fn (array $ids): array => $this->wishRepository->countForCachedValues($ids),
+            'wishes',
+            false
+        );
+    }
+
+    private function computeAlbums(User $owner, ?array $rootIds): void
+    {
+        $this->computeTree(
+            $this->albumRepository,
+            $this->albumRepository->findTreeForCachedValues($owner),
+            $rootIds,
+            fn (array $ids): array => $this->photoRepository->countForCachedValues($ids),
+            'photos',
+            false
+        );
+    }
+
+    private function computeTree(
+        ServiceEntityRepository $repository,
+        array $tree,
+        ?array $rootIds,
+        callable $countLoader,
+        string $counterKey,
+        bool $withPrices
+    ): void {
+        $visibilities = [];
+        $children = [];
+        foreach ($tree as $node) {
+            $visibilities[$node['id']] = $node['visibility'];
+            $children[$node['id']] ??= [];
+            if ($node['parentId'] !== null) {
+                $children[$node['parentId']][] = $node['id'];
             }
         }
 
-        $collection->setCachedValues($values);
+        $rootIds ??= array_column(array_filter($tree, static fn (array $node): bool => $node['parentId'] === null), 'id');
+        $ids = $this->getSubtreeIds(array_filter(array_unique($rootIds), static fn (string $id): bool => isset($visibilities[$id])), $children);
+        if ($ids === []) {
+            return;
+        }
+
+        $values = [];
+        foreach ($ids as $id) {
+            $values[$id] = $this->createEmptyValues($counterKey, $withPrices);
+            foreach ($children[$id] as $childId) {
+                ++$values[$id]['counters'][$visibilities[$childId] . 'Counters']['children'];
+            }
+        }
+
+        foreach ($countLoader($ids) as $count) {
+            $values[$count['id']]['counters'][$count['visibility'] . 'Counters'][$counterKey] += (int) $count['total'];
+        }
+
+        if ($withPrices) {
+            foreach ($this->datumRepository->sumPricesForCachedValues($ids) as $price) {
+                $values[$price['collectionId']]['prices'][$price['visibility'] . 'Prices'][$price['label']][$price['currency']] = (float) $price['total'];
+            }
+        }
+
+        foreach (array_reverse($ids) as $id) {
+            foreach ($children[$id] as $childId) {
+                $values[$id] = $this->mergeValues($values[$id], $values[$childId]);
+            }
+        }
+
+        foreach ($repository->findBy(['id' => $ids]) as $entity) {
+            $entity->setCachedValues($values[$entity->getId()]);
+        }
+    }
+
+    private function getSubtreeIds(array $rootIds, array $children): array
+    {
+        $ids = [];
+        $stack = array_reverse(array_values($rootIds));
+        while ($stack !== []) {
+            $id = array_pop($stack);
+            if (isset($ids[$id])) {
+                continue;
+            }
+
+            $ids[$id] = $id;
+            foreach (array_reverse($children[$id]) as $childId) {
+                $stack[] = $childId;
+            }
+        }
+
+        return array_values($ids);
+    }
+
+    private function mergeValues(array $values, array $nested): array
+    {
+        foreach ($values['counters'] as $countersKey => $counters) {
+            foreach (array_keys($counters) as $key) {
+                $values['counters'][$countersKey][$key] += $nested['counters'][$countersKey][$key];
+            }
+        }
+
+        foreach (array_keys($values['prices'] ?? []) as $pricesKey) {
+            $values['prices'][$pricesKey] = $this->mergePrices($values['prices'][$pricesKey], $nested['prices'][$pricesKey]);
+        }
 
         return $values;
     }
 
-    public function computeForWishlist(Wishlist $wishlist): array
+    private function createEmptyValues(string $counterKey, bool $withPrices): array
     {
         $values = ['counters' => []];
+        if ($withPrices) {
+            $values['prices'] = [];
+        }
 
         foreach (VisibilityEnum::VISIBILITIES as $visibility) {
-            $countersKey = $visibility . 'Counters';
+            $values['counters'][$visibility . 'Counters'] = ['children' => 0, $counterKey => 0];
 
-            $values['counters'][$countersKey] = [
-                'children' => $this->wishlistRepository->count(['parent' => $wishlist->getId(), 'finalVisibility' => $visibility]),
-                'wishes' => $this->wishRepository->count(['wishlist' => $wishlist->getId(), 'finalVisibility' => $visibility]),
-            ];
-        }
-
-        foreach ($wishlist->getChildren() as $child) {
-            $nested = $this->computeForWishlist($child);
-
-            foreach (VisibilityEnum::VISIBILITIES as $visibility) {
-                $countersKey = $visibility . 'Counters';
-                $values['counters'][$countersKey]['children'] += $nested['counters'][$countersKey]['children'];
-                $values['counters'][$countersKey]['wishes'] += $nested['counters'][$countersKey]['wishes'];
+            if ($withPrices) {
+                $values['prices'][$visibility . 'Prices'] = [];
             }
         }
-
-        $wishlist->setCachedValues($values);
-
-        return $values;
-    }
-
-    public function computeForAlbum(Album $album): array
-    {
-        $values = ['counters' => []];
-
-        foreach (VisibilityEnum::VISIBILITIES as $visibility) {
-            $countersKey = $visibility . 'Counters';
-
-            $values['counters'][$countersKey] = [
-                'children' => $this->albumRepository->count(['parent' => $album->getId(), 'finalVisibility' => $visibility]),
-                'photos' => $this->photoRepository->count(['album' => $album->getId(), 'finalVisibility' => $visibility]),
-            ];
-        }
-
-        foreach ($album->getChildren() as $child) {
-            $nested = $this->computeForAlbum($child);
-
-            foreach (VisibilityEnum::VISIBILITIES as $visibility) {
-                $countersKey = $visibility . 'Counters';
-                $values['counters'][$countersKey]['children'] += $nested['counters'][$countersKey]['children'];
-                $values['counters'][$countersKey]['photos'] += $nested['counters'][$countersKey]['photos'];
-            }
-        }
-
-        $album->setCachedValues($values);
 
         return $values;
     }

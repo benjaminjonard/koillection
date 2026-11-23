@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\App\Wishlist;
 
 use App\Entity\Wishlist;
+use App\Enum\VisibilityEnum;
 use App\Service\CachedValuesGetter;
 use App\Service\RefreshCachedValuesQueue;
 use App\Tests\AppTestCase;
@@ -206,5 +207,25 @@ class WishlistCountersTest extends AppTestCase
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel1)['counters']['wishes']);
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel2)['counters']['wishes']);
         $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel3)['counters']['wishes']);
+    }
+
+    public function test_change_wish_visibility(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $wishlistLevel1 = WishlistFactory::createOne(['owner' => $user]);
+        $wishlistLevel2 = WishlistFactory::createOne(['parent' => $wishlistLevel1, 'owner' => $user]);
+        $wish = WishFactory::createOne(['wishlist' => $wishlistLevel2, 'owner' => $user]);
+        $this->refreshCachedValuesQueue->process();
+
+        // Act
+        $wish->setVisibility(VisibilityEnum::VISIBILITY_PRIVATE);
+        \Zenstruck\Foundry\Persistence\save($wish);
+
+        $this->refreshCachedValuesQueue->process();
+
+        // Assert
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel1)['counters']['wishes']);
+        $this->assertSame(0, $this->cachedValuesGetter->getCachedValues($wishlistLevel2)['counters']['wishes']);
     }
 }

@@ -261,4 +261,17 @@ class ItemRepository extends ServiceEntityRepository
 
         return $asArray ? $qb->getQuery()->getArrayResult() : $qb->getQuery()->getResult();
     }
+
+    public function countForCachedValues(array $ids): array
+    {
+        return $this
+            ->createQueryBuilder('item')
+            ->select('IDENTITY(item.collection) AS id, item.finalVisibility AS visibility, COUNT(item.id) AS total')
+            ->where('item.collection IN (:ids)')
+            ->groupBy('item.collection, item.finalVisibility')
+            ->setParameter('ids', $ids)
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
 }

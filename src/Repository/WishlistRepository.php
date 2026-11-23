@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Entity\User;
 use App\Entity\Wishlist;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -71,5 +72,17 @@ class WishlistRepository extends ServiceEntityRepository
         }
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findTreeForCachedValues(User $owner): array
+    {
+        return $this
+            ->createQueryBuilder('wishlist')
+            ->select('wishlist.id AS id, IDENTITY(wishlist.parent) AS parentId, wishlist.finalVisibility AS visibility')
+            ->where('wishlist.owner = :owner')
+            ->setParameter('owner', $owner->getId())
+            ->getQuery()
+            ->getArrayResult()
+        ;
     }
 }

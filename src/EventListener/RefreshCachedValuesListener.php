@@ -39,19 +39,28 @@ final readonly class RefreshCachedValuesListener
             if (($entity instanceof Album || $entity instanceof Collection || $entity instanceof Wishlist) && isset($changeset['parent'])) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['parent'][0]));
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['parent'][1]));
+            } elseif (($entity instanceof Album || $entity instanceof Collection || $entity instanceof Wishlist) && isset($changeset['finalVisibility'])) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity));
             } elseif ($entity instanceof Item && isset($changeset['collection'])) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['collection'][0]));
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['collection'][1]));
+            } elseif ($entity instanceof Item && (isset($changeset['finalVisibility']) || isset($changeset['quantity']))) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getCollection()));
             } elseif ($entity instanceof Photo && isset($changeset['album'])) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['album'][0]));
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['album'][1]));
+            } elseif ($entity instanceof Photo && isset($changeset['finalVisibility'])) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getAlbum()));
             } elseif ($entity instanceof Wish && isset($changeset['wishlist'])) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][0]));
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['wishlist'][1]));
-            } elseif ($entity instanceof Datum && $entity->getItem() instanceof Item) {
+            } elseif ($entity instanceof Wish && isset($changeset['finalVisibility'])) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getWishlist()));
+            } elseif ($entity instanceof Datum && isset($changeset['item']) && $this->isPriceUpdate($entity, $changeset)) {
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['item'][0]?->getCollection()));
+                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($changeset['item'][1]?->getCollection()));
+            } elseif ($entity instanceof Datum && $entity->getItem() instanceof Item && $this->isPriceUpdate($entity, $changeset)) {
                 $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getItem()->getCollection()));
-            } elseif ($entity instanceof Datum && $entity->getCollection() instanceof Collection) {
-                $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($entity->getCollection()));
             }
         }
 
@@ -74,6 +83,16 @@ final readonly class RefreshCachedValuesListener
         if ($toRefresh !== null) {
             $this->refreshCachedValuesQueue->addEntity($this->getRootEntity($toRefresh));
         }
+    }
+
+    private function isPriceUpdate(Datum $datum, array $changeset): bool
+    {
+        $types = [$changeset['type'][0] ?? null, $datum->getType()];
+        if (!\in_array(DatumTypeEnum::TYPE_PRICE, $types, true)) {
+            return false;
+        }
+
+        return array_intersect_key($changeset, array_flip(['type', 'label', 'value', 'currency', 'finalVisibility', 'item'])) !== [];
     }
 
     private function getRootEntity(Album|Collection|Wishlist|null $entity): Album|Collection|Wishlist|null

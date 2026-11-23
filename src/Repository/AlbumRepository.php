@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Album;
+use App\Entity\User;
 use App\Model\Search\Search;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
@@ -60,5 +61,17 @@ class AlbumRepository extends ServiceEntityRepository
         }
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function findTreeForCachedValues(User $owner): array
+    {
+        return $this
+            ->createQueryBuilder('album')
+            ->select('album.id AS id, IDENTITY(album.parent) AS parentId, album.finalVisibility AS visibility')
+            ->where('album.owner = :owner')
+            ->setParameter('owner', $owner->getId())
+            ->getQuery()
+            ->getArrayResult()
+        ;
     }
 }
