@@ -9,6 +9,7 @@ use App\Enum\ImportStatusEnum;
 use App\Message\ProcessImportMessage;
 use App\Service\ImportDraftManager;
 use App\Service\ImportHandler;
+use App\Service\RefreshCachedValuesQueue;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -24,6 +25,7 @@ final readonly class ProcessImportHandler
         private ImportHandler $importHandler,
         private ImportDraftManager $importDraftManager,
         private TokenStorageInterface $tokenStorage,
+        private RefreshCachedValuesQueue $refreshCachedValuesQueue,
     ) {
     }
 
@@ -46,6 +48,7 @@ final readonly class ProcessImportHandler
 
         try {
             $this->process($import, $message);
+            $this->refreshCachedValuesQueue->process();
         } finally {
             $this->importDraftManager->removeFiles($message->getDraft());
             $this->tokenStorage->setToken($previousToken);

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\EventListener;
 
-use App\Service\CachedValuesCalculator;
 use App\Service\RefreshCachedValuesQueue;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
@@ -14,7 +13,6 @@ final readonly class RefreshCachedValuesQueueListener
 {
     public function __construct(
         private RefreshCachedValuesQueue $refreshCachedValuesQueue,
-        private CachedValuesCalculator $cachedValuesCalculator,
         private ManagerRegistry $managerRegistry
     ) {
     }
@@ -46,9 +44,7 @@ final readonly class RefreshCachedValuesQueueListener
                 }
             }
 
-            $this->cachedValuesCalculator->compute($this->refreshCachedValuesQueue->getEntities());
-
-            $this->managerRegistry->getManager()->flush();
+            $this->refreshCachedValuesQueue->process();
         }
 
         $this->refreshCachedValuesQueue->clearEntities();
