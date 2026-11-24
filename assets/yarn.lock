@@ -402,20 +402,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hotkeys-js@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "hotkeys-js@npm:4.1.2"
-  checksum: 10/30cc5eb816b53dfa2479f711e6ee6f89233930de7b9111d9a169ce1b0db5e47e1f2613a5c08840440166068f1188a28082a879c96905d483debacf4417e42f41
+"hotkeys-js@npm:^4.1.3":
+  version: 4.1.3
+  resolution: "hotkeys-js@npm:4.1.3"
+  checksum: 10/d3ec0a4827db997be9525e693afb81bed026f5ba9b5854769e7f8f34ed3ac7f8268d9b129c9043ecd503bfcacda8fa4085439637a922597b8769d5965f09fc81
   languageName: node
   linkType: hard
 
-"intl-messageformat@npm:12.1.5":
-  version: 12.1.5
-  resolution: "intl-messageformat@npm:12.1.5"
+"intl-messageformat@npm:12.2.0":
+  version: 12.2.0
+  resolution: "intl-messageformat@npm:12.2.0"
   dependencies:
     "@formatjs/fast-memoize": "npm:3.1.7"
     "@formatjs/icu-messageformat-parser": "npm:3.5.23"
-  checksum: 10/bbea80f80aa25bbb0d2b4ea030e929f7453a8ae96cb72ebaba33eb9489653f57c6b05faf296be578d2000946ad386805dc1ba45abf2288db78354266cbdd1e14
+  checksum: 10/01a74045e081b14582ccb3c5c484bdaae494ab0b9981d5ffd402d3edd8f1288595e897dd54a28f5326e7c152decc1e31afbe3568f0e066180e9c7ff9b7162da9
   languageName: node
   linkType: hard
 
@@ -443,8 +443,8 @@ __metadata:
     bazinga-translator: "npm:8.0.0"
     croppie: "npm:2.6.5"
     echarts: "npm:6.1.0"
-    hotkeys-js: "npm:^4.1.2"
-    intl-messageformat: "npm:12.1.5"
+    hotkeys-js: "npm:^4.1.3"
+    intl-messageformat: "npm:12.2.0"
     sortablejs: "npm:1.15.7"
     stimulus-lightbox: "npm:3.2.0"
     stimulus-use: "npm:0.53.1"
