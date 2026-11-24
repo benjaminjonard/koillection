@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8305987aa55bad965b217c9276a523e",
+    "content-hash": "85ee21150397faf1b9f47661e6d58c0d",
     "packages": [
         {
             "name": "api-platform/core",
-            "version": "v5.0.8",
+            "version": "v5.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/api-platform/core.git",
-                "reference": "422b94350dabab90637cd211d891b2b1489b9625"
+                "reference": "48fe341bdf923a94de048999655b4f89c37ba002"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/api-platform/core/zipball/422b94350dabab90637cd211d891b2b1489b9625",
-                "reference": "422b94350dabab90637cd211d891b2b1489b9625",
+                "url": "https://api.github.com/repos/api-platform/core/zipball/48fe341bdf923a94de048999655b4f89c37ba002",
+                "reference": "48fe341bdf923a94de048999655b4f89c37ba002",
                 "shasum": ""
             },
             "require": {
@@ -221,10 +221,9 @@
             ],
             "support": {
                 "issues": "https://github.com/api-platform/core/issues",
-                "source": "https://github.com/api-platform/core/tree/v5.0.8"
+                "source": "https://github.com/api-platform/core/tree/v5.0.9"
             },
-            "time": "2026-11-16T10:25:39+00:00",
-            "published-time": "2026-11-16T10:25:58+00:00"
+            "time": "2026-11-20T11:48:04+00:00"
         },
         {
             "name": "chrome-php/chrome",
@@ -298,8 +297,7 @@
                 "issues": "https://github.com/chrome-php/chrome/issues",
                 "source": "https://github.com/chrome-php/chrome/tree/v1.16.2"
             },
-            "time": "2026-11-04T16:35:36+00:00",
-            "published-time": "2026-11-04T16:35:48+00:00"
+            "time": "2026-11-04T16:35:36+00:00"
         },
         {
             "name": "chrome-php/wrench",
@@ -361,8 +359,7 @@
                 "issues": "https://github.com/chrome-php/wrench/issues",
                 "source": "https://github.com/chrome-php/wrench/tree/v1.9.2"
             },
-            "time": "2026-07-06T19:07:11+00:00",
-            "published-time": "2026-07-06T19:08:32+00:00"
+            "time": "2026-07-06T19:07:11+00:00"
         },
         {
             "name": "composer/semver",
@@ -439,8 +436,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-10-29T09:13:34+00:00",
-            "published-time": "2026-10-29T09:14:11+00:00"
+            "time": "2026-10-29T09:13:34+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -515,8 +511,7 @@
                 "issues": "https://github.com/dflydev/dflydev-dot-access-data/issues",
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.3"
             },
-            "time": "2024-07-08T12:26:09+00:00",
-            "published-time": "2024-07-08T12:27:13+00:00"
+            "time": "2024-07-08T12:26:09+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -602,8 +597,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-29T20:41:02+00:00",
-            "published-time": "2026-04-29T20:41:48+00:00"
+            "time": "2026-04-29T20:41:02+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -710,8 +704,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-14T18:08:09+00:00",
-            "published-time": "2026-11-14T18:18:19+00:00"
+            "time": "2026-11-14T18:08:09+00:00"
         },
         {
             "name": "doctrine/deprecations",
@@ -759,8 +752,7 @@
                 "issues": "https://github.com/doctrine/deprecations/issues",
                 "source": "https://github.com/doctrine/deprecations/tree/1.2.0"
             },
-            "time": "2026-11-11T10:04:49+00:00",
-            "published-time": "2026-11-11T10:12:24+00:00"
+            "time": "2026-11-11T10:04:49+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -881,8 +873,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-15T14:34:22+00:00",
-            "published-time": "2026-11-15T14:35:03+00:00"
+            "time": "2026-11-15T14:34:22+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -974,8 +965,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-26T05:54:54+00:00",
-            "published-time": "2026-08-26T05:57:57+00:00"
+            "time": "2026-08-26T05:54:54+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -1066,8 +1056,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-29T07:11:08+00:00",
-            "published-time": "2026-01-29T07:11:33+00:00"
+            "time": "2026-01-29T07:11:08+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1157,8 +1146,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-26T08:14:14+00:00",
-            "published-time": "2026-10-26T20:06:59+00:00"
+            "time": "2026-10-26T08:14:14+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -1227,8 +1215,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-15T20:06:55+00:00",
-            "published-time": "2026-11-15T20:08:11+00:00"
+            "time": "2026-11-15T20:06:55+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -1303,8 +1290,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-01T06:59:29+00:00",
-            "published-time": "2026-10-01T07:01:28+00:00"
+            "time": "2026-10-01T06:59:29+00:00"
         },
         {
             "name": "doctrine/migrations",
@@ -1407,8 +1393,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-04T12:35:58+00:00",
-            "published-time": "2026-10-04T13:06:24+00:00"
+            "time": "2026-10-04T12:35:58+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -1500,8 +1485,7 @@
                 "issues": "https://github.com/doctrine/orm/issues",
                 "source": "https://github.com/doctrine/orm/tree/3.8.0"
             },
-            "time": "2026-11-14T11:18:54+00:00",
-            "published-time": "2026-11-14T14:12:03+00:00"
+            "time": "2026-11-14T11:18:54+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1595,8 +1579,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-03T14:15:35+00:00",
-            "published-time": "2026-10-13T09:53:23+00:00"
+            "time": "2026-10-03T14:15:35+00:00"
         },
         {
             "name": "doctrine/sql-formatter",
@@ -1651,8 +1634,7 @@
                 "issues": "https://github.com/doctrine/sql-formatter/issues",
                 "source": "https://github.com/doctrine/sql-formatter/tree/1.5.4"
             },
-            "time": "2026-02-08T16:21:46+00:00",
-            "published-time": "2026-02-08T16:22:50+00:00"
+            "time": "2026-02-08T16:21:46+00:00"
         },
         {
             "name": "evenement/evenement",
@@ -1699,8 +1681,7 @@
                 "issues": "https://github.com/igorw/evenement/issues",
                 "source": "https://github.com/igorw/evenement/tree/v3.0.2"
             },
-            "time": "2023-08-08T05:53:35+00:00",
-            "published-time": "2023-08-08T08:34:49+00:00"
+            "time": "2023-08-08T05:53:35+00:00"
         },
         {
             "name": "lcobucci/jwt",
@@ -1773,8 +1754,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2026-11-19T21:02:34+00:00",
-            "published-time": "2026-11-19T21:06:03+00:00"
+            "time": "2026-11-19T21:02:34+00:00"
         },
         {
             "name": "league/commonmark",
@@ -1881,8 +1861,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-31T13:35:37+00:00",
-            "published-time": "2026-10-31T13:35:57+00:00"
+            "time": "2026-10-31T13:35:37+00:00"
         },
         {
             "name": "league/config",
@@ -1964,8 +1943,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-11T20:36:23+00:00",
-            "published-time": "2022-12-11T20:36:45+00:00"
+            "time": "2022-12-11T20:36:23+00:00"
         },
         {
             "name": "lexik/jwt-authentication-bundle",
@@ -2081,8 +2059,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-20T17:47:00+00:00",
-            "published-time": "2025-12-20T17:48:59+00:00"
+            "time": "2025-12-20T17:47:00+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -2160,8 +2137,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-04-11T18:38:28+00:00",
-            "published-time": "2026-04-11T18:40:08+00:00"
+            "time": "2026-04-11T18:38:28+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2266,40 +2242,34 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-16T10:43:05+00:00",
-            "published-time": "2026-11-16T10:45:37+00:00"
+            "time": "2026-11-16T10:43:05+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
-            "version": "2.9.2",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jmespath/jmespath.php.git",
-                "reference": "2157c5e50e813ec6a96c1eed3be7f64a20fb32a8"
+                "reference": "3fec5e616a35a06a65bc3c0b97aa6f384c218814"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/2157c5e50e813ec6a96c1eed3be7f64a20fb32a8",
-                "reference": "2157c5e50e813ec6a96c1eed3be7f64a20fb32a8",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/3fec5e616a35a06a65bc3c0b97aa6f384c218814",
+                "reference": "3fec5e616a35a06a65bc3c0b97aa6f384c218814",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2.5 || ^8.0",
-                "symfony/polyfill-mbstring": "^1.17"
+                "symfony/polyfill-mbstring": "^1.30"
             },
             "require-dev": {
                 "composer/xdebug-handler": "^3.0.3",
-                "phpunit/phpunit": "^8.5.52"
+                "phpunit/phpunit": "^8.5.57"
             },
             "bin": [
                 "bin/jp.php"
             ],
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.9-dev"
-                }
-            },
             "autoload": {
                 "files": [
                     "src/JmesPath.php"
@@ -2331,10 +2301,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jmespath/jmespath.php/issues",
-                "source": "https://github.com/jmespath/jmespath.php/tree/2.9.2"
+                "source": "https://github.com/jmespath/jmespath.php/tree/2.10.0"
             },
-            "time": "2026-07-06T18:56:19+00:00",
-            "published-time": "2026-07-06T18:56:41+00:00"
+            "time": "2026-11-17T14:51:12+00:00"
         },
         {
             "name": "nelmio/cors-bundle",
@@ -2399,8 +2368,7 @@
                 "issues": "https://github.com/nelmio/NelmioCorsBundle/issues",
                 "source": "https://github.com/nelmio/NelmioCorsBundle/tree/2.6.1"
             },
-            "time": "2026-01-12T15:59:08+00:00",
-            "published-time": "2026-01-14T20:01:36+00:00"
+            "time": "2026-01-12T15:59:08+00:00"
         },
         {
             "name": "nette/schema",
@@ -2467,8 +2435,7 @@
                 "issues": "https://github.com/nette/schema/issues",
                 "source": "https://github.com/nette/schema/tree/v1.4.0"
             },
-            "time": "2026-10-22T02:12:50+00:00",
-            "published-time": "2026-10-22T02:14:45+00:00"
+            "time": "2026-10-22T02:12:50+00:00"
         },
         {
             "name": "nette/utils",
@@ -2559,8 +2526,7 @@
                 "issues": "https://github.com/nette/utils/issues",
                 "source": "https://github.com/nette/utils/tree/v4.1.6"
             },
-            "time": "2026-10-20T17:07:56+00:00",
-            "published-time": "2026-10-20T17:48:30+00:00"
+            "time": "2026-10-20T17:07:56+00:00"
         },
         {
             "name": "psr/cache",
@@ -2609,8 +2575,7 @@
             "support": {
                 "source": "https://github.com/php-fig/cache/tree/3.0.0"
             },
-            "time": "2021-02-03T23:26:27+00:00",
-            "published-time": "2021-02-03T23:27:34+00:00"
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "psr/clock",
@@ -2658,8 +2623,7 @@
                 "issues": "https://github.com/php-fig/clock/issues",
                 "source": "https://github.com/php-fig/clock/tree/1.0.0"
             },
-            "time": "2022-11-25T14:36:26+00:00",
-            "published-time": "2022-11-25T14:59:22+00:00"
+            "time": "2022-11-25T14:36:26+00:00"
         },
         {
             "name": "psr/container",
@@ -2712,8 +2676,7 @@
                 "issues": "https://github.com/php-fig/container/issues",
                 "source": "https://github.com/php-fig/container/tree/2.0.2"
             },
-            "time": "2021-11-05T16:47:00+00:00",
-            "published-time": "2021-11-05T16:53:27+00:00"
+            "time": "2021-11-05T16:47:00+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -2763,8 +2726,7 @@
                 "issues": "https://github.com/php-fig/event-dispatcher/issues",
                 "source": "https://github.com/php-fig/event-dispatcher/tree/1.0.0"
             },
-            "time": "2019-01-08T18:20:26+00:00",
-            "published-time": "2019-03-25T15:31:44+00:00"
+            "time": "2019-01-08T18:20:26+00:00"
         },
         {
             "name": "psr/link",
@@ -2820,8 +2782,7 @@
             "support": {
                 "source": "https://github.com/php-fig/link/tree/2.0.1"
             },
-            "time": "2021-03-11T23:00:27+00:00",
-            "published-time": "2021-03-11T23:05:05+00:00"
+            "time": "2021-03-11T23:00:27+00:00"
         },
         {
             "name": "psr/log",
@@ -2871,8 +2832,7 @@
             "support": {
                 "source": "https://github.com/php-fig/log/tree/3.0.2"
             },
-            "time": "2024-09-11T13:17:53+00:00",
-            "published-time": "2024-09-11T13:21:14+00:00"
+            "time": "2024-09-11T13:17:53+00:00"
         },
         {
             "name": "symfony/asset",
@@ -2942,8 +2902,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-29T05:06:50+00:00",
-            "published-time": "2026-05-29T08:51:12+00:00"
+            "time": "2026-05-29T05:06:50+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -3016,8 +2975,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T07:18:47+00:00",
-            "published-time": "2026-11-04T11:32:22+00:00"
+            "time": "2026-11-01T07:18:47+00:00"
         },
         {
             "name": "symfony/cache",
@@ -3116,8 +3074,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T22:27:46+00:00",
-            "published-time": "2026-11-04T11:31:57+00:00"
+            "time": "2026-11-01T22:27:46+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -3197,8 +3154,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-26T07:05:14+00:00",
-            "published-time": "2026-11-04T11:25:38+00:00"
+            "time": "2026-09-26T07:05:14+00:00"
         },
         {
             "name": "symfony/clock",
@@ -3275,8 +3231,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-12T14:32:04+00:00",
-            "published-time": "2026-10-14T06:48:32+00:00"
+            "time": "2026-10-12T14:32:04+00:00"
         },
         {
             "name": "symfony/config",
@@ -3354,8 +3309,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:48+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/console",
@@ -3455,8 +3409,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T07:07:11+00:00",
-            "published-time": "2026-11-04T11:31:39+00:00"
+            "time": "2026-11-04T07:07:11+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -3525,8 +3478,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-18T14:56:39+00:00",
-            "published-time": "2026-10-28T18:24:46+00:00"
+            "time": "2026-10-18T14:56:39+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -3607,8 +3559,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T19:30:44+00:00",
-            "published-time": "2026-11-04T11:32:05+00:00"
+            "time": "2026-11-01T19:30:44+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3679,8 +3630,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-16T14:15:10+00:00",
-            "published-time": "2026-11-04T11:25:34+00:00"
+            "time": "2026-09-16T14:15:10+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",
@@ -3785,8 +3735,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-18T14:56:39+00:00",
-            "published-time": "2026-10-28T18:25:28+00:00"
+            "time": "2026-10-18T14:56:39+00:00"
         },
         {
             "name": "symfony/doctrine-messenger",
@@ -3864,8 +3813,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T19:30:44+00:00",
-            "published-time": "2026-11-04T11:31:57+00:00"
+            "time": "2026-11-01T19:30:44+00:00"
         },
         {
             "name": "symfony/dom-crawler",
@@ -3935,8 +3883,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-25T14:40:25+00:00",
-            "published-time": "2026-10-28T18:24:41+00:00"
+            "time": "2026-10-25T14:40:25+00:00"
         },
         {
             "name": "symfony/dotenv",
@@ -4010,8 +3957,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-26T10:31:34+00:00",
-            "published-time": "2026-08-30T21:43:37+00:00"
+            "time": "2026-07-26T10:31:34+00:00"
         },
         {
             "name": "symfony/error-handler",
@@ -4092,8 +4038,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-25T14:40:25+00:00",
-            "published-time": "2026-10-28T18:24:13+00:00"
+            "time": "2026-10-25T14:40:25+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -4179,8 +4124,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-21T17:47:34+00:00",
-            "published-time": "2026-08-22T13:46:58+00:00"
+            "time": "2026-08-21T17:47:34+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -4260,8 +4204,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-16T14:15:10+00:00",
-            "published-time": "2026-11-04T11:25:36+00:00"
+            "time": "2026-09-16T14:15:10+00:00"
         },
         {
             "name": "symfony/expression-language",
@@ -4328,8 +4271,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-09T13:58:01+00:00",
-            "published-time": "2026-10-14T06:48:30+00:00"
+            "time": "2026-10-09T13:58:01+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -4400,8 +4342,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:32:01+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/finder",
@@ -4469,8 +4410,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-02T10:58:30+00:00",
-            "published-time": "2026-11-04T11:31:20+00:00"
+            "time": "2026-11-02T10:58:30+00:00"
         },
         {
             "name": "symfony/flex",
@@ -4543,8 +4483,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-29T17:24:46+00:00",
-            "published-time": "2026-10-29T17:26:51+00:00"
+            "time": "2026-10-29T17:24:46+00:00"
         },
         {
             "name": "symfony/form",
@@ -4641,8 +4580,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-03T13:11:09+00:00",
-            "published-time": "2026-11-04T11:31:37+00:00"
+            "time": "2026-11-03T13:11:09+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -4785,8 +4723,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:33+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/http-client",
@@ -4883,8 +4820,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:44+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/http-client-contracts",
@@ -4966,8 +4902,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-04T15:04:25+00:00",
-            "published-time": "2026-11-04T11:25:37+00:00"
+            "time": "2026-10-04T15:04:25+00:00"
         },
         {
             "name": "symfony/http-foundation",
@@ -5048,8 +4983,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:54+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -5159,8 +5093,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T11:29:46+00:00",
-            "published-time": "2026-11-04T11:32:19+00:00"
+            "time": "2026-11-04T11:29:46+00:00"
         },
         {
             "name": "symfony/intl",
@@ -5249,8 +5182,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-27T13:53:09+00:00",
-            "published-time": "2026-10-28T18:25:29+00:00"
+            "time": "2026-10-27T13:53:09+00:00"
         },
         {
             "name": "symfony/messenger",
@@ -5342,8 +5274,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-03T10:51:22+00:00",
-            "published-time": "2026-11-04T11:32:05+00:00"
+            "time": "2026-11-03T10:51:22+00:00"
         },
         {
             "name": "symfony/mime",
@@ -5429,8 +5360,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-28T17:58:38+00:00",
-            "published-time": "2026-10-28T18:23:55+00:00"
+            "time": "2026-10-28T17:58:38+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
@@ -5508,8 +5438,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-21T21:11:00+00:00",
-            "published-time": "2026-10-28T18:25:25+00:00"
+            "time": "2026-10-21T21:11:00+00:00"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -5588,8 +5517,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-10T19:32:07+00:00",
-            "published-time": "2026-09-12T21:35:28+00:00"
+            "time": "2026-09-10T19:32:07+00:00"
         },
         {
             "name": "symfony/options-resolver",
@@ -5660,8 +5588,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-18T14:56:39+00:00",
-            "published-time": "2026-10-28T18:24:07+00:00"
+            "time": "2026-10-18T14:56:39+00:00"
         },
         {
             "name": "symfony/password-hasher",
@@ -5734,8 +5661,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-29T05:06:50+00:00",
-            "published-time": "2026-05-29T08:49:53+00:00"
+            "time": "2026-05-29T05:06:50+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -5818,8 +5744,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-10T16:19:22+00:00",
-            "published-time": "2026-04-26T14:44:50+00:00"
+            "time": "2026-04-10T16:19:22+00:00"
         },
         {
             "name": "symfony/polyfill-deepclone",
@@ -5906,8 +5831,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-14T07:17:09+00:00",
-            "published-time": "2026-10-14T09:42:25+00:00"
+            "time": "2026-10-14T07:17:09+00:00"
         },
         {
             "name": "symfony/polyfill-intl-grapheme",
@@ -5989,8 +5913,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-15T09:18:53+00:00",
-            "published-time": "2026-10-28T10:07:44+00:00"
+            "time": "2026-10-15T09:18:53+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
@@ -6078,8 +6001,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-27T15:55:21+00:00",
-            "published-time": "2026-10-28T10:07:46+00:00"
+            "time": "2026-10-27T15:55:21+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
@@ -6166,8 +6088,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T14:40:04+00:00",
-            "published-time": "2026-09-30T10:23:39+00:00"
+            "time": "2026-09-23T14:40:04+00:00"
         },
         {
             "name": "symfony/polyfill-intl-normalizer",
@@ -6252,8 +6173,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T22:02:09+00:00",
-            "published-time": "2026-09-30T10:23:47+00:00"
+            "time": "2026-09-23T22:02:09+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -6338,8 +6258,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-28T09:35:49+00:00",
-            "published-time": "2026-10-28T10:07:45+00:00"
+            "time": "2026-10-28T09:35:49+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -6423,8 +6342,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:50:05+00:00",
-            "published-time": "2026-09-30T10:23:35+00:00"
+            "time": "2026-09-25T15:50:05+00:00"
         },
         {
             "name": "symfony/polyfill-php84",
@@ -6504,8 +6422,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-23T22:01:09+00:00",
-            "published-time": "2026-09-30T10:23:33+00:00"
+            "time": "2026-09-23T22:01:09+00:00"
         },
         {
             "name": "symfony/polyfill-php85",
@@ -6585,8 +6502,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-30T15:20:09+00:00",
-            "published-time": "2026-11-15T14:20:22+00:00"
+            "time": "2026-10-30T15:20:09+00:00"
         },
         {
             "name": "symfony/polyfill-php86",
@@ -6666,8 +6582,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T15:46:47+00:00",
-            "published-time": "2026-09-30T10:23:43+00:00"
+            "time": "2026-09-25T15:46:47+00:00"
         },
         {
             "name": "symfony/polyfill-uuid",
@@ -6750,8 +6665,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-24T05:20:52+00:00",
-            "published-time": "2026-09-30T10:23:49+00:00"
+            "time": "2026-09-24T05:20:52+00:00"
         },
         {
             "name": "symfony/process",
@@ -6816,8 +6730,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-25T14:40:25+00:00",
-            "published-time": "2026-10-28T18:25:20+00:00"
+            "time": "2026-10-25T14:40:25+00:00"
         },
         {
             "name": "symfony/property-access",
@@ -6898,8 +6811,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T19:30:44+00:00",
-            "published-time": "2026-11-04T11:32:16+00:00"
+            "time": "2026-11-01T19:30:44+00:00"
         },
         {
             "name": "symfony/property-info",
@@ -6985,8 +6897,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-02T10:58:30+00:00",
-            "published-time": "2026-11-04T11:32:11+00:00"
+            "time": "2026-11-02T10:58:30+00:00"
         },
         {
             "name": "symfony/reprise",
@@ -7074,8 +6985,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-08T08:17:30+00:00",
-            "published-time": "2026-11-08T08:17:45+00:00"
+            "time": "2026-11-08T08:17:30+00:00"
         },
         {
             "name": "symfony/routing",
@@ -7155,8 +7065,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:30:59+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/runtime",
@@ -7240,8 +7149,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T19:30:44+00:00",
-            "published-time": "2026-11-04T11:32:13+00:00"
+            "time": "2026-11-01T19:30:44+00:00"
         },
         {
             "name": "symfony/scheduler",
@@ -7326,8 +7234,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-26T21:55:04+00:00",
-            "published-time": "2026-10-28T18:24:20+00:00"
+            "time": "2026-10-26T21:55:04+00:00"
         },
         {
             "name": "symfony/security-bundle",
@@ -7429,8 +7336,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:29+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/security-core",
@@ -7513,8 +7419,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T19:30:44+00:00",
-            "published-time": "2026-11-04T11:31:01+00:00"
+            "time": "2026-11-01T19:30:44+00:00"
         },
         {
             "name": "symfony/security-csrf",
@@ -7586,8 +7491,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-29T05:06:50+00:00",
-            "published-time": "2026-05-29T08:52:10+00:00"
+            "time": "2026-05-29T05:06:50+00:00"
         },
         {
             "name": "symfony/security-http",
@@ -7676,8 +7580,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:07+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/serializer",
@@ -7776,8 +7679,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:12+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -7864,8 +7766,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-20T17:38:25+00:00",
-            "published-time": "2026-11-04T11:25:33+00:00"
+            "time": "2026-10-20T17:38:25+00:00"
         },
         {
             "name": "symfony/stopwatch",
@@ -7931,8 +7832,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-29T05:06:50+00:00",
-            "published-time": "2026-05-29T08:53:18+00:00"
+            "time": "2026-05-29T05:06:50+00:00"
         },
         {
             "name": "symfony/string",
@@ -8022,8 +7922,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-23T17:06:53+00:00",
-            "published-time": "2026-10-28T18:24:27+00:00"
+            "time": "2026-10-23T17:06:53+00:00"
         },
         {
             "name": "symfony/translation",
@@ -8116,8 +8015,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-01T22:27:46+00:00",
-            "published-time": "2026-11-04T11:31:54+00:00"
+            "time": "2026-11-01T22:27:46+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -8199,8 +8097,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-03T08:17:19+00:00",
-            "published-time": "2026-11-04T11:25:31+00:00"
+            "time": "2026-10-03T08:17:19+00:00"
         },
         {
             "name": "symfony/twig-bridge",
@@ -8308,8 +8205,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-15T16:00:52+00:00",
-            "published-time": "2026-10-28T18:24:45+00:00"
+            "time": "2026-10-15T16:00:52+00:00"
         },
         {
             "name": "symfony/twig-bundle",
@@ -8393,8 +8289,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-09T16:13:24+00:00",
-            "published-time": "2026-10-14T06:48:49+00:00"
+            "time": "2026-10-09T16:13:24+00:00"
         },
         {
             "name": "symfony/type-info",
@@ -8476,8 +8371,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-02T10:58:30+00:00",
-            "published-time": "2026-11-04T11:31:29+00:00"
+            "time": "2026-11-02T10:58:30+00:00"
         },
         {
             "name": "symfony/uid",
@@ -8555,8 +8449,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-12T14:32:04+00:00",
-            "published-time": "2026-10-14T06:48:53+00:00"
+            "time": "2026-10-12T14:32:04+00:00"
         },
         {
             "name": "symfony/validator",
@@ -8653,8 +8546,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:06+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -8741,8 +8633,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-26T21:55:04+00:00",
-            "published-time": "2026-10-28T18:25:26+00:00"
+            "time": "2026-10-26T21:55:04+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -8825,8 +8716,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-22T14:30:01+00:00",
-            "published-time": "2026-10-28T18:24:08+00:00"
+            "time": "2026-10-22T14:30:01+00:00"
         },
         {
             "name": "symfony/web-link",
@@ -8910,8 +8800,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-29T05:06:50+00:00",
-            "published-time": "2026-05-29T08:50:55+00:00"
+            "time": "2026-05-29T05:06:50+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -8987,8 +8876,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-04T08:39:20+00:00",
-            "published-time": "2026-11-04T11:31:03+00:00"
+            "time": "2026-11-04T08:39:20+00:00"
         },
         {
             "name": "twig/extra-bundle",
@@ -9062,8 +8950,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-11T08:59:50+00:00",
-            "published-time": "2026-09-18T09:10:34+00:00"
+            "time": "2026-09-11T08:59:50+00:00"
         },
         {
             "name": "twig/intl-extra",
@@ -9127,8 +9014,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-25T05:50:11+00:00",
-            "published-time": "2026-09-25T13:20:18+00:00"
+            "time": "2026-09-25T05:50:11+00:00"
         },
         {
             "name": "twig/markdown-extra",
@@ -9201,8 +9087,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-24T11:49:00+00:00",
-            "published-time": "2026-11-24T12:48:58+00:00"
+            "time": "2026-11-24T11:49:00+00:00"
         },
         {
             "name": "twig/string-extra",
@@ -9269,8 +9154,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-12-02T14:45:16+00:00",
-            "published-time": "2026-03-17T21:31:43+00:00"
+            "time": "2025-12-02T14:45:16+00:00"
         },
         {
             "name": "twig/twig",
@@ -9350,8 +9234,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-24T12:48:40+00:00",
-            "published-time": "2026-11-24T12:48:53+00:00"
+            "time": "2026-11-24T12:48:40+00:00"
         },
         {
             "name": "willdurand/negotiation",
@@ -9407,8 +9290,7 @@
                 "issues": "https://github.com/willdurand/Negotiation/issues",
                 "source": "https://github.com/willdurand/Negotiation/tree/3.1.0"
             },
-            "time": "2022-01-30T20:08:53+00:00",
-            "published-time": "2022-01-30T20:14:18+00:00"
+            "time": "2022-01-30T20:08:53+00:00"
         }
     ],
     "packages-dev": [
@@ -9503,8 +9385,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2026-11-14T20:49:33+00:00",
-            "published-time": "2026-11-14T20:50:36+00:00"
+            "time": "2026-11-14T20:49:33+00:00"
         },
         {
             "name": "clue/ndjson-react",
@@ -9568,8 +9449,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-12-23T10:58:28+00:00",
-            "published-time": "2022-12-23T10:59:43+00:00"
+            "time": "2022-12-23T10:58:28+00:00"
         },
         {
             "name": "composer/pcre",
@@ -9645,8 +9525,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-06-07T11:47:49+00:00",
-            "published-time": "2026-06-11T12:12:37+00:00"
+            "time": "2026-06-07T11:47:49+00:00"
         },
         {
             "name": "composer/xdebug-handler",
@@ -9712,8 +9591,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-05-06T16:37:16+00:00",
-            "published-time": "2024-05-06T17:01:42+00:00"
+            "time": "2024-05-06T16:37:16+00:00"
         },
         {
             "name": "dama/doctrine-test-bundle",
@@ -9782,47 +9660,46 @@
                 "issues": "https://github.com/dmaicher/doctrine-test-bundle/issues",
                 "source": "https://github.com/dmaicher/doctrine-test-bundle/tree/v8.8.0"
             },
-            "time": "2026-11-13T13:10:05+00:00",
-            "published-time": "2026-11-13T13:11:33+00:00"
+            "time": "2026-11-13T13:10:05+00:00"
         },
         {
             "name": "ergebnis/agent-detector",
-            "version": "2.0.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ergebnis/agent-detector.git",
-                "reference": "bcc63004284c61c6df6e9625acf2673e3be1889b"
+                "reference": "b575df5338fa3208485e4ed169660a8a9388194c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ergebnis/agent-detector/zipball/bcc63004284c61c6df6e9625acf2673e3be1889b",
-                "reference": "bcc63004284c61c6df6e9625acf2673e3be1889b",
+                "url": "https://api.github.com/repos/ergebnis/agent-detector/zipball/b575df5338fa3208485e4ed169660a8a9388194c",
+                "reference": "b575df5338fa3208485e4ed169660a8a9388194c",
                 "shasum": ""
             },
             "require": {
-                "php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0 || ~8.6.0"
+                "php": "~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0 || ~8.5.0 || ~8.6.0 || ~8.7.0"
             },
             "require-dev": {
-                "ergebnis/composer-normalize": "^2.54.0",
-                "ergebnis/license": "^2.8.0",
+                "ergebnis/composer-normalize": "^2.56.1",
+                "ergebnis/license": "^2.9.0",
                 "ergebnis/php-cs-fixer-config": "^6.60.2",
-                "ergebnis/phpstan-rules": "^2.14.2",
+                "ergebnis/phpstan-rules": "^2.17.1",
                 "ergebnis/phpunit-slow-test-detector": "^2.27.0",
-                "ergebnis/rector-rules": "^1.18.5",
+                "ergebnis/rector-rules": "^1.19.0",
                 "fakerphp/faker": "^1.24.1",
                 "infection/infection": "^0.26.6",
                 "phpstan/extension-installer": "^1.4.3",
                 "phpstan/phpstan": "^2.2.14",
                 "phpstan/phpstan-deprecation-rules": "^2.0.5",
-                "phpstan/phpstan-phpunit": "^2.1.1",
-                "phpstan/phpstan-strict-rules": "^2.1.0",
+                "phpstan/phpstan-phpunit": "^2.1.2",
+                "phpstan/phpstan-strict-rules": "^2.1.1",
                 "phpunit/phpunit": "^9.6.34",
                 "rector/rector": "^2.7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "2.0-dev"
+                    "dev-main": "2.2-dev"
                 },
                 "composer-normalize": {
                     "indent-size": 2,
@@ -9852,8 +9729,7 @@
                 "security": "https://github.com/ergebnis/agent-detector/blob/main/.github/SECURITY.md",
                 "source": "https://github.com/ergebnis/agent-detector"
             },
-            "time": "2026-10-29T17:44:55+00:00",
-            "published-time": "2026-10-29T17:49:41+00:00"
+            "time": "2026-11-24T09:23:24+00:00"
         },
         {
             "name": "fakerphp/faker",
@@ -9916,8 +9792,7 @@
                 "issues": "https://github.com/FakerPHP/Faker/issues",
                 "source": "https://github.com/FakerPHP/Faker/tree/v1.24.1"
             },
-            "time": "2024-11-21T13:46:39+00:00",
-            "published-time": "2024-11-21T13:47:18+00:00"
+            "time": "2024-11-21T13:46:39+00:00"
         },
         {
             "name": "fidry/cpu-core-counter",
@@ -9979,21 +9854,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-09-29T22:11:39+00:00",
-            "published-time": "2026-09-29T22:12:43+00:00"
+            "time": "2026-09-29T22:11:39+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.95.30",
+            "version": "v3.95.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "e85cafc4d861c122839d5409eda3325ac0ec0300"
+                "reference": "c12acc751f4039935429057f1fadf0e5f62601c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/e85cafc4d861c122839d5409eda3325ac0ec0300",
-                "reference": "e85cafc4d861c122839d5409eda3325ac0ec0300",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/c12acc751f4039935429057f1fadf0e5f62601c1",
+                "reference": "c12acc751f4039935429057f1fadf0e5f62601c1",
                 "shasum": ""
             },
             "require": {
@@ -10076,7 +9950,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.95.30"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.95.32"
             },
             "funding": [
                 {
@@ -10084,8 +9958,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-11-09T14:32:19+00:00",
-            "published-time": "2026-11-09T14:32:30+00:00"
+            "time": "2026-11-17T18:09:13+00:00"
         },
         {
             "name": "igor-php/igor-php",
@@ -10147,8 +10020,7 @@
                 "issues": "https://github.com/igor-php/igor-php/issues",
                 "source": "https://github.com/igor-php/igor-php/tree/v0.11.0"
             },
-            "time": "2026-11-14T15:18:44+00:00",
-            "published-time": "2026-11-14T15:22:16+00:00"
+            "time": "2026-11-14T15:18:44+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
@@ -10208,8 +10080,7 @@
                 "issues": "https://github.com/Jean85/pretty-package-versions/issues",
                 "source": "https://github.com/Jean85/pretty-package-versions/tree/2.1.1"
             },
-            "time": "2025-03-19T14:43:43+00:00",
-            "published-time": "2025-03-19T14:50:06+00:00"
+            "time": "2025-03-19T14:43:43+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -10274,8 +10145,7 @@
                 "issues": "https://github.com/jsonrainbow/json-schema/issues",
                 "source": "https://github.com/jsonrainbow/json-schema/tree/6.14.0"
             },
-            "time": "2026-10-24T08:53:34+00:00",
-            "published-time": "2026-10-24T08:53:38+00:00"
+            "time": "2026-10-24T08:53:34+00:00"
         },
         {
             "name": "marc-mabe/php-enum",
@@ -10348,8 +10218,7 @@
                 "issues": "https://github.com/marc-mabe/php-enum/issues",
                 "source": "https://github.com/marc-mabe/php-enum/tree/v4.7.2"
             },
-            "time": "2025-09-14T11:18:39+00:00",
-            "published-time": "2025-09-14T11:32:17+00:00"
+            "time": "2025-09-14T11:18:39+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -10409,8 +10278,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-11T10:17:44+00:00",
-            "published-time": "2026-08-11T10:29:20+00:00"
+            "time": "2026-08-11T10:17:44+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -10467,8 +10335,7 @@
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.9.0"
             },
-            "time": "2026-09-13T18:51:52+00:00",
-            "published-time": "2026-09-13T18:53:16+00:00"
+            "time": "2026-09-13T18:51:52+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -10535,8 +10402,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-03-03T12:33:53+00:00",
-            "published-time": "2024-03-03T12:39:44+00:00"
+            "time": "2024-03-03T12:33:53+00:00"
         },
         {
             "name": "phar-io/version",
@@ -10587,8 +10453,7 @@
                 "issues": "https://github.com/phar-io/version/issues",
                 "source": "https://github.com/phar-io/version/tree/3.2.1"
             },
-            "time": "2022-02-21T01:04:05+00:00",
-            "published-time": "2022-02-21T01:04:30+00:00"
+            "time": "2022-02-21T01:04:05+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10677,8 +10542,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-09T05:24:08+00:00",
-            "published-time": "2026-11-09T05:25:09+00:00"
+            "time": "2026-11-09T05:24:08+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -10751,8 +10615,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-25T14:47:43+00:00",
-            "published-time": "2026-08-25T14:48:49+00:00"
+            "time": "2026-08-25T14:47:43+00:00"
         },
         {
             "name": "phpunit/php-invoker",
@@ -10828,8 +10691,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-06T04:34:47+00:00",
-            "published-time": "2026-02-06T04:35:29+00:00"
+            "time": "2026-02-06T04:34:47+00:00"
         },
         {
             "name": "phpunit/php-text-template",
@@ -10901,8 +10763,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-03T04:54:24+00:00",
-            "published-time": "2026-10-03T04:54:39+00:00"
+            "time": "2026-10-03T04:54:24+00:00"
         },
         {
             "name": "phpunit/php-timer",
@@ -10974,21 +10835,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-06T04:37:53+00:00",
-            "published-time": "2026-02-06T04:38:39+00:00"
+            "time": "2026-02-06T04:37:53+00:00"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "13.4.7",
+            "version": "13.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "e6458d44279e3b4fc492d4c41fe8e677efed7a2c"
+                "reference": "291e66a76eb39f2fb8f880d38edc30dbd7acd9a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e6458d44279e3b4fc492d4c41fe8e677efed7a2c",
-                "reference": "e6458d44279e3b4fc492d4c41fe8e677efed7a2c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/291e66a76eb39f2fb8f880d38edc30dbd7acd9a2",
+                "reference": "291e66a76eb39f2fb8f880d38edc30dbd7acd9a2",
                 "shasum": ""
             },
             "require": {
@@ -11059,7 +10919,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.4.7"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/13.4.8"
             },
             "funding": [
                 {
@@ -11067,8 +10927,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2026-11-13T11:10:10+00:00",
-            "published-time": "2026-11-13T11:11:23+00:00"
+            "time": "2026-11-19T12:17:15+00:00"
         },
         {
             "name": "react/cache",
@@ -11140,8 +10999,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-11-30T15:59:55+00:00",
-            "published-time": "2022-11-30T16:03:35+00:00"
+            "time": "2022-11-30T15:59:55+00:00"
         },
         {
             "name": "react/child-process",
@@ -11216,8 +11074,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-12-23T15:25:20+00:00",
-            "published-time": "2025-12-23T15:25:57+00:00"
+            "time": "2025-12-23T15:25:20+00:00"
         },
         {
             "name": "react/dns",
@@ -11293,8 +11150,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-11-18T19:34:28+00:00",
-            "published-time": "2025-11-18T19:35:06+00:00"
+            "time": "2025-11-18T19:34:28+00:00"
         },
         {
             "name": "react/event-loop",
@@ -11366,8 +11222,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-11-17T20:46:25+00:00",
-            "published-time": "2025-11-17T20:47:32+00:00"
+            "time": "2025-11-17T20:46:25+00:00"
         },
         {
             "name": "react/promise",
@@ -11440,8 +11295,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-08-19T18:57:03+00:00",
-            "published-time": "2025-08-19T19:13:36+00:00"
+            "time": "2025-08-19T18:57:03+00:00"
         },
         {
             "name": "react/socket",
@@ -11521,8 +11375,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-11-19T20:47:34+00:00",
-            "published-time": "2025-11-19T20:48:23+00:00"
+            "time": "2025-11-19T20:47:34+00:00"
         },
         {
             "name": "react/stream",
@@ -11600,8 +11453,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2024-06-11T12:45:25+00:00",
-            "published-time": "2024-06-11T12:48:34+00:00"
+            "time": "2024-06-11T12:45:25+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -11670,8 +11522,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-01T04:27:14+00:00",
-            "published-time": "2026-08-01T04:29:01+00:00"
+            "time": "2026-08-01T04:27:14+00:00"
         },
         {
             "name": "sebastian/comparator",
@@ -11763,8 +11614,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-07T07:23:13+00:00",
-            "published-time": "2026-08-07T07:23:29+00:00"
+            "time": "2026-08-07T07:23:13+00:00"
         },
         {
             "name": "sebastian/complexity",
@@ -11834,8 +11684,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-02-06T04:41:32+00:00",
-            "published-time": "2026-02-06T04:41:49+00:00"
+            "time": "2026-02-06T04:41:32+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -11914,8 +11763,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-25T15:38:55+00:00",
-            "published-time": "2026-08-25T15:39:44+00:00"
+            "time": "2026-08-25T15:38:55+00:00"
         },
         {
             "name": "sebastian/environment",
@@ -11991,8 +11839,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-01T12:37:56+00:00",
-            "published-time": "2026-10-01T12:38:48+00:00"
+            "time": "2026-10-01T12:37:56+00:00"
         },
         {
             "name": "sebastian/exporter",
@@ -12082,8 +11929,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-07T07:22:06+00:00",
-            "published-time": "2026-08-07T07:23:47+00:00"
+            "time": "2026-08-07T07:22:06+00:00"
         },
         {
             "name": "sebastian/file-filter",
@@ -12152,8 +11998,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-04-22T07:20:04+00:00",
-            "published-time": "2026-04-22T07:20:25+00:00"
+            "time": "2026-04-22T07:20:04+00:00"
         },
         {
             "name": "sebastian/git-state",
@@ -12222,8 +12067,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-21T05:59:52+00:00",
-            "published-time": "2026-10-21T06:01:28+00:00"
+            "time": "2026-10-21T05:59:52+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -12297,8 +12141,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-06-01T15:11:33+00:00",
-            "published-time": "2026-06-01T15:20:45+00:00"
+            "time": "2026-06-01T15:11:33+00:00"
         },
         {
             "name": "sebastian/lines-of-code",
@@ -12368,8 +12211,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-09T08:42:34+00:00",
-            "published-time": "2026-07-09T08:44:06+00:00"
+            "time": "2026-07-09T08:42:34+00:00"
         },
         {
             "name": "sebastian/object-enumerator",
@@ -12438,8 +12280,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-13T07:05:05+00:00",
-            "published-time": "2026-08-13T07:07:58+00:00"
+            "time": "2026-08-13T07:05:05+00:00"
         },
         {
             "name": "sebastian/object-reflector",
@@ -12507,8 +12348,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-13T06:34:36+00:00",
-            "published-time": "2026-08-13T06:39:22+00:00"
+            "time": "2026-08-13T06:34:36+00:00"
         },
         {
             "name": "sebastian/recursion-context",
@@ -12584,8 +12424,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-03T05:58:12+00:00",
-            "published-time": "2026-08-03T05:59:59+00:00"
+            "time": "2026-08-03T05:58:12+00:00"
         },
         {
             "name": "sebastian/type",
@@ -12654,8 +12493,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-08-10T08:00:57+00:00",
-            "published-time": "2026-08-10T08:01:43+00:00"
+            "time": "2026-08-10T08:00:57+00:00"
         },
         {
             "name": "sebastian/version",
@@ -12721,8 +12559,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-11-09T06:31:27+00:00",
-            "published-time": "2026-11-09T06:31:50+00:00"
+            "time": "2026-11-09T06:31:27+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
@@ -12774,8 +12611,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-20T05:08:20+00:00",
-            "published-time": "2024-10-20T05:09:39+00:00"
+            "time": "2024-10-20T05:08:20+00:00"
         },
         {
             "name": "symfony/maker-bundle",
@@ -12875,8 +12711,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-09-12T21:13:48+00:00",
-            "published-time": "2026-09-12T21:26:21+00:00"
+            "time": "2026-09-12T21:13:48+00:00"
         },
         {
             "name": "symfony/polyfill-php81",
@@ -12956,8 +12791,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-05-26T12:45:58+00:00",
-            "published-time": "2026-05-26T13:40:34+00:00"
+            "time": "2026-05-26T12:45:58+00:00"
         },
         {
             "name": "symfony/web-profiler-bundle",
@@ -13042,8 +12876,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-10-30T12:52:48+00:00",
-            "published-time": "2026-11-04T11:32:15+00:00"
+            "time": "2026-10-30T12:52:48+00:00"
         },
         {
             "name": "zenstruck/assert",
@@ -13106,21 +12939,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-07T01:59:12+00:00",
-            "published-time": "2025-12-07T01:59:15+00:00"
+            "time": "2025-12-07T01:59:12+00:00"
         },
         {
             "name": "zenstruck/foundry",
-            "version": "v2.16.0",
+            "version": "v2.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zenstruck/foundry.git",
-                "reference": "29199b9a8363af0f96daaf3ade8fff191fd63952"
+                "reference": "af9a39400231bf92ea128235b81b30c2287443ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/29199b9a8363af0f96daaf3ade8fff191fd63952",
-                "reference": "29199b9a8363af0f96daaf3ade8fff191fd63952",
+                "url": "https://api.github.com/repos/zenstruck/foundry/zipball/af9a39400231bf92ea128235b81b30c2287443ba",
+                "reference": "af9a39400231bf92ea128235b81b30c2287443ba",
                 "shasum": ""
             },
             "require": {
@@ -13223,7 +13055,7 @@
             ],
             "support": {
                 "issues": "https://github.com/zenstruck/foundry/issues",
-                "source": "https://github.com/zenstruck/foundry/tree/v2.16.0"
+                "source": "https://github.com/zenstruck/foundry/tree/v2.17.0"
             },
             "funding": [
                 {
@@ -13235,8 +13067,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-11-09T12:40:49+00:00",
-            "published-time": "2026-11-09T12:40:59+00:00"
+            "time": "2026-11-18T11:18:19+00:00"
         }
     ],
     "aliases": [],
@@ -13254,5 +13085,5 @@
         "ext-json": "*"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.11.0"
+    "plugin-api-version": "2.9.0"
 }
