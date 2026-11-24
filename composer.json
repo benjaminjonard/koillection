@@ -71,9 +71,9 @@
         "symfony/yaml": "8.1.11",
         "twig/extra-bundle": "3.29.0",
         "twig/intl-extra": "3.30.0",
-        "twig/markdown-extra": "3.29.0",
+        "twig/markdown-extra": "3.31.1",
         "twig/string-extra": "3.24.0",
-        "twig/twig": "3.30.0"
+        "twig/twig": "3.31.1"
     },
     "require-dev": {
         "brianium/paratest": "7.29.0",
