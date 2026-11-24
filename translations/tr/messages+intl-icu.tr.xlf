@@ -547,12 +547,6 @@
         <target>Araçlar</target>
       </segment>
     </unit>
-    <unit id="LSyzK7f" name="btn.export_sql">
-      <segment state="translated">
-        <source>SQL</source>
-        <target>SQL</target>
-      </segment>
-    </unit>
     <unit id="Jd.jsk." name="btn.export_images">
       <segment state="translated">
         <source>Images</source>
