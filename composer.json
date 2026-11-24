@@ -14,7 +14,7 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "ext-json": "*",
-        "api-platform/core": "5.0.8",
+        "api-platform/core": "5.0.9",
         "chrome-php/chrome": "1.16.2",
         "composer/semver": "3.6.0",
         "doctrine/dbal": "4.6.0",
@@ -25,7 +25,7 @@
         "league/commonmark": "2.10.7",
         "lexik/jwt-authentication-bundle": "3.2.0",
         "maennchen/zipstream-php": "3.2.2",
-        "mtdowling/jmespath.php": "2.9.2",
+        "mtdowling/jmespath.php": "2.10.0",
         "nelmio/cors-bundle": "2.6.1",
         "symfony/asset": "8.1.0",
         "symfony/browser-kit": "v8.1.11",
@@ -78,16 +78,16 @@
     "require-dev": {
         "brianium/paratest": "7.29.0",
         "dama/doctrine-test-bundle": "8.8.0",
-        "friendsofphp/php-cs-fixer": "3.95.30",
+        "friendsofphp/php-cs-fixer": "3.95.32",
         "igor-php/igor-php": "0.11.0",
         "justinrainbow/json-schema": "6.14.0",
         "phpunit/php-code-coverage": "14.5.2",
-        "phpunit/phpunit": "13.4.7",
+        "phpunit/phpunit": "13.4.8",
         "symfony/maker-bundle": "1.68.0",
         "symfony/stopwatch": "8.1.0",
         "symfony/var-dumper": "8.1.10",
         "symfony/web-profiler-bundle": "8.1.11",
-        "zenstruck/foundry": "2.16.0"
+        "zenstruck/foundry": "2.17.0"
     },
     "config": {
         "allow-plugins": {
