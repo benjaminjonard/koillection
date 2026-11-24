@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@hotwired/stimulus": "3.2.2",
-    "@materializecss/materialize": "2.0.4",
+    "@materializecss/materialize": "2.4.0",
     "@symfony/reprise": "1.4.0",
     "croppie": "2.6.5",
     "echarts": "6.1.0",

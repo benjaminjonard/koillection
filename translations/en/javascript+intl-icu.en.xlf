@@ -115,22 +115,16 @@
         <target>Sunday</target>
       </segment>
     </unit>
-    <unit id="mdcgZEB" name="global.today">
+    <unit id="u5LRF8p" name="btn.cancel">
       <segment state="translated">
-        <source>Today</source>
-        <target>Today</target>
+        <source>Cancel</source>
+        <target>Cancel</target>
       </segment>
     </unit>
-    <unit id="exiimju" name="btn.clear">
+    <unit id="FPWuWud" name="btn.ok">
       <segment state="translated">
-        <source>Clear</source>
-        <target>Clear</target>
-      </segment>
-    </unit>
-    <unit id="Jd_qITE" name="btn.close">
-      <segment state="translated">
-        <source>Close</source>
-        <target>Close</target>
+        <source>OK</source>
+        <target>OK</target>
       </segment>
     </unit>
     <unit id="AghNVUV" name="statistics.items_added">

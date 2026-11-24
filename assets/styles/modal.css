@@ -1,5 +1,37 @@
 .modal {
     z-index: 1500 !important;
+    --modal-background-color: var(--surface-color);
+    color: var(--font-color-main);
+}
+
+.modal[open] {
+    display: block;
+    position: fixed;
+    top: 10%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+.modal::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: none;
+}
+
+.modal.modal-custom .modal-header {
+    position: static;
+    padding: 11px 0;
+    background: #009688;
+}
+
+.modal.modal-custom .modal-footer {
+    display: block;
+    position: static;
+    padding: 4px 6px;
+    height: 56px;
+    width: 100%;
+    border-radius: 0 0 2px 2px;
 }
 
 .modal-custom .modal-footer .btn, .btn-holder .btn {

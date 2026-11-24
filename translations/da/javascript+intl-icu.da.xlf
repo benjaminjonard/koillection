@@ -115,22 +115,10 @@
         <target>Søndag</target>
       </segment>
     </unit>
-    <unit id="mdcgZEB" name="global.today">
+    <unit id="u5LRF8p" name="btn.cancel">
       <segment state="translated">
-        <source>Today</source>
-        <target>I dag</target>
-      </segment>
-    </unit>
-    <unit id="exiimju" name="btn.clear">
-      <segment state="translated">
-        <source>Clear</source>
-        <target>Ryd</target>
-      </segment>
-    </unit>
-    <unit id="Jd_qITE" name="btn.close">
-      <segment state="translated">
-        <source>Close</source>
-        <target>Luk</target>
+        <source>Cancel</source>
+        <target>Annuller</target>
       </segment>
     </unit>
     <unit id="AghNVUV" name="statistics.items_added">
