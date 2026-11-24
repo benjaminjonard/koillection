@@ -8,7 +8,6 @@ use App\Http\CsvResponse;
 use App\Http\FileResponse;
 use App\Repository\CollectionRepository;
 use App\Repository\InventoryRepository;
-use App\Service\DatabaseDumper;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\StreamedResponse;
