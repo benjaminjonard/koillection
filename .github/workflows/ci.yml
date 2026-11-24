@@ -163,6 +163,13 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: root
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v8
@@ -190,6 +197,7 @@ jobs:
             sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
             sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
             sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mysql }}|i" ".env"
+            echo "POSTGRESQL_URL=postgresql://postgres:root@host.docker.internal:5432" >> ".env"
             bin/console lexik:jwt:generate-keypair
             bin/console doctrine:database:create
             bin/console doctrine:migration:migrate --no-interaction --allow-no-migration            
@@ -213,6 +221,13 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mariadb-admin ping" --health-interval=10s --health-timeout=5s --health-retries=5
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_PASSWORD: root
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval=10s --health-timeout=5s --health-retries=5
     
     steps:
       - name: Download artifact
@@ -241,6 +256,7 @@ jobs:
             sed -i "s|DB_USER=.*|DB_USER=root|i" ".env"
             sed -i "s|DB_PASSWORD=.*|DB_PASSWORD=root|i" ".env"
             sed -i "s|DB_VERSION=.*|DB_VERSION=${{ matrix.mariadb.version }}|i" ".env"
+            echo "POSTGRESQL_URL=postgresql://postgres:root@host.docker.internal:5432" >> ".env"
             bin/console lexik:jwt:generate-keypair
             bin/console doctrine:database:create
             bin/console doctrine:migration:migrate --no-interaction --allow-no-migration            

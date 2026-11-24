@@ -45,7 +45,7 @@ export default class extends Controller {
                     self.resultsWrapperTarget.classList.remove('hidden');
                     self.resultsWrapperTarget.innerHTML = '';
                     data.results.forEach((result) => {
-                        let highlightedResult = self.highlight(self.escapeHtml(result.label), value);
+                        let highlightedResult = self.highlight(result.label, value);
                         self.resultsWrapperTarget.appendChild(self.autocompleteResultFactory(highlightedResult, result.url, result.type));
                     });
 
@@ -65,15 +65,74 @@ export default class extends Controller {
     }
 
     highlight(content, terms) {
-        terms = terms.split(' ');
-        terms.forEach((term) => {
-            let search = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-            search += '(?![^<]*>)'; //Prevent matching 'b' character inside the <b> tag
-            let regex = new RegExp(search,'i');
-            content = content.replace(regex, `<b>$&</b>`);
+        let characters = Array.from(content);
+        let normalizedCharacters = characters.map((character) => this.normalize(character));
+        let normalizedContent = normalizedCharacters.join('');
+        let positions = [];
+        normalizedCharacters.forEach((normalizedCharacter, index) => {
+            for (let i = 0; i < normalizedCharacter.length; i++) {
+                positions.push(index);
+            }
         });
 
-        return content;
+        let highlighted = characters.map(() => false);
+        terms.split(' ').forEach((term) => {
+            let normalizedTerm = this.normalize(term);
+            if (normalizedTerm === '') {
+                return;
+            }
+
+            let start = normalizedContent.indexOf(normalizedTerm);
+            if (start === -1) {
+                return;
+            }
+
+            let end = positions[start + normalizedTerm.length - 1];
+            while (end + 1 < characters.length && normalizedCharacters[end + 1] === '') {
+                end++;
+            }
+
+            for (let i = positions[start]; i <= end; i++) {
+                highlighted[i] = true;
+            }
+        });
+
+        let html = '';
+        characters.forEach((character, index) => {
+            if (highlighted[index] && (index === 0 || !highlighted[index - 1])) {
+                html += '<b>';
+            }
+
+            html += this.escapeHtml(character);
+
+            if (highlighted[index] && (index === characters.length - 1 || !highlighted[index + 1])) {
+                html += '</b>';
+            }
+        });
+
+        return html;
+    }
+
+    normalize(content) {
+        return Array.from(content.normalize('NFKC'), (character) => this.fold(character))
+            .join('')
+            .replace(/\p{Default_Ignorable_Code_Point}/gu, '')
+            .replace(/[ぁ-ゔゝゞ]/g, (character) => String.fromCharCode(character.charCodeAt(0) + 0x60))
+            .normalize('NFD')
+            .replace(/\p{Mn}+/gu, '')
+            .normalize('NFC');
+    }
+
+    fold(character) {
+        let candidates = [
+            character,
+            character.toLowerCase(),
+            character.toUpperCase().toLowerCase(),
+            character.toLowerCase().toUpperCase().toLowerCase(),
+            character.toUpperCase(),
+        ];
+
+        return candidates.find((candidate) => !/\p{Changes_When_Casefolded}/u.test(candidate)) ?? character;
     }
 
     autocompleteResultFactory(label, url, type = null) {

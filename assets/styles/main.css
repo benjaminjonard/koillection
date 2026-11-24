@@ -1455,6 +1455,10 @@ img[data-src] {
     padding: 0 12px;
 }
 
+.chip:hover {
+    background-color: #e4e4e4;
+}
+
 .chip a {
     color: rgba(0, 0, 0, 0.6);
     font-size: 13px;

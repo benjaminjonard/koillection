@@ -17,7 +17,6 @@ use App\Repository\UserRepository;
 use App\Repository\WishlistRepository;
 use App\Repository\WishRepository;
 use App\Service\CachedValuesCalculator;
-use App\Service\DatabaseDumper;
 use App\Service\LatestReleaseChecker;
 use Composer\InstalledVersions;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
