@@ -217,6 +217,24 @@ class TagTest extends AppTestCase
         $this->assertSame('Frieren', $content[0]['text']);
     }
 
+    public function test_tag_autocomplete_ignores_accents(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        TagFactory::createOne(['label' => 'Shōnen', 'owner' => $user]);
+        TagFactory::createOne(['label' => 'Seinen', 'owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/tags/autocomplete/shon');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $content = json_decode($this->client->getResponse()->getContent(), true);
+        $this->assertCount(1, $content);
+        $this->assertSame('Shōnen', $content[0]['text']);
+    }
+
     public function test_can_show_item_from_tag(): void
     {
         // Arrange

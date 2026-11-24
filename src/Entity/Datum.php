@@ -20,6 +20,7 @@ use App\Entity\Traits\VisibleTrait;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\DatumRepository;
+use App\Service\SearchNormalizer;
 use App\Validator as AppAssert;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -110,6 +111,9 @@ class Datum implements VisibleInterface, \Stringable
     #[Assert\When(expression: 'this.getType() == "file"', constraints: [new Assert\IsNull])]
     #[Assert\When(expression: 'this.getType() == "video"', constraints: [new Assert\IsNull])]
     private ?string $value = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $normalizedValue = null;
 
     #[ORM\Column(type: Types::INTEGER, nullable: true)]
     #[Groups(['datum:read', 'datum:write'])]
@@ -247,6 +251,7 @@ class Datum implements VisibleInterface, \Stringable
     public function setType(string $type): self
     {
         $this->type = $type;
+        $this->refreshNormalizedValue();
 
         return $this;
     }
@@ -271,6 +276,7 @@ class Datum implements VisibleInterface, \Stringable
     public function setValue(?string $value): self
     {
         $this->value = $value;
+        $this->refreshNormalizedValue();
 
         return $this;
     }
@@ -511,5 +517,19 @@ class Datum implements VisibleInterface, \Stringable
         $this->currency = $currency;
 
         return $this;
+    }
+
+    private function refreshNormalizedValue(): void
+    {
+        if ($this->value === null) {
+            $this->normalizedValue = null;
+
+            return;
+        }
+
+        $this->normalizedValue = match ($this->type) {
+            DatumTypeEnum::TYPE_LIST, DatumTypeEnum::TYPE_CHOICE_LIST => SearchNormalizer::normalizeList($this->value),
+            default => SearchNormalizer::normalize($this->value),
+        };
     }
 }

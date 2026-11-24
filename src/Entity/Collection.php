@@ -22,6 +22,7 @@ use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\CollectionRepository;
+use App\Service\SearchNormalizer;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -68,6 +69,9 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     #[Assert\NotBlank]
     #[Groups(['collection:read', 'collection:write'])]
     private ?string $title = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $normalizedTitle = null;
 
     #[ApiProperty(readableLink: false, writableLink: false)]
     #[ORM\OneToMany(targetEntity: Collection::class, mappedBy: 'parent', cascade: ['all'])]
@@ -207,6 +211,7 @@ class Collection implements LoggableInterface, BreadcrumbableInterface, Cacheabl
     public function setTitle(string $title): Collection
     {
         $this->title = $title;
+        $this->normalizedTitle = SearchNormalizer::normalize($title);
 
         return $this;
     }

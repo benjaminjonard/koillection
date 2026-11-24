@@ -12,6 +12,7 @@ use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
 use App\Service\ArraySorter;
+use App\Service\SearchNormalizer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
@@ -93,10 +94,10 @@ class ItemRepository extends ServiceEntityRepository
         ;
 
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
-            $whereClause = 'LOWER(i.name) LIKE LOWER(:term)';
+            $whereClause = 'i.normalizedName LIKE :term';
 
             if ($search->getSearchInData()) {
-                $whereClause = 'LOWER(i.name) LIKE LOWER(:term) OR LOWER(d.value) LIKE LOWER(:term)';
+                $whereClause = 'i.normalizedName LIKE :term OR d.normalizedValue LIKE :term';
                 $qb
                     ->leftJoin('i.data', 'd', 'WITH', 'd.type IN (:types)')
                     ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_SEARCH)
@@ -105,7 +106,7 @@ class ItemRepository extends ServiceEntityRepository
 
             $qb
                 ->andWhere($whereClause)
-                ->setParameter('term', '%' . $search->getTerm() . '%')
+                ->setParameter('term', '%' . SearchNormalizer::normalize($search->getTerm()) . '%')
             ;
         }
 
@@ -163,12 +164,12 @@ class ItemRepository extends ServiceEntityRepository
 
     public function findLike(string $string): array
     {
-        $string = trim($string);
+        $string = SearchNormalizer::normalize(trim($string));
 
         return $this
             ->createQueryBuilder('i')
-            ->addSelect('(CASE WHEN LOWER(i.name) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
-            ->andWhere('LOWER(i.name) LIKE LOWER(:name)')
+            ->addSelect('(CASE WHEN i.normalizedName LIKE :startWith THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
+            ->andWhere('i.normalizedName LIKE :name')
             ->orderBy('startWithOrder', Order::Ascending->value) // Order items starting with the search term first
             ->addOrderBy('LOWER(i.name)', Order::Ascending->value) // Then order other matching items alphabetically
             ->setParameter('name', '%' . $string . '%')

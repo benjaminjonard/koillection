@@ -126,6 +126,63 @@ class SearchTest extends AppTestCase
         $this->assertCount(2, $crawler->filter('.collection-item'));
     }
 
+    public function test_search_ignores_accents_and_case(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $now = new \DateTimeImmutable();
+        $collectionFrieren = CollectionFactory::createOne(['title' => 'Sōsō no Frieren', 'owner' => $user, 'createdAt' => $now]);
+        ItemFactory::createOne(['name' => 'Sōsō no Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        TagFactory::createOne(['label' => 'Sōsō no Frieren', 'owner' => $user, 'createdAt' => $now]);
+        WishlistFactory::createOne(['name' => 'Wishlist Sōsō no Frieren', 'owner' => $user, 'createdAt' => $now]);
+        AlbumFactory::createOne(['title' => 'Sōsō no Frieren collection', 'owner' => $user, 'createdAt' => $now]);
+
+        $collectionBerserk = CollectionFactory::createOne(['title' => 'Berserk', 'owner' => $user, 'createdAt' => $now]);
+        ItemFactory::createOne(['name' => 'Berserk #1', 'collection' => $collectionBerserk, 'owner' => $user, 'createdAt' => $now]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/search');
+        $crawler = $this->client->submitForm('Submit', [
+            'search[term]' => 'SOSO NO',
+            'search[createdAt]' => $now->format('Y-m-d'),
+        ], 'GET');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Items (1)', $crawler->filter('.tab')->eq(0)->text());
+        $this->assertSame('Collections (1)', $crawler->filter('.tab')->eq(1)->text());
+        $this->assertSame('Tags (1)', $crawler->filter('.tab')->eq(2)->text());
+        $this->assertSame('Wishlists (1)', $crawler->filter('.tab')->eq(3)->text());
+        $this->assertSame('Albums (1)', $crawler->filter('.tab')->eq(4)->text());
+    }
+
+    public function test_search_with_data_ignores_accents(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $now = new \DateTimeImmutable();
+        $collectionFrieren = CollectionFactory::createOne(['title' => 'Frieren', 'owner' => $user, 'createdAt' => $now]);
+        $item1 = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item1, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Demographic', 'value' => 'Shōnen']);
+        $item2 = ItemFactory::createOne(['name' => 'Frieren #2', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item2, 'position' => 1, 'type' => DatumTypeEnum::TYPE_LIST, 'label' => 'Genres', 'value' => json_encode(['Fantasy', 'Shōnen'])]);
+        ItemFactory::createOne(['name' => 'Frieren #3', 'collection' => $collectionFrieren, 'owner' => $user, 'createdAt' => $now]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/search');
+        $crawler = $this->client->submitForm('Submit', [
+            'search[term]' => 'shonen',
+            'search[createdAt]' => $now->format('Y-m-d'),
+            'search[searchInData]' => 1,
+        ], 'GET');
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertSame('Items (2)', $crawler->filter('.tab')->eq(0)->text());
+    }
+
     public function test_search_need_at_least_one_field(): void
     {
         // Arrange
@@ -284,6 +341,34 @@ class SearchTest extends AppTestCase
         $this->assertSame(2, $content['totalResultsCounter']);
         $this->assertContains(['label' => 'Frieren #1', 'type' => 'item', 'url' => '/items/' . $item1->getId()], $content['results']);
         $this->assertContains(['label' => 'Frieren 9791032710838', 'type' => 'item', 'url' => '/items/' . $item2->getId()], $content['results']);
+    }
+
+    public function test_search_autocomplete_ignores_accents_and_kana(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne(['searchInDataByDefaultEnabled' => 1]);
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['title' => 'Sōsō no Frieren', 'owner' => $user]);
+        $item1 = ItemFactory::createOne(['name' => '葬送のフリーレン 1', 'collection' => $collection, 'owner' => $user]);
+        $item2 = ItemFactory::createOne(['name' => 'Frieren #1', 'collection' => $collection, 'owner' => $user]);
+        DatumFactory::createOne(['owner' => $user, 'item' => $item2, 'position' => 1, 'type' => DatumTypeEnum::TYPE_TEXT, 'label' => 'Original title', 'value' => '葬送のフリーレン']);
+        $tag = TagFactory::createOne(['label' => 'Sōsō no Frieren', 'owner' => $user]);
+        ItemFactory::createOne(['name' => 'Berserk #1', 'collection' => $collection, 'owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/search/autocomplete/soso');
+        $latinContent = json_decode($this->client->getResponse()->getContent(), true);
+        $this->client->request(Request::METHOD_GET, '/search/autocomplete/' . rawurlencode('ふりーれん'));
+        $kanaContent = json_decode($this->client->getResponse()->getContent(), true);
+
+        // Assert
+        $this->assertSame(2, $latinContent['totalResultsCounter']);
+        $this->assertContains(['label' => 'Sōsō no Frieren', 'type' => 'collection', 'url' => '/collections/' . $collection->getId()], $latinContent['results']);
+        $this->assertContains(['label' => 'Sōsō no Frieren', 'type' => 'tag', 'url' => '/tags/' . $tag->getId()], $latinContent['results']);
+
+        $this->assertSame(2, $kanaContent['totalResultsCounter']);
+        $this->assertContains(['label' => '葬送のフリーレン 1', 'type' => 'item', 'url' => '/items/' . $item1->getId()], $kanaContent['results']);
+        $this->assertContains(['label' => 'Frieren #1', 'type' => 'item', 'url' => '/items/' . $item2->getId()], $kanaContent['results']);
     }
 
     public function test_anonymous_search_autocomplete_entities_public(): void

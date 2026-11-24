@@ -29,6 +29,7 @@ class Autocompleter
 
     public function findForAutocomplete(string $term): array
     {
+        $term = SearchNormalizer::normalize($term);
         $params = [];
         $queryParts = [];
         $queryParts[] = $this->buildRequestForGivenTable($this->managerRegistry->getManager()->getClassMetadata(Collection::class)->getTableName(), 'title', $term, 'collection', $params, 'final_visibility');
@@ -98,17 +99,18 @@ class Autocompleter
         $user = $this->contextHandler->getContextUser();
         $terms = explode(' ', $term);
         $term = implode('%', $terms);
+        $normalizedLabelProperty = "normalized_{$labelProperty}";
 
         $sql = "
             SELECT id AS id, {$labelProperty} AS label, '{$type}' AS type, seen_counter AS seenCounter,
                 (CASE
-                     WHEN LOWER({$labelProperty}) = LOWER(?) THEN 4 -- exact match
-                     WHEN LOWER({$labelProperty}) LIKE LOWER(?) THEN 3 -- contains
+                     WHEN {$normalizedLabelProperty} = ? THEN 4 -- exact match
+                     WHEN {$normalizedLabelProperty} LIKE ? THEN 3 -- contains
                      ELSE 0
                 END) AS relevance
             FROM {$collectionTable}
             WHERE owner_id = ?
-            AND LOWER({$labelProperty}) LIKE LOWER(?)
+            AND {$normalizedLabelProperty} LIKE ?
         ";
 
         $params[] = $term;
@@ -137,16 +139,16 @@ class Autocompleter
         $sql = "
             SELECT i.id AS id, i.name AS label, 'item' AS type, i.seen_counter AS seenCounter,
                 (CASE
-                     WHEN LOWER(i.name) = LOWER(?) THEN 4 -- item exact match
-                     WHEN LOWER(i.name) LIKE LOWER(?) THEN 3 -- item end with
-                     WHEN LOWER(d.value) = LOWER(?) THEN 2 -- datum exact match
-                     WHEN LOWER(d.value) LIKE LOWER(?) THEN 1 -- datum contains
+                     WHEN i.normalized_name = ? THEN 4 -- item exact match
+                     WHEN i.normalized_name LIKE ? THEN 3 -- item end with
+                     WHEN d.normalized_value = ? THEN 2 -- datum exact match
+                     WHEN d.normalized_value LIKE ? THEN 1 -- datum contains
                      ELSE 0
                 END) AS relevance
             FROM {$itemTable} i
             LEFT JOIN {$datumTable} d ON d.item_id = i.id AND d.type IN (?){$datumVisibilityCondition}
             WHERE i.owner_id = ?
-            AND (LOWER(i.name) LIKE LOWER(?) OR LOWER(d.value) LIKE LOWER(?))
+            AND (i.normalized_name LIKE ? OR d.normalized_value LIKE ?)
         ";
 
         $params[] = $term;
@@ -179,13 +181,13 @@ class Autocompleter
         $sql = "
             SELECT i.id AS id, i.name AS label, 'item' AS type, i.seen_counter AS seenCounter,
                 (CASE
-                     WHEN LOWER(i.name) = LOWER(?) THEN 2 -- item exact match
-                     WHEN LOWER(i.name) LIKE LOWER(?) THEN 1 -- item end with
+                     WHEN i.normalized_name = ? THEN 2 -- item exact match
+                     WHEN i.normalized_name LIKE ? THEN 1 -- item end with
                      ELSE 0
                 END) AS relevance
             FROM {$itemTable} i
             WHERE i.owner_id = ?
-            AND LOWER(i.name) LIKE LOWER(?)
+            AND i.normalized_name LIKE ?
         ";
 
         $params[] = $term;

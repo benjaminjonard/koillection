@@ -22,6 +22,7 @@ use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\AlbumRepository;
+use App\Service\SearchNormalizer;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -66,6 +67,9 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     #[Assert\NotBlank]
     #[Groups(['album:read', 'album:write'])]
     private ?string $title = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $normalizedTitle = null;
 
     #[ORM\Column(type: Types::STRING, length: 6)]
     #[Groups(['album:read'])]
@@ -173,6 +177,7 @@ class Album implements BreadcrumbableInterface, LoggableInterface, CacheableInte
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        $this->normalizedTitle = SearchNormalizer::normalize($title);
 
         return $this;
     }

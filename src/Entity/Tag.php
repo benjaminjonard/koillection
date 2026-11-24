@@ -19,6 +19,7 @@ use App\Entity\Interfaces\BreadcrumbableInterface;
 use App\Entity\Interfaces\LoggableInterface;
 use App\Enum\VisibilityEnum;
 use App\Repository\TagRepository;
+use App\Service\SearchNormalizer;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -59,6 +60,9 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     #[Groups(['tag:read', 'tag:write'])]
     #[Assert\NotBlank]
     private string $label;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $normalizedLabel = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['tag:read', 'tag:write'])]
@@ -141,6 +145,7 @@ class Tag implements BreadcrumbableInterface, LoggableInterface, \Stringable
     public function setLabel(string $label): self
     {
         $this->label = $label;
+        $this->normalizedLabel = SearchNormalizer::normalize($label);
 
         return $this;
     }

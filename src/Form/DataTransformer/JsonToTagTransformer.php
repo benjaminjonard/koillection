@@ -37,7 +37,7 @@ class JsonToTagTransformer implements DataTransformerInterface
                 continue;
             }
 
-            $tags[$label] = $this->tagRepository->findOneBy(['label' => $label]) ?? new Tag()->setLabel($label);
+            $tags[$label] = $this->tagRepository->findOneByExactLabel($label) ?? new Tag()->setLabel($label);
         }
 
         return array_values($tags);

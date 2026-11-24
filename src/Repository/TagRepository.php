@@ -9,6 +9,7 @@ use App\Entity\Item;
 use App\Entity\Tag;
 use App\Model\Search\Search;
 use App\Model\Search\SearchTag;
+use App\Service\SearchNormalizer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\ORM\NoResultException;
@@ -69,8 +70,8 @@ class TagRepository extends ServiceEntityRepository
 
         if ($search->getTerm() !== null && $search->getTerm() !== '') {
             $qb
-                ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%' . trim($search->getTerm()) . '%')
+                ->andWhere('t.normalizedLabel LIKE :search')
+                ->setParameter('search', '%' . SearchNormalizer::normalize(trim($search->getTerm())) . '%')
             ;
         }
 
@@ -94,8 +95,8 @@ class TagRepository extends ServiceEntityRepository
 
         if ($search->getTerm() !== null && $search->getTerm() !== '') {
             $qb
-                ->andWhere('LOWER(t.label) LIKE LOWER(:search)')
-                ->setParameter('search', '%' . trim($search->getTerm()) . '%')
+                ->andWhere('t.normalizedLabel LIKE :search')
+                ->setParameter('search', '%' . SearchNormalizer::normalize(trim($search->getTerm())) . '%')
             ;
         }
 
@@ -106,14 +107,25 @@ class TagRepository extends ServiceEntityRepository
         }
     }
 
+    public function findOneByExactLabel(string $label): ?Tag
+    {
+        foreach ($this->findBy(['label' => $label]) as $tag) {
+            if ($tag->getLabel() === $label) {
+                return $tag;
+            }
+        }
+
+        return null;
+    }
+
     public function findLike(string $string): array
     {
-        $string = trim($string);
+        $string = SearchNormalizer::normalize(trim($string));
 
         return $this
             ->createQueryBuilder('t')
-            ->addSelect('(CASE WHEN LOWER(t.label) LIKE LOWER(:startWith) THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
-            ->andWhere('LOWER(t.label) LIKE LOWER(:label)')
+            ->addSelect('(CASE WHEN t.normalizedLabel LIKE :startWith THEN 0 ELSE 1 END) AS HIDDEN startWithOrder')
+            ->andWhere('t.normalizedLabel LIKE :label')
             ->orderBy('startWithOrder', Order::Ascending->value) // Order tags starting with the search term first
             ->addOrderBy('LOWER(t.label)', Order::Ascending->value) // Then order other matching tags alphabetically
             ->setParameter('label', '%' . $string . '%')
@@ -161,8 +173,8 @@ class TagRepository extends ServiceEntityRepository
 
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
-                ->andWhere('LOWER(t.label) LIKE LOWER(:term)')
-                ->setParameter('term', '%' . $search->getTerm() . '%')
+                ->andWhere('t.normalizedLabel LIKE :term')
+                ->setParameter('term', '%' . SearchNormalizer::normalize($search->getTerm()) . '%')
             ;
         }
 
