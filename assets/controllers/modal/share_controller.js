@@ -1,23 +1,17 @@
-import { Controller } from '@hotwired/stimulus';
+import ModalController from './default_controller.js';
 
-import '../../styles/modal.css'
-
-export default class extends Controller {
+export default class extends ModalController {
     static targets = ['message']
 
-    connect() {
-        let self = this;
-        M.Modal.init(this.element, {
-            onOpenStart: function (modal, trigger) {
-                if (modal.dataset.userVisibility === 'private') {
-                    self.messageTarget.innerHTML = modal.dataset.messagePrivateUser;
-                } else if (trigger.dataset.visibility === 'private') {
-                    self.messageTarget.innerHTML = modal.dataset.messagePrivateEntity;
-                } else {
-                    let message =  modal.dataset.messageShareLink + '<br><b><a href="__placeholder_path__">__placeholder_path__</a></b>';
-                    self.messageTarget.innerHTML = message.replace(/__placeholder_path__/g, trigger.dataset.path);
-                }
-            }
-        });
+    onOpen(trigger) {
+        const modal = this.element;
+        if (modal.dataset.userVisibility === 'private') {
+            this.messageTarget.innerHTML = modal.dataset.messagePrivateUser;
+        } else if (trigger.dataset.visibility === 'private') {
+            this.messageTarget.innerHTML = modal.dataset.messagePrivateEntity;
+        } else {
+            let message = modal.dataset.messageShareLink + '<br><b><a href="__placeholder_path__">__placeholder_path__</a></b>';
+            this.messageTarget.innerHTML = message.replace(/__placeholder_path__/g, trigger.dataset.path);
+        }
     }
 }

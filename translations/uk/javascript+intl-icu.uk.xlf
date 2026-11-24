@@ -115,24 +115,6 @@
         <target>неділя</target>
       </segment>
     </unit>
-    <unit id="mdcgZEB" name="global.today">
-      <segment state="translated">
-        <source>Today</source>
-        <target>Сьогодні</target>
-      </segment>
-    </unit>
-    <unit id="exiimju" name="btn.clear">
-      <segment state="translated">
-        <source>Clear</source>
-        <target>Очистити</target>
-      </segment>
-    </unit>
-    <unit id="Jd_qITE" name="btn.close">
-      <segment state="translated">
-        <source>Close</source>
-        <target>Закрити</target>
-      </segment>
-    </unit>
     <unit id="w0J8w0G" name="select2.no_results">
       <segment state="translated">
         <source>No results found</source>

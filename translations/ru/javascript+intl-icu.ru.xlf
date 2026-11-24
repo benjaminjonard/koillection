@@ -115,22 +115,16 @@
         <target>Воскресенье</target>
       </segment>
     </unit>
-    <unit id="mdcgZEB" name="global.today">
+    <unit id="u5LRF8p" name="btn.cancel">
       <segment state="translated">
-        <source>Today</source>
-        <target>Сегодня</target>
+        <source>Cancel</source>
+        <target>Отменить</target>
       </segment>
     </unit>
-    <unit id="exiimju" name="btn.clear">
+    <unit id="FPWuWud" name="btn.ok">
       <segment state="translated">
-        <source>Clear</source>
-        <target>Сбросить</target>
-      </segment>
-    </unit>
-    <unit id="Jd_qITE" name="btn.close">
-      <segment state="translated">
-        <source>Close</source>
-        <target>Закрыть</target>
+        <source>OK</source>
+        <target>ОК</target>
       </segment>
     </unit>
     <unit id="AghNVUV" name="statistics.items_added">
