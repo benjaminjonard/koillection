@@ -10,6 +10,7 @@ use App\Entity\User;
 use App\Enum\DatumTypeEnum;
 use App\Enum\DisplayModeEnum;
 use App\Model\Search\Search;
+use App\Service\SearchNormalizer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
@@ -99,10 +100,10 @@ class CollectionRepository extends ServiceEntityRepository
         ;
 
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
-            $whereClause = 'LOWER(c.title) LIKE LOWER(:term)';
+            $whereClause = 'c.normalizedTitle LIKE :term';
 
             if ($search->getSearchInData()) {
-                $whereClause = 'LOWER(c.title) LIKE LOWER(:term) OR LOWER(d.value) LIKE LOWER(:term)';
+                $whereClause = 'c.normalizedTitle LIKE :term OR d.normalizedValue LIKE :term';
                 $qb
                     ->leftJoin('c.data', 'd', 'WITH', 'd.type IN (:types)')
                     ->setParameter('types', DatumTypeEnum::AVAILABLE_FOR_SEARCH)
@@ -111,7 +112,7 @@ class CollectionRepository extends ServiceEntityRepository
 
             $qb
                 ->andWhere($whereClause)
-                ->setParameter('term', '%' . $search->getTerm() . '%')
+                ->setParameter('term', '%' . SearchNormalizer::normalize($search->getTerm()) . '%')
             ;
         }
 

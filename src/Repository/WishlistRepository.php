@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\User;
 use App\Entity\Wishlist;
 use App\Model\Search\Search;
+use App\Service\SearchNormalizer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
@@ -57,8 +58,8 @@ class WishlistRepository extends ServiceEntityRepository
 
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
-                ->andWhere('LOWER(w.name) LIKE LOWER(:term)')
-                ->setParameter('term', '%' . $search->getTerm() . '%')
+                ->andWhere('w.normalizedName LIKE :term')
+                ->setParameter('term', '%' . SearchNormalizer::normalize($search->getTerm()) . '%')
             ;
         }
 

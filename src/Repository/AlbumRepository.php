@@ -7,6 +7,7 @@ namespace App\Repository;
 use App\Entity\Album;
 use App\Entity\User;
 use App\Model\Search\Search;
+use App\Service\SearchNormalizer;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Order;
 use Doctrine\Persistence\ManagerRegistry;
@@ -46,8 +47,8 @@ class AlbumRepository extends ServiceEntityRepository
 
         if (\is_string($search->getTerm()) && $search->getTerm() !== '') {
             $qb
-                ->andWhere('LOWER(a.title) LIKE LOWER(:term)')
-                ->setParameter('term', '%' . $search->getTerm() . '%')
+                ->andWhere('a.normalizedTitle LIKE :term')
+                ->setParameter('term', '%' . SearchNormalizer::normalize($search->getTerm()) . '%')
             ;
         }
 

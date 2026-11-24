@@ -162,7 +162,7 @@ class DatumType extends AbstractType
                                     return null !== $string ? json_decode($string, true) : null;
                                 },
                                 static function ($array) {
-                                    return \is_array($array) ? json_encode($array) : null;
+                                    return \is_array($array) ? json_encode($array, \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES) : null;
                                 }
                             ),
                         ])

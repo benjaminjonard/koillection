@@ -280,6 +280,34 @@ class ItemTest extends AppTestCase
         $this->assertCount(1, ItemFactory::first()->getTags());
     }
 
+    public function test_existing_tag_is_reused_only_with_exact_label(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $tag = TagFactory::createOne(['label' => 'Shōnen', 'owner' => $user]);
+
+        // Act
+        $this->client->request(Request::METHOD_GET, '/items/add?collection=' . $collection->getId());
+        $this->client->submitForm('Submit', [
+            'item[name]' => 'Frieren #1',
+            'item[collection]' => $collection->getId(),
+            'item[quantity]' => 1,
+            'item[visibility]' => VisibilityEnum::VISIBILITY_PRIVATE,
+            'item[tags]' => json_encode(['Shōnen', 'Shonen'])
+        ]);
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        TagFactory::assert()->count(2);
+        $tags = ItemFactory::first()->getTags();
+        $labels = array_map(static fn ($itemTag) => $itemTag->getLabel(), $tags->toArray());
+        sort($labels);
+        $this->assertSame(['Shonen', 'Shōnen'], $labels);
+        $this->assertContains($tag->getId(), array_map(static fn ($itemTag) => $itemTag->getId(), $tags->toArray()));
+    }
+
     public function test_uploaded_image_overrides_scraped_image(): void
     {
         // Arrange

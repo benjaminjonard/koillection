@@ -62,29 +62,30 @@ class AdvancedItemSearcher
     private function buildNameFilter(QueryBuilder $queryBuilder, string $operator, string $value): string
     {
         $paramValue = uniqid('name_value_');
+        $value = SearchNormalizer::normalize($value);
 
         if ($operator === OperatorEnum::OPERATOR_EQUAL) {
             $queryBuilder->setParameter($paramValue, $value);
 
-            return "LOWER(item.name) = LOWER(:{$paramValue})";
+            return "item.normalizedName = :{$paramValue}";
         }
 
         if ($operator === OperatorEnum::OPERATOR_NOT_EQUAL) {
             $queryBuilder->setParameter($paramValue, $value);
 
-            return "LOWER(item.name) != LOWER(:{$paramValue})";
+            return "item.normalizedName != :{$paramValue}";
         }
 
         if ($operator === OperatorEnum::OPERATOR_CONTAINS) {
             $queryBuilder->setParameter($paramValue, "%{$value}%");
 
-            return "LOWER(item.name) LIKE LOWER(:{$paramValue})";
+            return "item.normalizedName LIKE :{$paramValue}";
         }
 
         if ($operator === OperatorEnum::OPERATOR_DOES_NOT_CONTAIN) {
             $queryBuilder->setParameter($paramValue, "%{$value}%");
 
-            return "LOWER(item.name) NOT LIKE LOWER(:{$paramValue})";
+            return "item.normalizedName NOT LIKE :{$paramValue}";
         }
 
         return '';
@@ -146,6 +147,7 @@ class AdvancedItemSearcher
         $datumAlias = uniqid('datum_');
 
         $paramValue = uniqid('datum_value_');
+        $normalizedValue = $value !== null ? SearchNormalizer::normalize($value) : null;
 
         $paramLabel = uniqid('datum_label_');
         $queryBuilder->setParameter($paramLabel, $datumLabel);
@@ -166,8 +168,8 @@ class AdvancedItemSearcher
                 $queryBuilder->setParameter($paramValue, $value);
                 $sql = "CAST($datumAlias.value AS INTEGER) = CAST(:{$paramValue} AS INTEGER)";
             } else {
-                $queryBuilder->setParameter($paramValue, $value);
-                $sql = "LOWER($datumAlias.value) = LOWER(:{$paramValue})";
+                $queryBuilder->setParameter($paramValue, $normalizedValue);
+                $sql = "$datumAlias.normalizedValue = :{$paramValue}";
             }
         }
 
@@ -176,28 +178,28 @@ class AdvancedItemSearcher
                 $queryBuilder->setParameter($paramValue, $value);
                 $sql = "CAST($datumAlias.value AS INTEGER) != CAST(:{$paramValue} AS INTEGER)";
             } else {
-                $queryBuilder->setParameter($paramValue, $value);
-                $sql = "LOWER($datumAlias.value) != LOWER(:{$paramValue})";
+                $queryBuilder->setParameter($paramValue, $normalizedValue);
+                $sql = "$datumAlias.normalizedValue != :{$paramValue}";
             }
         }
 
         if ($operator === OperatorEnum::OPERATOR_CONTAINS) {
             if ($datumType === DatumTypeEnum::TYPE_CHOICE_LIST || $datumType === DatumTypeEnum::TYPE_LIST) {
-                $queryBuilder->setParameter($paramValue, "%\"{$value}\"%");
-                $sql = "LOWER($datumAlias.value) LIKE LOWER(:{$paramValue})";
+                $queryBuilder->setParameter($paramValue, '%' . SearchNormalizer::normalizeListElement($value ?? '') . '%');
+                $sql = "$datumAlias.normalizedValue LIKE :{$paramValue}";
             } else {
-                $queryBuilder->setParameter($paramValue, "%{$value}%");
-                $sql = "LOWER($datumAlias.value) LIKE LOWER(:{$paramValue})";
+                $queryBuilder->setParameter($paramValue, "%{$normalizedValue}%");
+                $sql = "$datumAlias.normalizedValue LIKE :{$paramValue}";
             }
         }
 
         if ($operator === OperatorEnum::OPERATOR_DOES_NOT_CONTAIN) {
             if ($datumType === DatumTypeEnum::TYPE_CHOICE_LIST || $datumType === DatumTypeEnum::TYPE_LIST) {
-                $queryBuilder->setParameter($paramValue, "%\"{$value}\"%");
-                $sql = "LOWER($datumAlias.value) NOT LIKE LOWER(:{$paramValue})";
+                $queryBuilder->setParameter($paramValue, '%' . SearchNormalizer::normalizeListElement($value ?? '') . '%');
+                $sql = "$datumAlias.normalizedValue NOT LIKE :{$paramValue}";
             } else {
-                $queryBuilder->setParameter($paramValue, "%{$value}%");
-                $sql = "LOWER($datumAlias.value) NOT LIKE LOWER(:{$paramValue})";
+                $queryBuilder->setParameter($paramValue, "%{$normalizedValue}%");
+                $sql = "$datumAlias.normalizedValue NOT LIKE :{$paramValue}";
             }
         }
 

@@ -119,6 +119,28 @@ class AdvancedItemSearchTest extends AppTestCase
         $this->assertSame('Frieren #1', $crawler->filter('.collection-item')->eq(0)->filter('img')->attr('title'));
     }
 
+    public function test_search_by_name_ignores_accents_and_case(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $search = SearchFactory::createOne(['owner' => $user]);
+        $block = SearchBlockFactory::createOne(['search' => $search, 'condition' => ConditionEnum::CONDITION_AND]);
+        SearchFilterFactory::createOne(['block' => $block, 'type' => TypeEnum::TYPE_NAME, 'operator' => OperatorEnum::OPERATOR_EQUAL, 'value' => 'SOSO NO FRIEREN #1']);
+
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Sōsō no Frieren #1']);
+        ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Sōsō no Frieren #2']);
+
+        // Act
+        $crawler = $this->client->request(Request::METHOD_GET, '/advanced-item-search/' . $search->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(1, $crawler->filter('.collection-item'));
+        $this->assertSame('Sōsō no Frieren #1', $crawler->filter('.collection-item')->eq(0)->filter('img')->attr('title'));
+    }
+
     public function test_search_with_or(): void
     {
         // Arrange
@@ -219,6 +241,32 @@ class AdvancedItemSearchTest extends AppTestCase
         $this->assertResponseIsSuccessful();
         $this->assertCount(1, $crawler->filter('.collection-item'));
         $this->assertSame('Les champs de la Lune', $crawler->filter('.collection-item')->eq(0)->filter('img')->attr('title'));
+    }
+
+    public function test_search_with_choice_list_ignores_accents(): void
+    {
+        // Arrange
+        $user = UserFactory::createOne();
+        $this->client->loginUser($user);
+        $choiceList = ChoiceListFactory::createOne(['name' => 'Demographic', 'choices' => ['Shōnen', 'Seinen'], 'owner' => $user]);
+        $search = SearchFactory::createOne(['owner' => $user]);
+        $block = SearchBlockFactory::createOne(['search' => $search, 'condition' => ConditionEnum::CONDITION_AND]);
+        SearchFilterFactory::createOne(['block' => $block, 'type' => TypeEnum::TYPE_DATUM, 'operator' => OperatorEnum::OPERATOR_CONTAINS, 'datumLabel' => 'Demographic', 'datumType' => DatumTypeEnum::TYPE_CHOICE_LIST, 'value' => 'shonen']);
+
+        $collection = CollectionFactory::createOne(['owner' => $user]);
+        $item1 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Frieren #1']);
+        DatumFactory::createOne(['item' => $item1, 'owner' => $user, 'type' => DatumTypeEnum::TYPE_CHOICE_LIST, 'value' => json_encode(['Shōnen']), 'label' => 'Demographic', 'choiceList' => $choiceList]);
+
+        $item2 = ItemFactory::createOne(['collection' => $collection, 'owner' => $user, 'name' => 'Frieren #2']);
+        DatumFactory::createOne(['item' => $item2, 'owner' => $user, 'type' => DatumTypeEnum::TYPE_CHOICE_LIST, 'value' => json_encode(['Seinen']), 'label' => 'Demographic', 'choiceList' => $choiceList]);
+
+        // Act
+        $crawler = $this->client->request(Request::METHOD_GET, '/advanced-item-search/' . $search->getId());
+
+        // Assert
+        $this->assertResponseIsSuccessful();
+        $this->assertCount(1, $crawler->filter('.collection-item'));
+        $this->assertSame('Frieren #1', $crawler->filter('.collection-item')->eq(0)->filter('img')->attr('title'));
     }
 
     public function test_search_with_rating(): void

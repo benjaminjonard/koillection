@@ -22,6 +22,7 @@ use App\Entity\Interfaces\VisibleInterface;
 use App\Entity\Traits\VisibleTrait;
 use App\Enum\VisibilityEnum;
 use App\Repository\WishlistRepository;
+use App\Service\SearchNormalizer;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -67,6 +68,9 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     #[Groups(['wishlist:read', 'wishlist:write'])]
     #[Assert\NotBlank]
     private ?string $name = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $normalizedName = null;
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'wishlists')]
     #[Groups(['wishlist:read'])]
@@ -170,6 +174,7 @@ class Wishlist implements BreadcrumbableInterface, CacheableInterface, LoggableI
     public function setName(string $name): self
     {
         $this->name = $name;
+        $this->normalizedName = SearchNormalizer::normalize($name);
 
         return $this;
     }

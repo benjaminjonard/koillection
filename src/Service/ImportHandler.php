@@ -241,7 +241,7 @@ class ImportHandler
                 continue;
             }
 
-            $tag = $tags[$label] ??= $this->tagRepository->findOneBy(['label' => $label]) ?? new Tag()->setLabel($label);
+            $tag = $tags[$label] ??= $this->tagRepository->findOneByExactLabel($label) ?? new Tag()->setLabel($label);
             $item->addTag($tag);
         }
     }

@@ -54,7 +54,7 @@ abstract class ContentScraper implements Scraper
         }
 
         if ($type === DatumTypeEnum::TYPE_LIST) {
-            return json_encode(array_values(array_unique($values)));
+            return json_encode(array_values(array_unique($values)), \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES);
         }
 
         if ($type === DatumTypeEnum::TYPE_TEXTAREA) {

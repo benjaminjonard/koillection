@@ -23,6 +23,7 @@ use App\Entity\Traits\VisibleTrait;
 use App\Enum\DatumTypeEnum;
 use App\Enum\VisibilityEnum;
 use App\Repository\ItemRepository;
+use App\Service\SearchNormalizer;
 use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection as DoctrineCollection;
@@ -70,6 +71,9 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     #[Assert\NotBlank]
     #[Groups(['item:read', 'item:write'])]
     private ?string $name = null;
+
+    #[ORM\Column(type: Types::STRING, nullable: true)]
+    private ?string $normalizedName = null;
 
     #[ORM\Column(type: Types::INTEGER)]
     #[Assert\GreaterThanOrEqual(1)]
@@ -246,6 +250,7 @@ class Item implements BreadcrumbableInterface, LoggableInterface, CacheableInter
     public function setName(string $name): Item
     {
         $this->name = $name;
+        $this->normalizedName = SearchNormalizer::normalize($name);
 
         return $this;
     }
