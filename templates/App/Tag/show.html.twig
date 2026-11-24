@@ -64,7 +64,7 @@
             {% if null != tag.image or null != tag.description %}
                 <div class="block-element">
                     <h2 class="header">{{ 'title.infos'|trans }}</h2>
-                    <div class="tag-image-container" data-controller="lightbox">
+                    <div class="tag-image-container {{ tag.description is not empty ? 'margin-right-30' }}" data-controller="lightbox">
                         {% if tag.image is not null %}
                             <a href="{{ asset(tag.image) }}" data-lightbox="image-{{ tag.id }}">
                                 <img class="tag-image"
