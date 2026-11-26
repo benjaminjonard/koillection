@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Api\Serializer;
+namespace App\Api\Serializer;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;

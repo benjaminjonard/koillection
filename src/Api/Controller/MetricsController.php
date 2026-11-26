@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Api\Controller;
+namespace App\Api\Controller;
 
 use App\Enum\ConfigurationEnum;
 use App\Repository\AlbumRepository;

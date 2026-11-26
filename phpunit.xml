@@ -42,7 +42,6 @@
   </extensions>
   <source>
     <include>
-      <directory suffix=".php">api</directory>
       <directory suffix=".php">src</directory>
     </include>
   </source>

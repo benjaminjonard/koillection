@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Api\OpenApi;
+namespace App\Api\OpenApi;
 
 use ApiPlatform\OpenApi\Factory\OpenApiFactoryInterface;
 use ApiPlatform\OpenApi\Model\Operation;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Api\Encoder;
+namespace App\Api\Encoder;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;

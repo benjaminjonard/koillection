@@ -9,9 +9,6 @@ services:
         autoconfigure: true
         public: false
 
-    Api\:
-        resource: '../api/*'
-
     App\:
         resource: '../src/*'
         exclude:
@@ -23,8 +20,8 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    Api\Controller\:
-        resource: '../api/Controller'
+    App\Api\Controller\:
+        resource: '../src/Api/Controller'
         tags: [ 'controller.service_arguments' ]
 
     League\CommonMark\Extension\GithubFlavoredMarkdownExtension:

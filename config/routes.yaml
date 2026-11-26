@@ -6,8 +6,8 @@ controllers:
 
 api_controllers:
   resource:
-    path: ../api/Controller/
-    namespace: Api\Controller
+    path: ../src/Api/Controller/
+    namespace: App\Api\Controller
   type: attribute
 
 kernel:
